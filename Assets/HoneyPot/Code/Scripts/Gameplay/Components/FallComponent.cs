@@ -27,7 +27,6 @@ public class FallComponent : MonoBehaviour
 
                 GetComponent<Tetromino>().enabled = false;
                 GetComponent<Tetromino>().PlaceTilesOnGrid();
-
                 GameplayManagers.GameManager.CurrentTetromino = null;
 
                 GameplayManagers.GridManager.GridTetromino.PlaceTetrominoInGrid();

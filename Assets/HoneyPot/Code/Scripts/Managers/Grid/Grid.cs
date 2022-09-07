@@ -8,16 +8,23 @@ public abstract class Grid : MonoBehaviour
 
     protected Transform[,] _grid = new Transform[Constants.GRID_WIDTH, Constants.GRID_HEIGHT];
 
+    public int Grid_Height { get { return this._grid.Length; } }
+    public int Grid_Width { get { return this._grid.Length; } }
+
     public bool IsInsideBounds(Vector2 position)
     {
-        return ((int)position.x >= 0 && (int)position.x < Constants.GRID_WIDTH && (int)position.y >= 0);
+        int x = Mathf.RoundToInt((int)position.x);
+        int y = Mathf.RoundToInt((int)position.y);
+        return (x >= 0 && x < Constants.GRID_WIDTH && y >= 0);
     }
 
     public Transform GetTileAtGridPosition(Vector2 position)
     {
+        int x = Mathf.RoundToInt((int)position.x);
+        int y = Mathf.RoundToInt((int)position.y);
         if (this.IsInsideBounds(position))
         {
-            return this._grid[(int)position.x, (int)position.y];
+            return this._grid[x, y];
         }
         return null;
     }
