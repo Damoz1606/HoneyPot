@@ -8,20 +8,37 @@ public class FallComponent : MonoBehaviour
     [SerializeField] private float _fastTransitionInterval = 0;
     private float _lastFall;
 
-    public void FreeFall() {
-        if(Time.time - this._lastFall >= this._transitionInterval) {
+    public void FreeFall()
+    {
+        if (Time.time - this._lastFall >= this._transitionInterval)
+        {
             this.transform.position += Vector3.down;
-            /* if() {
+            if (GameplayManagers.GridManager.GridTetromino.IsValidGridPosition(this.transform))
+            {
+                GameplayManagers.GridManager.GridTetromino.UpdateGrid(this.transform);
+            }
+            else
+            {
+                this.transform.position += Vector3.up;
 
-            } else {
+                GetComponent<FallComponent>().enabled = false;
+                GetComponent<HorizontalMovement>().enabled = false;
+                GetComponent<RotationComponent>().enabled = false;
 
-            } */
+                GetComponent<Tetromino>().enabled = false;
+                GetComponent<Tetromino>().PlaceTilesOnGrid();
+
+                GameplayManagers.GameManager.CurrentTetromino = null;
+
+                GameplayManagers.GridManager.GridTetromino.PlaceTetrominoInGrid();
+            }
 
             this._lastFall = Time.time;
         }
     }
 
-    public void InstantFall() {
+    public void InstantFall()
+    {
         this._transitionInterval = this._fastTransitionInterval;
     }
 }

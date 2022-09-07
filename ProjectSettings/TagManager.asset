@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Block
+  - Flower1
+  - Flower2
+  - Flower3
+  - Flower4
   layers:
   - Default
   - TransparentFX

@@ -15,9 +15,27 @@ public class Tetromino : MonoBehaviour
     public FallComponent FallController { get { return this._fallController; } }
     public RotationComponent RotationController { get { return this._rotationController; } }
 
-    private void Awake() {
+    private void Awake()
+    {
         this._movementController = this.GetComponent<HorizontalMovement>();
         this._fallController = this.GetComponent<FallComponent>();
         this._rotationController = this.GetComponent<RotationComponent>();
+    }
+
+    public void PlaceTilesOnGrid()
+    {
+        foreach (Transform child in this.transform)
+        {
+            if (child.CompareTag("Block"))
+            {
+                child.GetComponent<Block>().CanDecrease = true;
+            }
+            Tile tile = child.GetComponentInChildren<Tile>();
+            if (tile != null)
+            {
+                tile.transform.SetParent(GameplayManagers.GameManager.TileHolder);
+                GameplayManagers.GridManager.GridTile.AddToGrid(tile.transform);
+            }
+        }
     }
 }
