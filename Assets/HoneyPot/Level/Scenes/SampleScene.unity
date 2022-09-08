@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55884655}
   - component: {fileID: 55884656}
+  - component: {fileID: 55884657}
   m_Layer: 5
   m_Name: ScoreBar
   m_TagString: Untagged
@@ -425,6 +426,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &55884657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55884654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591c42ff4e7e8544fbb2de1c24dd0e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 55884656}
 --- !u!1 &62212549
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,8 +817,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 209857970}
+  - component: {fileID: 209857971}
   m_Layer: 5
-  m_Name: LevelStuff
+  m_Name: InGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -832,6 +847,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &209857971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209857969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f591ab644d637c4395387f0aa561b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textScore: {fileID: 347613206}
+  _sliderScore: {fileID: 55884657}
 --- !u!1 &228389710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1097,7 @@ GameObject:
   - component: {fileID: 259357589}
   - component: {fileID: 259357588}
   - component: {fileID: 259357591}
+  - component: {fileID: 259357592}
   m_Layer: 0
   m_Name: GameplayManager
   m_TagString: Untagged
@@ -1256,6 +1286,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausePopup: {fileID: 877519957}
+  _inGameUI: {fileID: 209857971}
+--- !u!114 &259357592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259357577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9f9cd335f43234ebe7a513f3e91e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,9 +3785,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 800}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
+  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

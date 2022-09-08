@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(GridManager))]
 [RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(SpawnManager))]
+[RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(UIManager))]
 public class GameplayManagers : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameplayManagers : MonoBehaviour
     private static GridManager _gridManager;
     private static InputManager _inputManager;
     private static SpawnManager _spawnManager;
+    private static ScoreManager _scoreManager;
     private static UIManager _uiManager;
 
     public static AudioManager AudioManager { get { return _audioManager; } }
@@ -25,6 +27,7 @@ public class GameplayManagers : MonoBehaviour
     public static GridManager GridManager { get { return _gridManager; } }
     public static InputManager InputManager { get { return _inputManager; } }
     public static SpawnManager SpawnManager { get { return _spawnManager; } }
+    public static ScoreManager ScoreManager { get { return _scoreManager; } }
     public static UIManager UIManager { get { return _uiManager; } }
 
     private void Awake()
@@ -35,6 +38,7 @@ public class GameplayManagers : MonoBehaviour
         _gridManager = GetComponent<GridManager>();
         _inputManager = GetComponent<InputManager>();
         _spawnManager = GetComponent<SpawnManager>();
+        _scoreManager = GetComponent<ScoreManager>();
         _uiManager = GetComponent<UIManager>();
     }
 }
