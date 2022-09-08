@@ -22,6 +22,15 @@ public class Tetromino : MonoBehaviour
         this._rotationController = this.GetComponent<RotationComponent>();
     }
 
+    private void Start()
+    {
+        if (!GameplayManagers.GridManager.GridTetromino.IsValidGridPosition(this.transform))
+        {
+            GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
+            Destroy(this.gameObject);
+        }
+    }
+
     public void PlaceTilesOnGrid()
     {
         foreach (Transform child in this.transform)
