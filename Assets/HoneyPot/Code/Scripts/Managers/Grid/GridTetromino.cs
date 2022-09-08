@@ -66,19 +66,23 @@ public class GridTetromino : Grid
     {
         int x = (int)tile.x;
         int y = (int)tile.y;
-        if (this._grid[x, y] == null) return;
-        if (this._grid[x, y].GetComponent<Block>() == null || !this._grid[x, y].GetComponent<Block>().CanDecrease) return;
-        this._grid[x, y - 1] = this._grid[x, y];
-        this._grid[x, y] = null;
-        this._grid[x, y - 1].position += new Vector3(0, -1, 0);
+        if (this._grid[x, y] != null)
+        {
+            if (this._grid[x, y].GetComponent<Block>() == null || !this._grid[x, y].GetComponent<Block>().CanDecrease) return;
+            this._grid[x, y - 1] = this._grid[x, y];
+            this._grid[x, y] = null;
+            this._grid[x, y - 1].position += new Vector3(0, -1, 0);
+        }
     }
 
     public override void RemoveTile(Vector2 tile)
     {
         int x = (int)tile.x;
         int y = (int)tile.y;
-        if (this._grid[x, y] == null) return;
-        Destroy(this._grid[x, y].gameObject);
-        this._grid[x, y] = null;
+        if (this._grid[x, y] != null)
+        {
+            Destroy(this._grid[x, y].gameObject);
+            this._grid[x, y] = null;
+        };
     }
 }
