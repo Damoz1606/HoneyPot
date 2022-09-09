@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
     private Vector2 _currentSwipe;
     private Transform _selectedTile;
 
-    public bool IsInputActive { set { this._isInputActive = value; } }
+    public bool IsInputActive { set { this._isInputActive = value; } get { return this._isInputActive; } }
 
     private void Update()
     {

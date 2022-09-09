@@ -15,13 +15,14 @@ public class GridTetromino : Grid
         {
             if (child.gameObject.CompareTag("Block"))
             {
-                Vector2 pos = VectorRound.Vector2Round(child.position);
-                if (!this.IsInsideBounds(pos))
+                Vector2 block = VectorRound.Vector2Round(child.position);
+                if (!this.IsInsideBounds(block))
                 {
                     return false;
                 }
-                if (this._grid[(int)pos.x, (int)pos.y] != null &&
-                    this._grid[(int)pos.x, (int)pos.y].parent != tetromino)
+
+                if (this._grid[(int)block.x, (int)block.y] != null &&
+                    this._grid[(int)block.x, (int)block.y].parent != tetromino)
                 {
                     return false;
                 }
@@ -32,9 +33,9 @@ public class GridTetromino : Grid
 
     public void UpdateGrid(Transform tetromino)
     {
-        for (int y = 0; y < Constants.GRID_HEIGHT; y++)
+        for (int y = 0; y < this._gridHeight; y++)
         {
-            for (int x = 0; x < Constants.GRID_WIDTH; x++)
+            for (int x = 0; x < this._gridWidth; x++)
             {
                 if (this._grid[x, y] != null)
                 {

@@ -6,6 +6,7 @@ public class ButtonInstantFall : _ButtonEventBase
 {
     public override void ButtonEvent()
     {
-        GameplayManagers.GameManager.CurrentTetromino.FallController.InstantFall();
+        if (GameplayManagers.InputManager.IsInputActive)
+            GameplayManagers.GameManager.CurrentTetromino.FallController.InstantFall();
     }
 }

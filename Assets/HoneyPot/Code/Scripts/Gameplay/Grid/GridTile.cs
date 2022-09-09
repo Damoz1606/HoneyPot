@@ -29,7 +29,7 @@ public class GridTile : Grid
     {
         Vector2 tilePosition = tile.position;
         List<Transform> matches = new List<Transform>();
-        for (int x = (int)tilePosition.x + 1; x < Constants.GRID_WIDTH; x++)
+        for (int x = (int)tilePosition.x + 1; x < this._gridWidth; x++)
         {
             if (this._grid[x, (int)tilePosition.y] == null || !this._grid[x, (int)tilePosition.y].CompareTag(tile.tag))
             {
@@ -53,7 +53,7 @@ public class GridTile : Grid
     {
         Vector2 tilePosition = tile.position;
         List<Transform> matches = new List<Transform>();
-        for (int y = (int)tilePosition.y + 1; y < Constants.GRID_HEIGHT; y++)
+        for (int y = (int)tilePosition.y + 1; y < this._gridHeight; y++)
         {
             if (this._grid[(int)tilePosition.x, y] == null || !this._grid[(int)tilePosition.x, y].CompareTag(tile.tag))
             {
@@ -125,7 +125,7 @@ public class GridTile : Grid
 
     public void DecreaseTilesAbove(Vector2 abovePosition)
     {
-        for (int i = (int)abovePosition.y; i < Constants.GRID_HEIGHT; i++)
+        for (int i = (int)abovePosition.y; i < this._gridHeight; i++)
         {
             GameplayManagers.GridManager.GridTetromino.DecreaseTile(new Vector2(abovePosition.x, i));
             this.DecreaseTile(new Vector2(abovePosition.x, i));

@@ -4,7 +4,8 @@ public class PlayState : _StatesBase
 {
     public override void OnActivate()
     {
-        if(!GameplayManagers.GameManager.IsGameActive) {
+        if (!GameplayManagers.GameManager.IsGameActive)
+        {
             GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
             GameplayManagers.GameManager.IsGameActive = true;
         }
@@ -13,12 +14,15 @@ public class PlayState : _StatesBase
 
     public override void OnDeactivate()
     {
+        GameplayManagers.GameManager.IsGameActive = false;
+        GameplayManagers.InputManager.IsInputActive = false;
         Debug.Log("<color=red>Play State</color> OnDeactivate");
     }
 
     public override void OnUpdate()
     {
-        if(GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetromino != null) {
+        if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetromino != null)
+        {
             GameplayManagers.GameManager.CurrentTetromino.FallController.FreeFall();
         }
         Debug.Log("<color=yellow>Play State</color> OnUpdate");

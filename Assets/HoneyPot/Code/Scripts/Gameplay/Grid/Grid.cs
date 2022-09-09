@@ -6,16 +6,22 @@ public abstract class Grid : MonoBehaviour
     public abstract void DecreaseTile(Vector2 tile);
     public abstract void RemoveTile(Vector2 tile);
 
-    protected Transform[,] _grid = new Transform[Constants.GRID_WIDTH, Constants.GRID_HEIGHT];
+    [SerializeField] protected int _gridHeight;
+    [SerializeField] protected int _gridWidth;
+    protected Transform[,] _grid;
 
-    public int Grid_Height { get { return this._grid.Length; } }
-    public int Grid_Width { get { return this._grid.Length; } }
+    public void InitGrid(int width, int height)
+    {
+        this._grid = new Transform[width, height];
+        this._gridWidth = width;
+        this._gridHeight = height;
+    }
 
     public bool IsInsideBounds(Vector2 position)
     {
         int x = Mathf.RoundToInt((int)position.x);
         int y = Mathf.RoundToInt((int)position.y);
-        return (x >= 0 && x < Constants.GRID_WIDTH && y >= 0);
+        return (x >= 0 && x < this._gridWidth && y >= 0);
     }
 
     public Transform GetTileAtGridPosition(Vector2 position)

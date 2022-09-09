@@ -26,6 +26,7 @@ public class Tetromino : MonoBehaviour
     {
         if (!GameplayManagers.GridManager.GridTetromino.IsValidGridPosition(this.transform))
         {
+            GameplayManagers.InputManager.IsInputActive = false;
             GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
             Destroy(this.gameObject);
         }

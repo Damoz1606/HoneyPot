@@ -9,7 +9,7 @@ public class TetrominoSpawnManager : MonoBehaviour
     public void Spawn()
     {
         int randomIndex = Random.Range(0, this._tetrominos.Count);
-        GameObject temp = Instantiate(this._tetrominos[randomIndex], Constants.GRID_TETROMINO_SPAWN, Quaternion.identity);
+        GameObject temp = Instantiate(this._tetrominos[randomIndex], new Vector3(GameplayManagers.GridManager.GridWidth / 2, GameplayManagers.GridManager.GridHeight - Constants.GRID_GREACE_HEIGHT, 0), Quaternion.identity);
         GameplayManagers.GameManager.CurrentTetromino = temp.GetComponent<Tetromino>();
         temp.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
 
