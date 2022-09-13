@@ -8,20 +8,25 @@ public abstract class Grid : MonoBehaviour
 
     [SerializeField] protected int _gridHeight;
     [SerializeField] protected int _gridWidth;
-    protected Transform[,] _grid;
+
+    protected Column[] _gameGridColumn;
 
     public void InitGrid(int width, int height)
     {
-        this._grid = new Transform[width, height];
         this._gridWidth = width;
         this._gridHeight = height;
+
+        this._gameGridColumn = new Column[width];
+        for (int x = 0; x < width; x++)
+        {
+            this._gameGridColumn[x] = new Column(height);
+        }
     }
 
     public bool IsInsideBounds(Vector2 position)
     {
-        int x = Mathf.RoundToInt((int)position.x);
-        int y = Mathf.RoundToInt((int)position.y);
-        return (x >= 0 && x < this._gridWidth && y >= 0);
+        Vector2 rounded = VectorRound.Vector2Round(position);
+        return (rounded.x >= 0 && rounded.x < this._gridWidth && rounded.y >= 0);
     }
 
     public Transform GetTileAtGridPosition(Vector2 position)
@@ -30,10 +35,8 @@ public abstract class Grid : MonoBehaviour
         int y = Mathf.RoundToInt((int)position.y);
         if (this.IsInsideBounds(position))
         {
-            return this._grid[x, y];
+            return this._gameGridColumn[x].row[y];
         }
         return null;
     }
-
-
 }

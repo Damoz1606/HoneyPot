@@ -10,7 +10,11 @@ public class RotationComponent : MonoBehaviour
     {
         float rotation = (isClockWise) ? this._rotationDegree : -this._rotationDegree;
         this.transform.RotateAround(this._rotationPivot.position, Vector3.forward, rotation);
-        if (!GameplayManagers.GridManager.GridTetromino.IsValidGridPosition(this.transform))
+        if (GameplayManagers.GridManager.GridTetromino.IsValidGridPosition(this.transform))
+        {
+            GameplayManagers.GridManager.GridTetromino.UpdateGrid(this.transform);
+        }
+        else
         {
             this.transform.RotateAround(this._rotationPivot.position, Vector3.forward, -rotation);
         }

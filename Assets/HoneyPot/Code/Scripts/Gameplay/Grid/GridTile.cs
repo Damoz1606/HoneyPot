@@ -6,7 +6,7 @@ public class GridTile : Grid
 {
     public void AddToGrid(Transform tile)
     {
-        this._grid[(int)tile.position.x, (int)tile.position.y] = tile;
+        this._gameGridColumn[(int)tile.position.x].row[(int)tile.position.y] = tile;
     }
 
     public void SwapTiles(Transform tile, Transform desireTile)
@@ -14,8 +14,8 @@ public class GridTile : Grid
         Vector3 pos = tile.position;
         tile.position = desireTile.position;
         desireTile.position = pos;
-        this._grid[(int)tile.position.x, (int)tile.position.y] = tile;
-        this._grid[(int)desireTile.position.x, (int)desireTile.position.y] = desireTile;
+        this._gameGridColumn[(int)tile.position.x].row[(int)tile.position.y] = tile;
+        this._gameGridColumn[(int)desireTile.position.x].row[(int)desireTile.position.y] = desireTile;
     }
 
     public bool HasMatches(Transform tile)
@@ -31,20 +31,20 @@ public class GridTile : Grid
         List<Transform> matches = new List<Transform>();
         for (int x = (int)tilePosition.x + 1; x < this._gridWidth; x++)
         {
-            if (this._grid[x, (int)tilePosition.y] == null || !this._grid[x, (int)tilePosition.y].CompareTag(tile.tag))
+            if (this._gameGridColumn[x].row[(int)tilePosition.y] == null || !this._gameGridColumn[x].row[(int)tilePosition.y].CompareTag(tile.tag))
             {
                 break;
             }
-            matches.Add(this._grid[x, (int)tilePosition.y]);
+            matches.Add(this._gameGridColumn[x].row[(int)tilePosition.y]);
         }
 
         for (int x = (int)tilePosition.x - 1; x >= 0; x--)
         {
-            if (this._grid[x, (int)tilePosition.y] == null || !this._grid[x, (int)tilePosition.y].CompareTag(tile.tag))
+            if (this._gameGridColumn[x].row[(int)tilePosition.y] == null || !this._gameGridColumn[x].row[(int)tilePosition.y].CompareTag(tile.tag))
             {
                 break;
             }
-            matches.Add(this._grid[x, (int)tilePosition.y]);
+            matches.Add(this._gameGridColumn[x].row[(int)tilePosition.y]);
         }
         return matches;
     }
@@ -55,20 +55,20 @@ public class GridTile : Grid
         List<Transform> matches = new List<Transform>();
         for (int y = (int)tilePosition.y + 1; y < this._gridHeight; y++)
         {
-            if (this._grid[(int)tilePosition.x, y] == null || !this._grid[(int)tilePosition.x, y].CompareTag(tile.tag))
+            if (this._gameGridColumn[(int)tilePosition.x].row[y] == null || !this._gameGridColumn[(int)tilePosition.x].row[y].CompareTag(tile.tag))
             {
                 break;
             }
-            matches.Add(this._grid[(int)tilePosition.x, y]);
+            matches.Add(this._gameGridColumn[(int)tilePosition.x].row[y]);
         }
 
         for (int y = (int)tilePosition.y - 1; y >= 0; y--)
         {
-            if (this._grid[(int)tilePosition.x, y] == null || !this._grid[(int)tilePosition.x, y].CompareTag(tile.tag))
+            if (this._gameGridColumn[(int)tilePosition.x].row[y] == null || !this._gameGridColumn[(int)tilePosition.x].row[y].CompareTag(tile.tag))
             {
                 break;
             }
-            matches.Add(this._grid[(int)tilePosition.x, y]);
+            matches.Add(this._gameGridColumn[(int)tilePosition.x].row[y]);
         }
         return matches;
     }
@@ -141,11 +141,11 @@ public class GridTile : Grid
     {
         int x = (int)tile.x;
         int y = (int)tile.y;
-        if (this._grid[x, y] != null)
+        if (this._gameGridColumn[x].row[y] != null)
         {
-            this._grid[x, y - 1] = this._grid[x, y];
-            this._grid[x, y] = null;
-            this._grid[x, y - 1].position += new Vector3(0, -1, 0);
+            this._gameGridColumn[x].row[y - 1] = this._gameGridColumn[x].row[y];
+            this._gameGridColumn[x].row[y] = null;
+            this._gameGridColumn[x].row[y - 1].position += new Vector3(0, -1, 0);
         }
     }
 
@@ -153,10 +153,10 @@ public class GridTile : Grid
     {
         int x = (int)tile.x;
         int y = (int)tile.y;
-        if (this._grid[x, y] != null)
+        if (this._gameGridColumn[x].row[y] != null)
         {
-            Destroy(this._grid[x, y].gameObject);
-            this._grid[x, y] = null;
+            Destroy(this._gameGridColumn[x].row[y].gameObject);
+            this._gameGridColumn[x].row[y] = null;
         };
     }
 }
