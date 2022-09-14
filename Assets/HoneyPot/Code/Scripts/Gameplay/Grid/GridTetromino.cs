@@ -7,7 +7,7 @@ public class GridTetromino : Grid
     public void PlaceTetrominoInGrid()
     {
         foreach (Transform child in GameplayManagers.GameManager.BlockHolder)
-            if (child.childCount <= 4)
+            if (child.childCount <= 1)
                 Destroy(child.gameObject);
         GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
     }

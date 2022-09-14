@@ -24,8 +24,8 @@ public class FallComponent : MonoBehaviour
                 GetComponent<FallComponent>().enabled = false;
                 GetComponent<HorizontalMovement>().enabled = false;
                 GetComponent<RotationComponent>().enabled = false;
-                GetComponent<Tetromino>().PlaceTilesOnGrid();
                 GetComponent<Tetromino>().enabled = false;
+                GetComponent<Tetromino>().PlaceTilesOnGrid();
 
                 GameplayManagers.GameManager.CurrentTetromino = null;
 
