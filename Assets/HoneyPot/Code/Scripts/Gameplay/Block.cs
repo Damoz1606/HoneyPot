@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(DestroyWithParticles))]
@@ -36,9 +37,11 @@ public class Block : MonoBehaviour
     void Start()
     {
         GameplayManagers.SpawnManager.TileSpawnManager.Spawn(out GameObject tile);
+        // tile.transform.localScale = Vector3.zero;
         tile.transform.position = this.transform.position;
         tile.transform.SetParent(this.transform);
         this._child = tile.GetComponent<Tile>();
+        // tile.transform.DOScale(Vector3.one, 1).SetEase(Ease.InCubic).Play();
     }
 
     private void Update()
