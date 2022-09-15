@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameStates
-{
-    GAMEOVER,
-    PAUSE,
-    PLAY,
-    RESUME
-}
-
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform _blockHolder;

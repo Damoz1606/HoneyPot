@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class DestroyWithParticles : MonoBehaviour
@@ -12,17 +13,19 @@ public class DestroyWithParticles : MonoBehaviour
 
     public void Destroy()
     {
-        StartCoroutine(this.DestroyCorourtine());
+        this.DestroyCorourtine();
     }
 
-    private IEnumerator DestroyCorourtine()
+    private void DestroyCorourtine()
     {
         if (CanDestroyWithParticles)
         {
             Instantiate(this._particlesPrefab, this.transform.position, Quaternion.identity);
         }
-        this.gameObject.SetActive(false);
-        yield return new WaitForSeconds(this._destroyAfterSeconds);
-        Destroy(this.gameObject);
+
+        this.transform.DOScale(Vector3.zero, this._destroyAfterSeconds).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            Destroy(this.gameObject);
+        });
     }
 }

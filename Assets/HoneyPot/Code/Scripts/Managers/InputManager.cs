@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private float _tapInterval = 0.5f;
     [SerializeField] private float _errorSwipeValue = 0.5f;
     private Vector2 _currentSwipe;
-    private Transform _selectedTile;
+    private Block _selectedBlock;
 
     public bool IsInputActive { set { this._isInputActive = value; } get { return this._isInputActive; } }
 
@@ -33,6 +33,57 @@ public class InputManager : MonoBehaviour
                     this.TouchInput();
                     break;
             }
+        }
+    }
+
+    private SwipeTypes GetSwipe()
+    {
+        if (this._currentSwipe.x > 0 &&
+            this._currentSwipe.y > -this._errorSwipeValue &&
+            this._currentSwipe.y < this._errorSwipeValue)
+            return SwipeTypes.RIGHT;
+        else if (this._currentSwipe.x < 0 &&
+            this._currentSwipe.y > -this._errorSwipeValue &&
+            this._currentSwipe.y < this._errorSwipeValue)
+            return SwipeTypes.LEFT;
+        else if (this._currentSwipe.y > 0 &&
+            this._currentSwipe.x > -this._errorSwipeValue &&
+            this._currentSwipe.x < this._errorSwipeValue)
+            return SwipeTypes.UP;
+        else if (this._currentSwipe.y < 0 &&
+                        this._currentSwipe.x > -this._errorSwipeValue &&
+                        this._currentSwipe.x < this._errorSwipeValue)
+            return SwipeTypes.DOWN;
+        else
+            return SwipeTypes.DEFAULT;
+    }
+
+    private void SwipeEvent()
+    {
+        Block nextBlock;
+
+        switch (this.GetSwipe())
+        {
+            case SwipeTypes.UP:
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(true));
+                if (nextBlock == null) break;
+                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
+                break;
+            case SwipeTypes.DOWN:
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(false));
+                if (nextBlock == null) break;
+                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
+                break;
+            case SwipeTypes.RIGHT:
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(true));
+                if (nextBlock == null) break;
+                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
+                break;
+            case SwipeTypes.LEFT:
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(false));
+                if (nextBlock == null) break;
+                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
+                break;
         }
     }
 
@@ -66,10 +117,10 @@ public class InputManager : MonoBehaviour
         {
             this._startMousePosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             this._buttonDownPhaseStart = Time.time;
-            this._selectedTile = GameplayManagers.GridManager.GridTile.GetTileAtGridPosition(_startMousePosition);
+            this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(_startMousePosition);
         }
 
-        if (this._selectedTile != null && Input.GetMouseButtonUp(0))
+        if (this._selectedBlock != null && Input.GetMouseButtonUp(0))
         {
             if (Time.time - this._buttonDownPhaseStart > this._tapInterval)
             {
@@ -77,26 +128,7 @@ public class InputManager : MonoBehaviour
                 this._currentSwipe = this._endMousePosition - this._startMousePosition;
                 this._currentSwipe.Normalize();
 
-                //Left
-                if (this._currentSwipe.x < 0 &&
-                this._currentSwipe.y > -this._errorSwipeValue &&
-                this._currentSwipe.y < this._errorSwipeValue)
-                    this._selectedTile.GetComponent<Tile>().MovementController.SwipeHorizontal(false);
-                //Right
-                else if (this._currentSwipe.x > 0 &&
-                this._currentSwipe.y > -this._errorSwipeValue &&
-                this._currentSwipe.y < this._errorSwipeValue)
-                    this._selectedTile.GetComponent<Tile>().MovementController.SwipeHorizontal(true);
-                //Up
-                else if (this._currentSwipe.y > 0 &&
-                this._currentSwipe.x > -this._errorSwipeValue &&
-                this._currentSwipe.x < this._errorSwipeValue)
-                    this._selectedTile.GetComponent<Tile>().MovementController.SwipeVertical(true);
-                //Down 
-                else if (this._currentSwipe.y < 0 &&
-                this._currentSwipe.x > -this._errorSwipeValue &&
-                this._currentSwipe.x < this._errorSwipeValue)
-                    this._selectedTile.GetComponent<Tile>().MovementController.SwipeVertical(false);
+                this.SwipeEvent();
             }
         }
     }
@@ -117,34 +149,16 @@ public class InputManager : MonoBehaviour
                 case TouchPhase.Began:
                     this._startTouchPosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(touch.position));
                     this._touchDownPhaseStart = Time.time;
-                    this._selectedTile = GameplayManagers.GridManager.GridTile.GetTileAtGridPosition(_startTouchPosition);
+                    this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(_startTouchPosition);
                     break;
                 case TouchPhase.Ended:
-                    if (this._selectedTile != null && (Time.time - this._touchDownPhaseStart > this._tapInterval))
+                    if (this._selectedBlock != null && (Time.time - this._touchDownPhaseStart > this._tapInterval))
                     {
                         this._endTouchPosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(touch.position));
                         this._currentSwipe = this._endTouchPosition - this._startTouchPosition;
                         this._currentSwipe.Normalize();
-                        //Left
-                        if (this._currentSwipe.x < 0 &&
-                        this._currentSwipe.y > -this._errorSwipeValue &&
-                        this._currentSwipe.y < this._errorSwipeValue)
-                            this._selectedTile.GetComponent<Tile>().MovementController.SwipeHorizontal(false);
-                        //Right
-                        else if (this._currentSwipe.x > 0 &&
-                        this._currentSwipe.y > -this._errorSwipeValue &&
-                        this._currentSwipe.y < this._errorSwipeValue)
-                            this._selectedTile.GetComponent<Tile>().MovementController.SwipeHorizontal(true);
-                        //Up
-                        else if (this._currentSwipe.y > 0 &&
-                        this._currentSwipe.x > -this._errorSwipeValue &&
-                        this._currentSwipe.x < this._errorSwipeValue)
-                            this._selectedTile.GetComponent<Tile>().MovementController.SwipeVertical(true);
-                        //Down 
-                        else if (this._currentSwipe.y < 0 &&
-                        this._currentSwipe.x > -this._errorSwipeValue &&
-                        this._currentSwipe.x < this._errorSwipeValue)
-                            this._selectedTile.GetComponent<Tile>().MovementController.SwipeVertical(false);
+
+                        this.SwipeEvent();
 
                     }
                     break;

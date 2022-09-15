@@ -6,11 +6,9 @@ public class TileSpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _tiles;
 
-    public void Spawn(Transform parent) {
+    public void Spawn(out GameObject tile)
+    {
         int randomIndex = Random.Range(0, this._tiles.Count);
-        Vector3 spawnPosition = parent.position;
-        spawnPosition.z = 0.25f;
-        GameObject temp = Instantiate(_tiles[randomIndex], spawnPosition, Quaternion.identity);
-        temp.transform.SetParent(parent);
+        tile = Instantiate(_tiles[randomIndex], Vector3.zero, Quaternion.identity);
     }
 }

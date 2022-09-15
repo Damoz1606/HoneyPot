@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Column
+public class Column<T>
 {
-    public Transform[] row;
+    public T[] row;
 
     public Column(int rowCount)
     {
-        this.row = new Transform[rowCount];
+        this.row = new T[rowCount];
     }
 }

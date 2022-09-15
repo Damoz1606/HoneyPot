@@ -7,6 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(RotationComponent))]
 public class Tetromino : MonoBehaviour
 {
+
+    [SerializeField] private Block[] _blocks = new Block[4];
+
     private HorizontalMovement _movementController;
     private FallComponent _fallController;
     private RotationComponent _rotationController;
@@ -14,6 +17,8 @@ public class Tetromino : MonoBehaviour
     public HorizontalMovement MovementController { get { return this._movementController; } }
     public FallComponent FallController { get { return this._fallController; } }
     public RotationComponent RotationController { get { return this._rotationController; } }
+
+    public Block[] Blocks { get { return this._blocks; } }
 
     private void Awake()
     {
@@ -24,7 +29,8 @@ public class Tetromino : MonoBehaviour
 
     private void Start()
     {
-        if (!GameplayManagers.GridManager.GridTetromino.IsValidGridPosition(this.transform))
+
+        if (!GameplayManagers.GridManager.Board.IsValidPosition(this))
         {
             GameplayManagers.InputManager.IsInputActive = false;
             GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
@@ -34,18 +40,10 @@ public class Tetromino : MonoBehaviour
 
     public void PlaceTilesOnGrid()
     {
-        foreach (Transform child in this.transform)
+        foreach (Block child in this.Blocks)
         {
-            if (child.CompareTag("Block"))
-            {
-                child.GetComponent<Block>().CanDecrease = true;
-            }
-            Tile tile = child.GetComponentInChildren<Tile>();
-            if (tile != null)
-            {
-                tile.transform.SetParent(GameplayManagers.GameManager.TileHolder);
-                GameplayManagers.GridManager.GridTile.AddToGrid(tile.transform);
-            }
+            child.CanSwipe = true;
+            child.CanDecrease = true;
         }
     }
 }
