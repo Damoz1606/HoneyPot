@@ -4,6 +4,14 @@ public class ResumeState : _StatesBase
 {
     public override void OnActivate()
     {
+        if (!GameplayManagers.GameManager.IsGameActive)
+        {
+            GameplayManagers.GameManager.IsGameActive = true;
+        }
+        if (!GameplayManagers.InputManager.IsInputActive)
+        {
+            GameplayManagers.InputManager.IsInputActive = true;
+        }
         Debug.Log("<color=green>Resume State</color> OnActive");
     }
 

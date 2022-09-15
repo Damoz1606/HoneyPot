@@ -71,7 +71,14 @@ public class GridTetromino : Grid
     {
         int x = (int)tile.x;
         int y = (int)tile.y;
-        Destroy(this._gameGridColumn[x].row[y].gameObject);
+        if (this._gameGridColumn[x].row[y].gameObject.GetComponent<Block>() != null)
+        {
+            this._gameGridColumn[x].row[y].gameObject.GetComponent<Block>().DestroyWithParticles.Destroy();
+        }
+        else
+        {
+            Destroy(this._gameGridColumn[x].row[y].gameObject);
+        }
         this._gameGridColumn[x].row[y] = null;
     }
 }
