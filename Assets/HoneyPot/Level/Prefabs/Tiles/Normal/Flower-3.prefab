@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7071769879464906450}
-  - component: {fileID: -2807344160343590940}
-  - component: {fileID: 4272328676285764162}
+  - component: {fileID: 5158646462834198152}
   m_Layer: 0
   m_Name: Flower-3
-  m_TagString: Tile - Normal - Flower3
+  m_TagString: Tile - Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2807344160343590940
+--- !u!114 &5158646462834198152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,27 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3235005636145211265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ddc706613cb93f47b9716b406e7a9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dd76e03a7692454da5e9f46391bf293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreValue: 100
-  _increaseFactor: 1
   _type: 2
---- !u!114 &4272328676285764162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3235005636145211265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0597f71d0bb52f40b7ac8cf0a3dc3ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particlesPrefab: {fileID: 8439260142015951306, guid: 78313466cee74e0469618ddeb39f828e,
-    type: 3}
-  _destroyAfterSeconds: 5
 --- !u!1 &5391509798486537516
 GameObject:
   m_ObjectHideFlags: 0

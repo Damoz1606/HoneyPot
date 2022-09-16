@@ -2,11 +2,9 @@ using UnityEngine;
 
 public enum TileTypes
 {
-    Flower1,
-    Flower2,
-    Flower3,
-    Flower4,
-    Powerup1,
-    Powerup2,
-    Powerup3,
+    FLOWER_1,
+    FLOWER_2,
+    FLOWER_3,
+    FLOWER_4,
+    COMBO
 }

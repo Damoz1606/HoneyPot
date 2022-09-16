@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SwipeComponent : MonoBehaviour
 {
-
     public Vector2 GetNextVerticalPosition(bool isUp)
     {
         int swipePosition = isUp ? 1 : -1;

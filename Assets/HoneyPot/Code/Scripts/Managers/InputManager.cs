@@ -66,25 +66,22 @@ public class InputManager : MonoBehaviour
         {
             case SwipeTypes.UP:
                 nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(true));
-                if (nextBlock == null) break;
-                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
                 break;
             case SwipeTypes.DOWN:
                 nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(false));
-                if (nextBlock == null) break;
-                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
                 break;
             case SwipeTypes.RIGHT:
                 nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(true));
-                if (nextBlock == null) break;
-                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
                 break;
             case SwipeTypes.LEFT:
                 nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(false));
-                if (nextBlock == null) break;
-                GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
+                break;
+            default:
+                nextBlock = null;
                 break;
         }
+        
+        if (nextBlock != null) GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
     }
 
     #region ComputerInput

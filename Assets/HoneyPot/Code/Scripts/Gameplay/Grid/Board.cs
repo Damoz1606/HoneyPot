@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GridComponent))]
-[RequireComponent(typeof(SwapTileComponent))]
-[RequireComponent(typeof(PopBlockComponent))]
 public class Board : MonoBehaviour
 {
+    [SerializeField] float tweeningTime = 0.25f;
     private GridComponent _gridComponent;
-    private SwapTileComponent _swapTileComponent;
-    private PopBlockComponent _popBlockComponent;
 
     public Column<Block>[] Grid { get { return this._gridComponent.Grid; } }
 
     private void Awake()
     {
         this._gridComponent = this.GetComponent<GridComponent>();
-        this._swapTileComponent = this.GetComponent<SwapTileComponent>();
-        this._popBlockComponent = this.GetComponent<PopBlockComponent>();
     }
 
     public void InitGrid(int width, int height)
@@ -61,42 +56,30 @@ public class Board : MonoBehaviour
         foreach (Block block in tetromino.Blocks)
         {
             Vector2 position = VectorRound.Vector2Round(block.transform.position);
-            block.Position = new Vector2Int((int)position.x, (int)position.y);
             this._gridComponent.SetBlockAt(new Vector2(position.x, position.y), block);
         }
     }
 
     public void PlaceNewTetromino()
     {
-        this.PopController();
+        this.TryPop();
         GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
     }
 
     public void SwapBlock(Block currentBlock, Block nextBlock)
     {
         if (!currentBlock.CanSwipe || !nextBlock.CanSwipe) return;
-        this._swapTileComponent.SwapTiles(currentBlock, nextBlock, this._gridComponent.Grid);
-
-        if (this._popBlockComponent.CanPop(_gridComponent.Grid))
-        {
-            Debug.Log("Poping");
-            this._popBlockComponent.Pop(_gridComponent.Grid);
-            this.PopController();
-        }
-        else
-        {
-            Debug.Log("Swapping");
-            this._swapTileComponent.SwapTiles(currentBlock, nextBlock, this._gridComponent.Grid);
-        }
+        SwapUtils.Swap<Block, Tile>(currentBlock, nextBlock, this.Grid, this.tweeningTime);
+        this.TryPop();
     }
 
-    private void PopController()
+    private void TryPop()
     {
-        if (this._popBlockComponent.CanPop(_gridComponent.Grid))
+        if (PopUtils.CanPop<Block>(this.Grid))
         {
-            Debug.Log("Poping 2");
-            this._popBlockComponent.Pop(_gridComponent.Grid);
-            // this.PopController();
+            Vector2[] targets = PopUtils.Pop<Block>(this.Grid, tweeningTime);
+            DestroyUtils.DecreaseAllAbove<Block>(targets, this.Grid, tweeningTime);
+            this.TryPop();
         }
     }
 }

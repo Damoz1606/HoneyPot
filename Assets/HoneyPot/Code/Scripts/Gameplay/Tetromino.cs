@@ -44,6 +44,8 @@ public class Tetromino : MonoBehaviour
         {
             child.CanSwipe = true;
             child.CanDecrease = true;
+            child.CanPop = true;
+            // child.ActivateChild();
         }
     }
 }

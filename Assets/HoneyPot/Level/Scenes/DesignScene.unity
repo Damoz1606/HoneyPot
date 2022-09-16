@@ -2991,7 +2991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f80c8cb68119c47924547651e34b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweeningTime: 0.25
+  tweeningTime: 0.5
   _swappingBoard: {fileID: 137246486}
 --- !u!114 &762640277
 MonoBehaviour:
@@ -3575,7 +3575,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 50
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

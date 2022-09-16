@@ -5,13 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Block
+  - Tile - Normal
+  - Tile - Combo
   - Tile - Powerup - Star
   - Tile - Powerup - Honeypot
   - Tile - Powerup - Bomb
-  - Tile - Normal - Flower1
-  - Tile - Normal - Flower2
-  - Tile - Normal - Flower3
-  - Tile - Normal - Flower4
   layers:
   - Default
   - TransparentFX

@@ -1,52 +1,150 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(DestroyWithParticles))]
-[RequireComponent(typeof(DestroyWithPoints))]
-[RequireComponent(typeof(SwipeComponent))]
 public class Block : MonoBehaviour
 {
+    private bool _isSwapping = false;
     private bool _canSwipe = false;
     private bool _canDecrease = false;
-    private Vector2Int _position;
+    private bool _canPop = false;
     private Tile _child;
-    private DestroyWithParticles _destroyWithParticles;
+    protected DestroyWithParticles _destroyWithParticles;
 
+    public Block Top
+    {
+        get
+        {
+            try
+            {
+                if ((int)this.transform.position.y < GameplayManagers.GridManager.GridHeight - 1)
+                    return GameplayManagers.GridManager
+                    .Board.Grid[(int)this.transform.position.x].row[(int)this.transform.position.y + 1];
+                else
+                    return null;
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+        }
+    }
 
-    public Block Top => _position.y < GameplayManagers.GridManager.GridHeight - 1 ? GameplayManagers.GridManager.Board.Grid[_position.x].row[_position.y + 1] : null;
-    public Block Bottom => _position.y > 0 ? GameplayManagers.GridManager.Board.Grid[_position.x].row[_position.y - 1] : null;
-    public Block Right => _position.x > 0 ? GameplayManagers.GridManager.Board.Grid[_position.x - 1].row[_position.y] : null;
-    public Block Left => _position.x < GameplayManagers.GridManager.GridWidth - 1 ? GameplayManagers.GridManager.Board.Grid[_position.x + 1].row[_position.y] : null;
+    public Block Bottom
+    {
+        get
+        {
+            try
+            {
+                if ((int)this.transform.position.y > 0)
+                    return GameplayManagers.GridManager.Board
+                    .Grid[(int)this.transform.position.x].row[(int)this.transform.position.y - 1];
+                else
+                    return null;
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+        }
+    }
+    public Block Right
+    {
+        get
+        {
+            try
+            {
+                if ((int)this.transform.position.x > 0)
+                    return GameplayManagers.GridManager.Board
+                    .Grid[(int)this.transform.position.x - 1].row[(int)this.transform.position.y];
+                else
+                    return null;
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+        }
+    }
+    public Block Left
+    {
+        get
+        {
+            try
+            {
+                if ((int)this.transform.position.x < GameplayManagers.GridManager.GridWidth - 1)
+                    return GameplayManagers.GridManager.Board
+                    .Grid[(int)this.transform.position.x + 1].row[(int)this.transform.position.y];
+                else
+                    return null;
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+        }
+    }
 
     public Block[] NeighboursHorizontal => new[] { Right, Left };
     public Block[] NeighboursVertical => new[] { Top, Bottom };
 
-    public bool CanDecrease { set { this._canDecrease = value; } get { return this._canDecrease; } }
     public bool CanSwipe { set { this._canSwipe = value; } get { return this._canSwipe; } }
-    public Vector2Int Position { set { this._position = value; } get { return this._position; } }
+    public bool CanDecrease { set { this._canDecrease = value; } get { return this._canDecrease; } }
+    public bool CanPop { set { this._canPop = value; } get { return this._canPop; } }
+    public bool IsSwapping { set { this._isSwapping = value; } get { return this._isSwapping; } }
     public Tile Child { set { this._child = value; } get { return this._child; } }
-    public DestroyWithParticles DestroyWithParticles { get { return this._destroyWithParticles; } }
 
     private void Awake()
     {
-        this._destroyWithParticles = this.GetComponent<DestroyWithParticles>();
+        this._destroyWithParticles = GetComponent<DestroyWithParticles>();
     }
 
     void Start()
     {
         GameplayManagers.SpawnManager.TileSpawnManager.Spawn(out GameObject tile);
-        // tile.transform.localScale = Vector3.zero;
         tile.transform.position = this.transform.position;
         tile.transform.SetParent(this.transform);
         this._child = tile.GetComponent<Tile>();
-        // tile.transform.DOScale(Vector3.one, 1).SetEase(Ease.InCubic).Play();
+        // tile.transform.localScale = Vector3.zero;
     }
 
     private void Update()
     {
-        this._position = new Vector2Int((int)this.transform.position.x, (int)this.transform.position.y);
+        this.CheckAndHoldChild();
+    }
+
+    /*     public async void ActivateChild()
+        {
+            await this.ActivateChildAsync();
+        }
+
+        private async Task ActivateChildAsync()
+        {
+            if (this.Child == null) return;
+            await this.Child.transform.DOScale(Vector3.one, 0.25f).AsyncWaitForCompletion();
+            await this.Child.transform.DORotate(Vector3.forward, 0.25f).AsyncWaitForCompletion();
+        } */
+
+    public async void CheckAndHoldChild()
+    {
+        await this.CheckAndHoldChildAsync();
+    }
+
+    private async Task CheckAndHoldChildAsync(float tweeningTime = 0.25f)
+    {
+        if (this._isSwapping) return;
+        if (this.Child.transform.localPosition != Vector3.zero)
+        {
+            await this.Child.transform.DOLocalMove(Vector3.zero, tweeningTime).AsyncWaitForCompletion();
+        }
+    }
+
+    public void Destroy()
+    {
+        this._destroyWithParticles.Destroy();
     }
 
     public (List<Block>, List<Block>) GetConnections(List<Block> exclude = null)
@@ -60,10 +158,10 @@ public class Block : MonoBehaviour
             exclude.Add(this);
         }
 
-        return (GetConnectionsHorizontal(exclude), GetConnectionsVertical());
+        return (GetConnectionsHorizontal(exclude), GetConnectionsVertical(exclude));
     }
 
-    private List<Block> GetConnectionsHorizontal(List<Block> exclude = null)
+    protected List<Block> GetConnectionsVertical(List<Block> exclude = null)
     {
         List<Block> result = new List<Block> { this, };
         if (exclude == null)
@@ -75,23 +173,20 @@ public class Block : MonoBehaviour
             exclude.Add(this);
         }
 
-        foreach (Block neighbour in NeighboursHorizontal)
+        foreach (Block neighbour in NeighboursVertical)
         {
             if (neighbour == null) continue;
             if (exclude.Contains(neighbour)) continue;
-            if (neighbour.Child.Type != this.Child.Type)
-            {
-                exclude.Add(neighbour);
-                continue;
-            };
-            result.AddRange(neighbour.GetConnectionsHorizontal(exclude));
+            if (!neighbour.Child.Type.Equals(this.Child.Type)) continue;
+            result.AddRange(neighbour.GetConnectionsVertical(exclude));
         }
         return result;
     }
 
-    private List<Block> GetConnectionsVertical(List<Block> exclude = null)
+    protected List<Block> GetConnectionsHorizontal(List<Block> exclude = null)
     {
-        List<Block> result = new List<Block> { this, };
+        List<Block> result = new List<Block>();
+        result.Add(this);
         if (exclude == null)
         {
             exclude = new List<Block> { this, };
@@ -105,13 +200,10 @@ public class Block : MonoBehaviour
         {
             if (neighbour == null) continue;
             if (exclude.Contains(neighbour)) continue;
-            if (neighbour.Child.Type != this.Child.Type)
-            {
-                exclude.Add(neighbour);
-                continue;
-            };
-            result.AddRange(neighbour.GetConnectionsVertical(exclude));
+            if (!neighbour.Child.Type.Equals(this.Child.Type)) continue;
+            result.AddRange(neighbour.GetConnectionsHorizontal(exclude));
         }
+
         return result;
     }
 }
