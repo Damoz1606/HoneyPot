@@ -5,7 +5,7 @@ public class PauseState : _StatesBase
     public override void OnActivate()
     {
         GameplayManagers.UIManager.PausePopup.OnActivatePopup();
-        Time.timeScale = 0.01f;
+        Time.timeScale = 0f;
         Debug.Log("<color=green>Pause State</color> OnActive");
     }
 
