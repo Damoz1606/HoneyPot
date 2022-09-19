@@ -4,13 +4,12 @@ using UnityEngine;
 
 public static class PopUtils
 {
-    public static void OnComplete(UtilsCallback action) => action();
-
     public static bool CanPop<T>(T cell) where T : Block
     {
-        var (horizontalConnections, verticalConnections) = cell.GetConnections();
-        if (horizontalConnections.Skip(1).Count() >= Constants.MIN_MATCH_COUNT ||
-        verticalConnections.Skip(1).Count() >= Constants.MIN_MATCH_COUNT)
+        var horizontalConnections = cell.GetConnectionsHorizontal();
+        var verticalConnections = cell.GetConnectionsVertical();
+        if (horizontalConnections.Count > Constants.MIN_MATCH_COUNT ||
+        verticalConnections.Count > Constants.MIN_MATCH_COUNT)
             return true;
 
         return false;
@@ -26,47 +25,45 @@ public static class PopUtils
             for (int x = 0; x < width; x++)
             {
                 if (grid[x].row[y] == null) continue;
-                var (horizontalConnections, verticalConnections) = grid[x].row[y].GetConnections();
-                if (horizontalConnections.Skip(1).Count() >= Constants.MIN_MATCH_COUNT ||
-                verticalConnections.Skip(1).Count() >= Constants.MIN_MATCH_COUNT)
-                    return true;
+                if (CanPop(grid[x].row[y])) return true;
             }
         }
 
         return false;
     }
 
-    public static Vector2[] Pop<T>(T cell, Column<T>[] grid, float tweeningTime = 0.25f) where T : Block
+    public static Vector2[] Pop<T>(T cell, Column<T>[] grid, float tweeningTime = Constants.TWEENING_POP_TIME) where T : Block
     {
         List<Vector2> targets = new List<Vector2>();
-        var (horizontalConnections, verticalConnections) = cell.GetConnections();
+        var horizontalConnections = cell.GetConnectionsHorizontal();
+        var verticalConnections = cell.GetConnectionsVertical();
         if (horizontalConnections.Count > verticalConnections.Count)
         {
-            if (horizontalConnections.Skip(1).Count() < Constants.MIN_MATCH_COUNT) return targets.ToArray();
+            if (horizontalConnections.Count <= Constants.MIN_MATCH_COUNT) return targets.ToArray();
             foreach (T child in horizontalConnections)
             {
                 if (!child.CanPop) continue;
                 targets.Add(child.transform.position);
+                grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
                 child.Destroy();
-                grid[(int)child.transform.position.x].row[(int)child.transform.position.y] = null;
             }
         }
         else
         {
-            if (verticalConnections.Skip(1).Count() < Constants.MIN_MATCH_COUNT) return targets.ToArray();
+            if (verticalConnections.Count <= Constants.MIN_MATCH_COUNT) return targets.ToArray();
             foreach (T child in verticalConnections)
             {
                 if (!child.CanPop) continue;
                 targets.Add(child.transform.position);
+                grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
                 child.Destroy();
-                grid[(int)child.transform.position.x].row[(int)child.transform.position.y] = null;
             }
         }
 
-        return targets.OrderBy(o => o.y).ToArray();
+        return targets.OrderByDescending(o => o.y).ToArray();
     }
 
-    public static Vector2[] Pop<T>(Column<T>[] grid, float tweeningTime = 0.25f) where T : Block
+    public static Vector2[] Pop<T>(Column<T>[] grid, float tweeningTime = Constants.TWEENING_POP_TIME) where T : Block
     {
         int width = grid.Length;
         int height = grid[0].row.Length;
@@ -82,5 +79,21 @@ public static class PopUtils
         }
 
         return targets.ToArray();
+    }
+
+    public static void PopAll<T>(Column<T>[] grid, float tweeningTime = Constants.TWEENING_POP_TIME) where T : Block
+    {
+        int width = grid.Length;
+        int height = grid[0].row.Length;
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (grid[x].row[y] == null) continue;
+                grid[x].row[y].Destroy();
+                grid[x].row[y] = null;
+            }
+        }
+
     }
 }

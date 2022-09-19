@@ -13,6 +13,7 @@ public class Block : MonoBehaviour
     private bool _canPop = false;
     private Tile _child;
     protected DestroyWithParticles _destroyWithParticles;
+    public Vector2Int IntegerPosition => VectorRound.Vector2Round(this.transform.position);
 
     public Block Top
     {
@@ -20,9 +21,9 @@ public class Block : MonoBehaviour
         {
             try
             {
-                if ((int)this.transform.position.y < GameplayManagers.GridManager.GridHeight - 1)
+                if (this.IntegerPosition.y < GameplayManagers.GridManager.GridHeight - 1)
                     return GameplayManagers.GridManager
-                    .Board.Grid[(int)this.transform.position.x].row[(int)this.transform.position.y + 1];
+                    .Board.GetBlockAt(this.IntegerPosition.x, this.IntegerPosition.y + 1);
                 else
                     return null;
             }
@@ -39,9 +40,9 @@ public class Block : MonoBehaviour
         {
             try
             {
-                if ((int)this.transform.position.y > 0)
+                if (this.IntegerPosition.y > 0)
                     return GameplayManagers.GridManager.Board
-                    .Grid[(int)this.transform.position.x].row[(int)this.transform.position.y - 1];
+                    .GetBlockAt(this.IntegerPosition.x, this.IntegerPosition.y - 1);
                 else
                     return null;
             }
@@ -57,9 +58,9 @@ public class Block : MonoBehaviour
         {
             try
             {
-                if ((int)this.transform.position.x > 0)
+                if (this.IntegerPosition.x > 0)
                     return GameplayManagers.GridManager.Board
-                    .Grid[(int)this.transform.position.x - 1].row[(int)this.transform.position.y];
+                    .GetBlockAt(this.IntegerPosition.x - 1, this.IntegerPosition.y);
                 else
                     return null;
             }
@@ -75,9 +76,9 @@ public class Block : MonoBehaviour
         {
             try
             {
-                if ((int)this.transform.position.x < GameplayManagers.GridManager.GridWidth - 1)
+                if (this.IntegerPosition.x < GameplayManagers.GridManager.GridWidth - 1)
                     return GameplayManagers.GridManager.Board
-                    .Grid[(int)this.transform.position.x + 1].row[(int)this.transform.position.y];
+                    .GetBlockAt(this.IntegerPosition.x + 1, this.IntegerPosition.y);
                 else
                     return null;
             }
@@ -116,17 +117,17 @@ public class Block : MonoBehaviour
         this.CheckAndHoldChild();
     }
 
-    /*     public async void ActivateChild()
-        {
-            await this.ActivateChildAsync();
-        }
+    public async void ActivateChild()
+    {
+        await this.ActivateChildAsync();
+    }
 
-        private async Task ActivateChildAsync()
-        {
-            if (this.Child == null) return;
-            await this.Child.transform.DOScale(Vector3.one, 0.25f).AsyncWaitForCompletion();
-            await this.Child.transform.DORotate(Vector3.forward, 0.25f).AsyncWaitForCompletion();
-        } */
+    private async Task ActivateChildAsync()
+    {
+        if (this.Child == null) return;
+        await this.Child.transform.DOScale(Vector3.one, 0.25f).AsyncWaitForCompletion();
+        await this.Child.transform.DORotate(Vector3.forward, 0.25f).AsyncWaitForCompletion();
+    }
 
     public async void CheckAndHoldChild()
     {
@@ -149,29 +150,16 @@ public class Block : MonoBehaviour
 
     public (List<Block>, List<Block>) GetConnections(List<Block> exclude = null)
     {
-        if (exclude == null)
-        {
-            exclude = new List<Block> { this, };
-        }
-        else
-        {
-            exclude.Add(this);
-        }
-
         return (GetConnectionsHorizontal(exclude), GetConnectionsVertical(exclude));
     }
 
-    protected List<Block> GetConnectionsVertical(List<Block> exclude = null)
+    public List<Block> GetConnectionsVertical(List<Block> exclude = null)
     {
         List<Block> result = new List<Block> { this, };
         if (exclude == null)
-        {
             exclude = new List<Block> { this, };
-        }
         else
-        {
             exclude.Add(this);
-        }
 
         foreach (Block neighbour in NeighboursVertical)
         {
@@ -183,18 +171,13 @@ public class Block : MonoBehaviour
         return result;
     }
 
-    protected List<Block> GetConnectionsHorizontal(List<Block> exclude = null)
+    public List<Block> GetConnectionsHorizontal(List<Block> exclude = null)
     {
-        List<Block> result = new List<Block>();
-        result.Add(this);
+        List<Block> result = new List<Block> { this, };
         if (exclude == null)
-        {
             exclude = new List<Block> { this, };
-        }
         else
-        {
             exclude.Add(this);
-        }
 
         foreach (Block neighbour in NeighboursHorizontal)
         {

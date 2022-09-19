@@ -22,19 +22,26 @@ public class GridComponent : MonoBehaviour
         }
     }
 
-    public bool IsInsideBounds(Vector2 position)
+    public bool IsInsideBounds(int x, int y) => this.IsInsideBounds(new Vector2Int(x, y));
+    public bool IsInsideBounds(Vector2 position) => this.IsInsideBounds(VectorRound.Vector2Round(position));
+    public bool IsInsideBounds(Vector2Int position)
     {
         return (position.x >= 0 && position.x < this.Width && position.y >= 0);
     }
 
-    public Block GetBlockAt(Vector2 position)
+    public Block GetBlockAt(int x, int y) => this.GetBlockAt(new Vector2Int(x, y));
+    public Block GetBlockAt(Vector2 position) => this.GetBlockAt(VectorRound.Vector2Round(position));
+    public Block GetBlockAt(Vector2Int position)
     {
         return (IsInsideBounds(position)) ? this._grid[(int)position.x].row[(int)position.y] : null;
     }
 
-    public void SetBlockAt(Vector2 position, Block block)
+    public void SetBlockAt(int x, int y, Block block) => this.SetBlockAt(new Vector2Int(x, y), block);
+    public void SetBlockAt(Vector2 position, Block block) => this.SetBlockAt(VectorRound.Vector2Round(position), block);
+    public void SetBlockAt(Vector2Int position, Block block)
     {
-        if (IsInsideBounds(position)) this._grid[(int)position.x].row[(int)position.y] = block;
+        if (IsInsideBounds(position))
+            this._grid[position.x].row[position.y] = block;
     }
 
     public void ClearGrid()

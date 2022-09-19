@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,14 @@ public class Board : MonoBehaviour
     [SerializeField] float tweeningTime = 0.25f;
     private GridComponent _gridComponent;
 
-    public Column<Block>[] Grid { get { return this._gridComponent.Grid; } }
-
     private void Awake()
     {
         this._gridComponent = this.GetComponent<GridComponent>();
+    }
+
+    private void Update()
+    {
+        // this.TryPop();
     }
 
     public void InitGrid(int width, int height)
@@ -20,20 +24,30 @@ public class Board : MonoBehaviour
         this._gridComponent.InitGrid(width, height);
     }
 
-    public Block GetBlockAt(Vector2 position)
+    public Block GetBlockAt(int x, int y) => this.GetBlockAt(new Vector2Int(x, y));
+    public Block GetBlockAt(Vector2 position) => this.GetBlockAt(VectorRound.Vector2Round(position));
+
+
+    public Block GetBlockAt(Vector2Int position)
     {
-        return this._gridComponent.GetBlockAt(position);
+        try
+        {
+            return this._gridComponent.GetBlockAt(position);
+        }
+        catch (System.Exception)
+        {
+            return null;
+        }
     }
 
     public bool IsValidPosition(Tetromino tetromino)
     {
         foreach (Block block in tetromino.Blocks)
         {
-            Vector2 position = VectorRound.Vector2Round(block.transform.position);
-            if (!this._gridComponent.IsInsideBounds(position))
+            if (!this._gridComponent.IsInsideBounds(block.IntegerPosition))
                 return false;
-            if (this._gridComponent.Grid[(int)position.x].row[(int)position.y] != null &&
-            this._gridComponent.Grid[(int)position.x].row[(int)position.y].transform.parent != tetromino.transform)
+            if (this._gridComponent.GetBlockAt(block.IntegerPosition) != null &&
+            this._gridComponent.GetBlockAt(block.IntegerPosition).transform.parent != tetromino.transform)
                 return false;
         }
         return true;
@@ -45,18 +59,17 @@ public class Board : MonoBehaviour
         {
             for (int x = 0; x < this._gridComponent.Width; x++)
             {
-                if (this._gridComponent.GetBlockAt(new Vector2(x, y)) != null &&
-                this._gridComponent.GetBlockAt(new Vector2(x, y)).transform.parent == tetromino.transform)
+                if (this._gridComponent.GetBlockAt(x, y) != null &&
+                this._gridComponent.GetBlockAt(x, y).transform.parent == tetromino.transform)
                 {
-                    this._gridComponent.SetBlockAt(new Vector2(x, y), null);
+                    this._gridComponent.SetBlockAt(x, y, null);
                 }
             }
         }
 
         foreach (Block block in tetromino.Blocks)
         {
-            Vector2 position = VectorRound.Vector2Round(block.transform.position);
-            this._gridComponent.SetBlockAt(new Vector2(position.x, position.y), block);
+            this._gridComponent.SetBlockAt(block.IntegerPosition, block);
         }
     }
 
@@ -69,17 +82,21 @@ public class Board : MonoBehaviour
     public void SwapBlock(Block currentBlock, Block nextBlock)
     {
         if (!currentBlock.CanSwipe || !nextBlock.CanSwipe) return;
-        SwapUtils.Swap<Block, Tile>(currentBlock, nextBlock, this.Grid, this.tweeningTime);
+        SwapUtils.Swap<Block, Tile>(currentBlock, nextBlock, this._gridComponent.Grid, this.tweeningTime);
         this.TryPop();
     }
 
     private void TryPop()
     {
-        if (PopUtils.CanPop<Block>(this.Grid))
+        if (PopUtils.CanPop<Block>(this._gridComponent.Grid))
         {
-            Vector2[] targets = PopUtils.Pop<Block>(this.Grid, tweeningTime);
-            DestroyUtils.DecreaseAllAbove<Block>(targets, this.Grid, tweeningTime);
-            this.TryPop();
+            Vector2[] targets = PopUtils.Pop<Block>(this._gridComponent.Grid, tweeningTime);
+            DecreaseUtils.DecreaseAllAbove<Block>(targets, this._gridComponent.Grid);
         }
+    }
+
+    public void PopAll()
+    {
+        PopUtils.PopAll<Block>(this._gridComponent.Grid, tweeningTime);
     }
 }

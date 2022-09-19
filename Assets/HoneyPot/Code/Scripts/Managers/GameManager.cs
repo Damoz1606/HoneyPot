@@ -5,14 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform _blockHolder;
-    [SerializeField] private Transform _tileHolder;
     [SerializeField] private bool _isGameActive;
     private Tetromino _currentTetromino;
     private _StatesBase _currentState;
 
     public Tetromino CurrentTetromino { get { return this._currentTetromino; } set { this._currentTetromino = value; } }
     public Transform BlockHolder { get { return this._blockHolder; } }
-    public Transform TileHolder { get { return this._tileHolder; } }
     public bool IsGameActive { get { return this._isGameActive; } set { this._isGameActive = value; } }
 
     private void Awake()

@@ -20,7 +20,6 @@ public class FallComponent : MonoBehaviour
             else
             {
                 this.transform.position += Vector3.up;
-
                 GetComponent<FallComponent>().enabled = false;
                 GetComponent<HorizontalMovement>().enabled = false;
                 GetComponent<RotationComponent>().enabled = false;

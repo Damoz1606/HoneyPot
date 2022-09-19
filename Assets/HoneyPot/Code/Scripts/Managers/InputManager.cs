@@ -61,26 +61,31 @@ public class InputManager : MonoBehaviour
     private void SwipeEvent()
     {
         Block nextBlock;
+        Vector2Int blockPosition;
 
         switch (this.GetSwipe())
         {
             case SwipeTypes.UP:
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(true));
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(true));
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
                 break;
             case SwipeTypes.DOWN:
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(false));
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(false));
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
                 break;
             case SwipeTypes.RIGHT:
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(true));
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(true));
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
                 break;
             case SwipeTypes.LEFT:
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(false));
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(false));
+                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
                 break;
             default:
                 nextBlock = null;
                 break;
         }
-        
+
         if (nextBlock != null) GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
     }
 
@@ -112,16 +117,16 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            this._startMousePosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            this._startMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             this._buttonDownPhaseStart = Time.time;
-            this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(_startMousePosition);
+            this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(VectorRound.Vector2Round(_startMousePosition));
         }
 
         if (this._selectedBlock != null && Input.GetMouseButtonUp(0))
         {
             if (Time.time - this._buttonDownPhaseStart > this._tapInterval)
             {
-                this._endMousePosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                this._endMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 this._currentSwipe = this._endMousePosition - this._startMousePosition;
                 this._currentSwipe.Normalize();
 
@@ -144,22 +149,20 @@ public class InputManager : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    this._startTouchPosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(touch.position));
+                    this._startTouchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                     this._touchDownPhaseStart = Time.time;
-                    this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(_startTouchPosition);
+                    this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(VectorRound.Vector2Round(_startTouchPosition));
                     break;
                 case TouchPhase.Ended:
                     if (this._selectedBlock != null && (Time.time - this._touchDownPhaseStart > this._tapInterval))
                     {
-                        this._endTouchPosition = VectorRound.Vector2Round(Camera.main.ScreenToWorldPoint(touch.position));
+                        this._endTouchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                         this._currentSwipe = this._endTouchPosition - this._startTouchPosition;
                         this._currentSwipe.Normalize();
 
                         this.SwipeEvent();
-
                     }
                     break;
-
             }
 
         }

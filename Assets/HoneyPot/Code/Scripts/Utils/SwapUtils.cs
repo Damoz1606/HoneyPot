@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class SwapUtils
 {
-    public static async void Swap<T, C>(T currentCell, T nextCell, float tweeningTime = 0.25f)
+    public static async void Swap<T, C>(T currentCell, T nextCell, float tweeningTime = Constants.TWEENING_SWAP_TIME)
     where T : Block
     where C : Tile
     {
@@ -16,7 +16,7 @@ public static class SwapUtils
         nextCell.IsSwapping = false;
     }
 
-    public static async void Swap<T, C>(T currentCell, T nextCell, Column<T>[] grid, float tweeningTime = 0.25f)
+    public static async void Swap<T, C>(T currentCell, T nextCell, Column<T>[] grid, float tweeningTime = Constants.TWEENING_SWAP_TIME)
     where T : Block
     where C : Tile
     {
@@ -24,26 +24,30 @@ public static class SwapUtils
         nextCell.IsSwapping = true;
         await SwapAsync<T, C>(currentCell, nextCell, tweeningTime);
 
-        if (PopUtils.CanPop<T>(currentCell))
+        bool currentCanPop = PopUtils.CanPop<T>(currentCell);
+        bool nextCanPop = PopUtils.CanPop<T>(nextCell);
+
+        if (currentCanPop)
         {
             Vector2[] targets = PopUtils.Pop<T>(currentCell, grid, tweeningTime);
-            DestroyUtils.DecreaseAllAbove<T>(targets, grid, tweeningTime);
+            DecreaseUtils.DecreaseAllAbove<T>(targets, grid);
         }
-        else if (PopUtils.CanPop<T>(nextCell))
+
+        if (nextCanPop)
         {
             Vector2[] targets = PopUtils.Pop<T>(currentCell, grid, tweeningTime);
-            DestroyUtils.DecreaseAllAbove<T>(targets, grid, tweeningTime);
+            DecreaseUtils.DecreaseAllAbove<T>(targets, grid);
         }
-        else
+
+        if (!nextCanPop && !currentCanPop)
         {
             await SwapAsync<T, C>(currentCell, nextCell, tweeningTime);
         }
-
         currentCell.IsSwapping = false;
         nextCell.IsSwapping = false;
     }
 
-    private static async Task SwapAsync<T, C>(T currentCell, T nextCell, float tweeningTime = 0.25f)
+    private static async Task SwapAsync<T, C>(T currentCell, T nextCell, float tweeningTime = Constants.TWEENING_SWAP_TIME)
     where T : Block
     where C : Tile
     {
