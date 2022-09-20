@@ -12,7 +12,6 @@ public class Block : MonoBehaviour
     private bool _canDecrease = false;
     private bool _canPop = false;
     private Tile _child;
-    protected DestroyWithParticles _destroyWithParticles;
     public Vector2Int IntegerPosition => VectorRound.Vector2Round(this.transform.position);
 
     public Block Top
@@ -98,11 +97,6 @@ public class Block : MonoBehaviour
     public bool IsSwapping { set { this._isSwapping = value; } get { return this._isSwapping; } }
     public Tile Child { set { this._child = value; } get { return this._child; } }
 
-    private void Awake()
-    {
-        this._destroyWithParticles = GetComponent<DestroyWithParticles>();
-    }
-
     void Start()
     {
         GameplayManagers.SpawnManager.TileSpawnManager.Spawn(out GameObject tile);
@@ -143,10 +137,11 @@ public class Block : MonoBehaviour
         }
     }
 
-    public void Destroy()
+    public void Destroy(ParticlesTypes particle = ParticlesTypes.DEFAULT)
     {
         this.Child.OnEffect();
-        this._destroyWithParticles.Destroy();
+        GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, particle);
+        this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
     }
 
     public (List<Block>, List<Block>) GetConnections(List<Block> exclude = null)
@@ -189,28 +184,5 @@ public class Block : MonoBehaviour
         }
 
         return result;
-    }
-
-    public void InstanceCombo(ComboTypes combo)
-    {
-        Destroy(this._child.gameObject);
-        this._child = null;
-        switch (combo)
-        {
-            case ComboTypes.BOMB:
-                GameObject bomb = Instantiate(GameplayManagers.GameManager.BeePollen);
-                bomb.transform.SetParent(this.transform);
-                this._child = bomb.GetComponent<ComboTile>();
-                break;
-            case ComboTypes.STAR:
-                break;
-            case ComboTypes.HONEYPOT:
-                GameObject honeyPot = Instantiate(GameplayManagers.GameManager.HoneyPot);
-                honeyPot.transform.SetParent(this.transform);
-                this._child = honeyPot.GetComponent<ComboTile>();
-                break;
-            default:
-                break;
-        }
     }
 }

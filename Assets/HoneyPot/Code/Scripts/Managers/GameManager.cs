@@ -6,15 +6,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform _blockHolder;
     [SerializeField] private bool _isGameActive;
-    [SerializeField] private GameObject _beePollenPrefab;
-    [SerializeField] private GameObject _honeyPot;
     private Tetromino _currentTetromino;
     private _StatesBase _currentState;
 
     public Tetromino CurrentTetromino { get { return this._currentTetromino; } set { this._currentTetromino = value; } }
     public Transform BlockHolder { get { return this._blockHolder; } }
-    public GameObject BeePollen { get { return this._beePollenPrefab; } }
-    public GameObject HoneyPot { get { return this._honeyPot; } }
     public bool IsGameActive { get { return this._isGameActive; } set { this._isGameActive = value; } }
 
     private void Awake()

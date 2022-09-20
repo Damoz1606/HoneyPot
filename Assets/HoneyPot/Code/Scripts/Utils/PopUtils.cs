@@ -83,7 +83,7 @@ public static class PopUtils
         }
     }
 
-    private static List<Vector2> DestroyBlocks<T>(List<T> connections, Column<T>[] grid)
+    private static List<Vector2> DestroyBlocks<T>(List<T> connections, Column<T>[] grid, ParticlesTypes type = ParticlesTypes.DEFAULT)
     where T : Block
     {
         List<Vector2> targets = new List<Vector2>();
@@ -93,7 +93,7 @@ public static class PopUtils
             if (!child.CanPop) continue;
             targets.Add(child.transform.position);
             grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
-            child.Destroy();
+            child.Destroy(type);
         }
         return targets;
     }
@@ -107,12 +107,12 @@ public static class PopUtils
             if (connections.Count > Constants.COMBO_HONEYPOT)
             {
                 connections.Remove(cell);
-                cell.InstanceCombo(ComboTypes.HONEYPOT);
+                GameplayManagers.ComboManager.InstanceCombo(ComboTypes.HONEYPOT, cell);
             }
             else if (connections.Count > Constants.COMBO_BEE_POLLEN)
             {
                 connections.Remove(cell);
-                cell.InstanceCombo(ComboTypes.BOMB);
+                GameplayManagers.ComboManager.InstanceCombo(ComboTypes.BOMB, cell);
             }
         }
         return DestroyBlocks<T>(connections, grid);
@@ -132,7 +132,7 @@ public static class PopUtils
             (cell.Left != null) ? (T)cell.Left.Top : null,
             (cell.Left != null) ? (T)cell.Left.Bottom : null,
         };
-        return DestroyBlocks<T>(connections, grid).ToArray();
+        return DestroyBlocks<T>(connections, grid, ParticlesTypes.BEES).ToArray();
     }
 
     public static Vector2[] PopHorizontalAxis<T>(T cell, Column<T>[] grid)

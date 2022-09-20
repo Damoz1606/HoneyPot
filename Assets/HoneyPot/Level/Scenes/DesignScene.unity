@@ -1320,6 +1320,8 @@ GameObject:
   - component: {fileID: 259357588}
   - component: {fileID: 259357591}
   - component: {fileID: 259357592}
+  - component: {fileID: 259357593}
+  - component: {fileID: 259357594}
   m_Layer: 0
   m_Name: GameplayManager
   m_TagString: Untagged
@@ -1383,10 +1385,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blockHolder: {fileID: 762640273}
   _isGameActive: 0
-  _beePollenPrefab: {fileID: 4104276013424762462, guid: 473a3d68f6b0456469943c35cf201c5b,
-    type: 3}
-  _honeyPot: {fileID: 4104276013424762462, guid: dbcfbc8cf3c6f4049870d67e1d474ca6,
-    type: 3}
 --- !u!114 &259357583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,8 +1478,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9f9cd335f43234ebe7a513f3e91e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxScore: 1000
+  _maxScore: 10000
   _increment: 1
+--- !u!114 &259357593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259357577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c234ed314b5030b41a4dcc158c8b0102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlesExplodePrefab: {fileID: 1814423411144716493, guid: 645ed71c8b6162349b5bf6d9672efe52,
+    type: 3}
+  _particlesBeesPrefab: {fileID: 1739332680314965736, guid: b0eec47c21179b543a1f1860ec327f71,
+    type: 3}
+  _particlesBubblesPrefab: {fileID: 8439260142015951306, guid: 78313466cee74e0469618ddeb39f828e,
+    type: 3}
+--- !u!114 &259357594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259357577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c76354feb6f39499f84521dcb7caf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _beePollenPrefab: {fileID: 4104276013424762462, guid: 473a3d68f6b0456469943c35cf201c5b,
+    type: 3}
+  _honeyPot: {fileID: 4104276013424762462, guid: dbcfbc8cf3c6f4049870d67e1d474ca6,
+    type: 3}
 --- !u!224 &290977473 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5844062664756448635, guid: 5010c6483ce07c24dbc56b915bf92fc9,
