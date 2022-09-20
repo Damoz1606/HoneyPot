@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class NormalTile : Tile
 {
-    public override void OnEffect()
+    public override void OnEffect(Block block = null)
     {
-        throw new System.NotImplementedException();
+        GameplayManagers.ScoreManager.OnScore(this._score);
     }
 }

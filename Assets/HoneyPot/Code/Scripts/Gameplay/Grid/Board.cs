@@ -25,6 +25,7 @@ public class Board : MonoBehaviour
     }
 
     public Block GetBlockAt(int x, int y) => this.GetBlockAt(new Vector2Int(x, y));
+
     public Block GetBlockAt(Vector2 position) => this.GetBlockAt(VectorRound.Vector2Round(position));
 
 
@@ -95,8 +96,15 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void PopAll()
+    public Board PopAll()
     {
         PopUtils.PopAll<Block>(this._gridComponent.Grid, tweeningTime);
+        return this;
+    }
+
+    public void PopExplosion(Block block)
+    {
+        Vector2[] targets = PopUtils.PopExplosion<Block>(block, this._gridComponent.Grid);
+        DecreaseUtils.DecreaseAllAbove<Block>(targets, this._gridComponent.Grid);
     }
 }

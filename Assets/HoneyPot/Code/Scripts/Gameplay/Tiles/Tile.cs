@@ -7,10 +7,11 @@ using UnityEngine;
 public abstract class Tile : MonoBehaviour
 {
     [SerializeField] private TileTypes _type;
+    [SerializeField] protected int _score = 100;
 
     public TileTypes Type { get { return this._type; } }
 
-    public abstract void OnEffect();
+    public abstract void OnEffect(Block block = null);
 
     private void Update()
     {

@@ -66,6 +66,14 @@ public static class SwapUtils
 
         await sequence.Play().AsyncWaitForCompletion();
 
+        if (currentCell.Child.Type.Equals(TileTypes.COMBO))
+        {
+            currentCell.Child.OnEffect(currentCell);
+        }
 
+        if (nextCell.Child.Type.Equals(TileTypes.COMBO))
+        {
+            nextCell.Child.OnEffect(nextCell);
+        }
     }
 }

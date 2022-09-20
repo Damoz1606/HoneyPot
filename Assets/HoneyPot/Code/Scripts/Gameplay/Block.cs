@@ -145,6 +145,7 @@ public class Block : MonoBehaviour
 
     public void Destroy()
     {
+        this.Child.OnEffect();
         this._destroyWithParticles.Destroy();
     }
 
@@ -188,5 +189,28 @@ public class Block : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void InstanceCombo(ComboTypes combo)
+    {
+        Destroy(this._child.gameObject);
+        this._child = null;
+        switch (combo)
+        {
+            case ComboTypes.BOMB:
+                GameObject bomb = Instantiate(GameplayManagers.GameManager.BeePollen);
+                bomb.transform.SetParent(this.transform);
+                this._child = bomb.GetComponent<ComboTile>();
+                break;
+            case ComboTypes.STAR:
+                break;
+            case ComboTypes.HONEYPOT:
+                GameObject honeyPot = Instantiate(GameplayManagers.GameManager.HoneyPot);
+                honeyPot.transform.SetParent(this.transform);
+                this._child = honeyPot.GetComponent<ComboTile>();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -10,6 +10,9 @@ public class DestroyWithPoints : MonoBehaviour
 
     void OnDestroy()
     {
-        GameplayManagers.ScoreManager.OnScore(this._points * this._increment);
+        if (GameplayManagers.GameManager.IsGameActive)
+        {
+            GameplayManagers.ScoreManager.OnScore(this._points * this._increment);
+        }
     }
 }

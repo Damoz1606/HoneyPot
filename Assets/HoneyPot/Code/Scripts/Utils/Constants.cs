@@ -2,10 +2,15 @@ using UnityEngine;
 
 public static class Constants
 {
+    //GRID
     public const int GRID_WIDTH = 10;
     public const int GRID_HEIGHT = 16;
     public const int GRID_GREACE_HEIGHT = 4;
-    public const int MIN_MATCH_COUNT = 2;
+
+    //COMBOS COUNT
+    public const int COMBO_NORMAL = 2;
+    public const int COMBO_BEE_POLLEN = 3;
+    public const int COMBO_HONEYPOT = 4;
 
     // TWEENING TIME
     public const float TWEENING_TIME = 0.25f;

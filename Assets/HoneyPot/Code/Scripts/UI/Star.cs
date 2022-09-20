@@ -16,6 +16,8 @@ public class Star : MonoBehaviour
 
     public void UpdateReference()
     {
-        this._filled.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.Linear).Play();
+        this._filled.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.Linear)
+        .SetUpdate(true)
+        .Play();
     }
 }

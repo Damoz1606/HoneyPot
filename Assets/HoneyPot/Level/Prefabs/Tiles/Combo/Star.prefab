@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 4
+  _score: 250
   _comboType: 0
 --- !u!1 &5934811453063053225
 GameObject:
