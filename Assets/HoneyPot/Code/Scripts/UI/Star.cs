@@ -16,6 +16,7 @@ public class Star : MonoBehaviour
 
     public void UpdateReference()
     {
+        GameplayManagers.AudioManager.PlayUI(GameplayManagers.AudioManager.UIStar);
         this._filled.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.Linear)
         .SetUpdate(true)
         .Play();

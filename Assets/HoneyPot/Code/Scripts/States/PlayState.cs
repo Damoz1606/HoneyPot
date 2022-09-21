@@ -6,7 +6,8 @@ public class PlayState : _StatesBase
     {
         if (!GameplayManagers.GameManager.IsGameActive)
         {
-            GameplayManagers.AudioManager.PlayGameMusic();
+            GameplayManagers.UIManager.ActivateUI(UITypes.INGAME);
+            GameplayManagers.AudioManager.PlayMusic();
             GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
             GameplayManagers.GameManager.IsGameActive = true;
         }

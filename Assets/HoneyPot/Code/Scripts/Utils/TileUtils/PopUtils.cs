@@ -89,21 +89,6 @@ public static class PopUtils
         }
     }
 
-    private static List<Vector2> DestroyBlocks<T>(List<T> connections, Column<T>[] grid, ParticlesTypes type = ParticlesTypes.DEFAULT)
-    where T : Block
-    {
-        List<Vector2> targets = new List<Vector2>();
-        foreach (T child in connections)
-        {
-            if (child == null) continue;
-            if (!child.CanPop) continue;
-            targets.Add(child.transform.position);
-            grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
-            child.Destroy(type);
-        }
-        return targets;
-    }
-
     private static List<Vector2> LookForCombos<T>(T cell, List<T> connections, Column<T>[] grid)
     where T : Block
     {
@@ -112,18 +97,24 @@ public static class PopUtils
         {
             if (connections.Count > Constants.COMBO_HONEYPOT)
             {
+                List<Vector2Int> vectors = new List<Vector2Int>();
                 connections.Remove(cell);
+                vectors.AddRange(connections.Select(o => o.IntegerPosition).ToArray());
                 GameplayManagers.ComboManager.InstanceCombo(ComboTypes.HONEYPOT, cell);
                 FusionUtils.FusionCells(cell, connections, grid);
+                return DestroyUtils.DestroyBlocks(vectors.ToArray(), grid);
             }
             else if (connections.Count > Constants.COMBO_BEE_POLLEN)
             {
+                List<Vector2Int> vectors = new List<Vector2Int>();
                 connections.Remove(cell);
+                vectors.AddRange(connections.Select(o => o.IntegerPosition).ToArray());
                 GameplayManagers.ComboManager.InstanceCombo(ComboTypes.BOMB, cell);
                 FusionUtils.FusionCells(cell, connections, grid);
+                return DestroyUtils.DestroyBlocks(vectors.ToArray(), grid);
             }
+            else return DestroyUtils.DestroyBlocks(connections, grid);
         }
-        return DestroyBlocks<T>(connections, grid);
     }
 
     public static Vector2[] PopExplosion<T>(T cell, Column<T>[] grid)
@@ -140,19 +131,19 @@ public static class PopUtils
             (cell.Left != null) ? (T)cell.Left.Top : null,
             (cell.Left != null) ? (T)cell.Left.Bottom : null,
         };
-        return DestroyBlocks<T>(connections, grid, ParticlesTypes.BEES).ToArray();
+        return DestroyUtils.DestroyBlocks(connections, grid, ParticlesTypes.BEES).ToArray();
     }
 
     public static Vector2[] PopHorizontalAxis<T>(T cell, Column<T>[] grid)
     where T : Block
     {
-        return DestroyBlocks<T>(cell.GetConnectionsHorizontal().OfType<T>().ToList(), grid).ToArray();
+        return DestroyUtils.DestroyBlocks(cell.GetConnectionsHorizontal().OfType<T>().ToList(), grid).ToArray();
     }
 
     public static Vector2[] PopVerticalAxis<T>(T cell, Column<T>[] grid)
     where T : Block
     {
-        return DestroyBlocks<T>(cell.GetConnectionsVertical().OfType<T>().ToList(), grid).ToArray();
+        return DestroyUtils.DestroyBlocks(cell.GetConnectionsVertical().OfType<T>().ToList(), grid).ToArray();
     }
 
 

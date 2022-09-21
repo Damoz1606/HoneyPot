@@ -12,25 +12,21 @@ public class ComboManager : MonoBehaviour
     {
         Destroy(block.Child.gameObject);
         block.Child = null;
+        GameObject child = null;
         switch (combo)
         {
             case ComboTypes.BOMB:
-                GameObject bomb = Instantiate(_beePollenPrefab, block.transform.position, Quaternion.identity);
-                block.Child = bomb.GetComponent<ComboTile>();
-                bomb.transform.SetParent(block.transform);
+                child = Instantiate(_beePollenPrefab, block.transform.position, Quaternion.identity);
                 break;
             case ComboTypes.HONEYPOT:
-                GameObject honeyPot = Instantiate(_honeyPotPrefab, block.transform.position, Quaternion.identity);
-                block.Child = honeyPot.GetComponent<ComboTile>();
-                honeyPot.transform.SetParent(this.transform);
+                child = Instantiate(_honeyPotPrefab, block.transform.position, Quaternion.identity);
                 break;
             case ComboTypes.STAR:
-                GameObject star = Instantiate(_starPrefab, block.transform.position, Quaternion.identity);
-                block.Child = star.GetComponent<ComboTile>();
-                star.transform.SetParent(this.transform);
-                break;
-            default:
+                child = Instantiate(_starPrefab, block.transform.position, Quaternion.identity);
                 break;
         }
+        if (child == null) return;
+        block.Child = child.GetComponent<ComboTile>();
+        child.transform.SetParent(block.transform);
     }
 }

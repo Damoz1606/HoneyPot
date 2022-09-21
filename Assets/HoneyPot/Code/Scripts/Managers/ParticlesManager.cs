@@ -14,11 +14,14 @@ public class ParticlesManager : MonoBehaviour
         {
             case ParticlesTypes.DEFAULT:
                 Instantiate(this._particlesBubblesPrefab, position, Quaternion.identity);
+                GameplayManagers.AudioManager.PlaySFX(GameplayManagers.AudioManager.SFXBubble);
                 break;
             case ParticlesTypes.BEES:
+                GameplayManagers.AudioManager.PlaySFX(GameplayManagers.AudioManager.SFXBee);
                 Instantiate(this._particlesBeesPrefab, position, Quaternion.identity);
                 break;
             case ParticlesTypes.EXPLOTION:
+                GameplayManagers.AudioManager.PlaySFX(GameplayManagers.AudioManager.SFXBee);
                 Instantiate(this._particlesExplodePrefab, position, Quaternion.identity);
                 break;
         }
