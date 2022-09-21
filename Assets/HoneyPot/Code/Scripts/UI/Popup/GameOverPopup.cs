@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GameOverPopup : _PopupBase
 {
-    [SerializeField] private BorderUIAnimation _border;
-    [SerializeField] private FadeAnimation _modal;
-    [SerializeField] private FadeAnimation _uiBackground;
-    [SerializeField] private float _animationTime;
+    private void Awake()
+    {
+        this._animationController = GetComponent<AnimationController>();
+    }
+
     [SerializeField] Star[] _stars;
     public override void OnActivatePopup()
     {
@@ -22,24 +23,19 @@ public class GameOverPopup : _PopupBase
 
     private IEnumerator OnActivatePopupCoroutine()
     {
-        this._uiBackground.EnterAnimation();
-        yield return new WaitForSecondsRealtime(this._animationTime);
-        this._border.StartAnimation();
-        yield return new WaitForSecondsRealtime(this._animationTime);
-        this._modal.EnterAnimation();
-        yield return new WaitForSecondsRealtime(this._animationTime);
+        yield return new WaitForSecondsRealtime(1f);
+        GameplayManagers.AudioManager.PlayPopupOpen();
+        this._animationController.StartAnimation();
+        yield return new WaitForSecondsRealtime(1.25f);
         this.ActiveStars();
         yield break;
     }
 
     private IEnumerator OnDeactivatePopupCoroutine()
     {
-        this._modal.ExitAnimation();
-        yield return new WaitForSecondsRealtime(this._animationTime);
-        this._border.EndAnimation();
-        yield return new WaitForSecondsRealtime(this._animationTime);
-        this._uiBackground.ExitAnimation();
-        yield return new WaitForSecondsRealtime(this._animationTime);
+        GameplayManagers.AudioManager.PlayPopupClose();
+        this._animationController.EndAnimation();
+        yield return new WaitForSecondsRealtime(0.5f);
         this.gameObject.SetActive(false);
         yield break;
     }

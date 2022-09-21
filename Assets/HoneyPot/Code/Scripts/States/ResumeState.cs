@@ -17,6 +17,8 @@ public class ResumeState : _StatesBase
 
     public override void OnDeactivate()
     {
+        GameplayManagers.GameManager.IsGameActive = false;
+        GameplayManagers.InputManager.IsInputActive = false;
         Debug.Log("<color=red>Resume State</color> OnDeactivate");
     }
 

@@ -37,7 +37,13 @@ public static class PopUtils
         List<Vector2> targets = new List<Vector2>();
         var horizontalConnections = cell.GetConnectionsHorizontal().OfType<T>().ToList();
         var verticalConnections = cell.GetConnectionsVertical().OfType<T>().ToList();
-        if (horizontalConnections.Count > verticalConnections.Count)
+        if (horizontalConnections.Count == verticalConnections.Count && horizontalConnections.Count > Constants.COMBO_STAR)
+        {
+            verticalConnections.Remove(cell);
+            horizontalConnections.AddRange(verticalConnections);
+            GameplayManagers.ComboManager.InstanceCombo(ComboTypes.STAR, cell);
+        }
+        else if (horizontalConnections.Count > verticalConnections.Count)
         {
             targets.AddRange(LookForCombos(cell, horizontalConnections, grid));
         }
@@ -108,11 +114,13 @@ public static class PopUtils
             {
                 connections.Remove(cell);
                 GameplayManagers.ComboManager.InstanceCombo(ComboTypes.HONEYPOT, cell);
+                FusionUtils.FusionCells(cell, connections, grid);
             }
             else if (connections.Count > Constants.COMBO_BEE_POLLEN)
             {
                 connections.Remove(cell);
                 GameplayManagers.ComboManager.InstanceCombo(ComboTypes.BOMB, cell);
+                FusionUtils.FusionCells(cell, connections, grid);
             }
         }
         return DestroyBlocks<T>(connections, grid);

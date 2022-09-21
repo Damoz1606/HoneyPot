@@ -5,10 +5,8 @@ using UnityEngine;
 public class ComboManager : MonoBehaviour
 {
     [SerializeField] private GameObject _beePollenPrefab;
-    [SerializeField] private GameObject _honeyPot;
-
-    public GameObject BeePollen { get { return this._beePollenPrefab; } }
-    public GameObject HoneyPot { get { return this._honeyPot; } }
+    [SerializeField] private GameObject _honeyPotPrefab;
+    [SerializeField] private GameObject _starPrefab;
 
     public void InstanceCombo(ComboTypes combo, Block block)
     {
@@ -17,16 +15,19 @@ public class ComboManager : MonoBehaviour
         switch (combo)
         {
             case ComboTypes.BOMB:
-                GameObject bomb = Instantiate(BeePollen, block.transform.position, Quaternion.identity);
-                bomb.transform.SetParent(block.transform);
+                GameObject bomb = Instantiate(_beePollenPrefab, block.transform.position, Quaternion.identity);
                 block.Child = bomb.GetComponent<ComboTile>();
-                break;
-            case ComboTypes.STAR:
+                bomb.transform.SetParent(block.transform);
                 break;
             case ComboTypes.HONEYPOT:
-                GameObject honeyPot = Instantiate(BeePollen, block.transform.position, Quaternion.identity);
-                honeyPot.transform.SetParent(this.transform);
+                GameObject honeyPot = Instantiate(_honeyPotPrefab, block.transform.position, Quaternion.identity);
                 block.Child = honeyPot.GetComponent<ComboTile>();
+                honeyPot.transform.SetParent(this.transform);
+                break;
+            case ComboTypes.STAR:
+                GameObject star = Instantiate(_starPrefab, block.transform.position, Quaternion.identity);
+                block.Child = star.GetComponent<ComboTile>();
+                star.transform.SetParent(this.transform);
                 break;
             default:
                 break;

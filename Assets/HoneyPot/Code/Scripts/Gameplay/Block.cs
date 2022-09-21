@@ -144,12 +144,22 @@ public class Block : MonoBehaviour
         this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
     }
 
-    public (List<Block>, List<Block>) GetConnections(List<Block> exclude = null)
+    public (List<Block>, List<Block>) GetAllConnections()
     {
-        return (GetConnectionsHorizontal(exclude), GetConnectionsVertical(exclude));
+        return (GetConnectionsHorizontal(), GetConnectionsVertical());
     }
 
-    public List<Block> GetConnectionsVertical(List<Block> exclude = null)
+    public List<Block> GetConnectionsVertical()
+    {
+        return GetConnections(AxisTypes.VERTICAL, NeighboursVertical);
+    }
+
+    public List<Block> GetConnectionsHorizontal()
+    {
+        return GetConnections(AxisTypes.HORIZONTAL, NeighboursHorizontal);
+    }
+
+    private List<Block> GetConnections(AxisTypes type, Block[] blocks, List<Block> exclude = null)
     {
         List<Block> result = new List<Block> { this, };
         if (exclude == null)
@@ -157,30 +167,15 @@ public class Block : MonoBehaviour
         else
             exclude.Add(this);
 
-        foreach (Block neighbour in NeighboursVertical)
+        foreach (Block neighbour in blocks)
         {
             if (neighbour == null) continue;
             if (exclude.Contains(neighbour)) continue;
             if (!neighbour.Child.Type.Equals(this.Child.Type)) continue;
-            result.AddRange(neighbour.GetConnectionsVertical(exclude));
-        }
-        return result;
-    }
-
-    public List<Block> GetConnectionsHorizontal(List<Block> exclude = null)
-    {
-        List<Block> result = new List<Block> { this, };
-        if (exclude == null)
-            exclude = new List<Block> { this, };
-        else
-            exclude.Add(this);
-
-        foreach (Block neighbour in NeighboursHorizontal)
-        {
-            if (neighbour == null) continue;
-            if (exclude.Contains(neighbour)) continue;
-            if (!neighbour.Child.Type.Equals(this.Child.Type)) continue;
-            result.AddRange(neighbour.GetConnectionsHorizontal(exclude));
+            if (type == AxisTypes.HORIZONTAL)
+                result.AddRange(neighbour.GetConnections(type, neighbour.NeighboursHorizontal, exclude));
+            else if (type == AxisTypes.VERTICAL)
+                result.AddRange(neighbour.GetConnections(type, neighbour.NeighboursVertical, exclude));
         }
 
         return result;

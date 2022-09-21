@@ -2,47 +2,45 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class RectTransformMoveAnimtation : MonoBehaviour
+public class RectTransformMoveAnimtation : _AnimationBase
 {
     [SerializeField] private SwipeTypes _moveDirection;
     [SerializeField] private float _distance;
-    [SerializeField] private float _tweeningTime;
-    [SerializeField] private Ease _tweeningEase;
 
-    public async void EnterAnimation()
+    public override async void StartAnimation()
     {
-        await this.EnterAnimationAsync();
+        await this.StartAnimationAsync();
     }
 
-    public async void ExitAnimation()
+    public override async void EndAnimation()
     {
-        await this.ExitAnimationAsync();
+        await this.EndAnimationAsync();
     }
 
-    private async Task EnterAnimationAsync()
+    private async Task StartAnimationAsync()
     {
         switch (this._moveDirection)
         {
             case SwipeTypes.UP:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y + this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y + this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
                 break;
             case SwipeTypes.DOWN:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y - this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y - this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
                 break;
             case SwipeTypes.LEFT:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x - this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x - this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
                 break;
             case SwipeTypes.RIGHT:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x + this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x + this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
@@ -52,30 +50,30 @@ public class RectTransformMoveAnimtation : MonoBehaviour
         }
     }
 
-    private async Task ExitAnimationAsync()
+    private async Task EndAnimationAsync()
     {
         switch (this._moveDirection)
         {
             case SwipeTypes.UP:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y - this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y - this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
                 break;
             case SwipeTypes.DOWN:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y + this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosY(this.transform.GetComponent<RectTransform>().anchoredPosition.y + this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
                 break;
             case SwipeTypes.LEFT:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x + this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x + this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
                 break;
             case SwipeTypes.RIGHT:
-                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x - this._distance, this._tweeningTime, true)
+                await this.transform.GetComponent<RectTransform>().DOAnchorPosX(this.transform.GetComponent<RectTransform>().anchoredPosition.x - this._distance, this._delayTime, true)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();

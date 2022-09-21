@@ -11,6 +11,7 @@ using UnityEngine;
 [RequireComponent(typeof(ParticlesManager))]
 [RequireComponent(typeof(SpawnManager))]
 [RequireComponent(typeof(ScoreManager))]
+[RequireComponent(typeof(TargetManager))]
 [RequireComponent(typeof(UIManager))]
 public class GameplayManagers : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameplayManagers : MonoBehaviour
     private static ParticlesManager _particlesManager;
     private static SpawnManager _spawnManager;
     private static ScoreManager _scoreManager;
+    private static TargetManager _targetManager;
     private static UIManager _uiManager;
 
     public static AudioManager AudioManager { get { return _audioManager; } }
@@ -34,6 +36,7 @@ public class GameplayManagers : MonoBehaviour
     public static ParticlesManager ParticlesManager { get { return _particlesManager; } }
     public static SpawnManager SpawnManager { get { return _spawnManager; } }
     public static ScoreManager ScoreManager { get { return _scoreManager; } }
+    public static TargetManager TargetManager { get { return _targetManager; } }
     public static UIManager UIManager { get { return _uiManager; } }
 
     private void Awake()
@@ -47,6 +50,7 @@ public class GameplayManagers : MonoBehaviour
         _particlesManager = GetComponent<ParticlesManager>();
         _spawnManager = GetComponent<SpawnManager>();
         _scoreManager = GetComponent<ScoreManager>();
+        _targetManager = GetComponent<TargetManager>();
         _uiManager = GetComponent<UIManager>();
     }
 }

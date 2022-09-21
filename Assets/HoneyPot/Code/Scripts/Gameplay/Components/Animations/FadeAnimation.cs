@@ -5,40 +5,29 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeAnimation : MonoBehaviour
+public class FadeAnimation : _AnimationBase
 {
-    [SerializeField] private float _tweeningTime;
-    [SerializeField] private Ease _tweeningEase;
 
-    private void Start()
+    public override async void StartAnimation()
     {
-       /*  Image image = GetComponent<Image>();
-        var tempColor = image.color;
-        tempColor.a = 0;
-        image.color = tempColor; */
+        await this.StartAnimationAsync();
+    }
+    public override async void EndAnimation()
+    {
+        await this.EndAnimationAsync();
     }
 
-    public async void EnterAnimation()
+    private async Task StartAnimationAsync()
     {
-        await this.EnterAnimationAsync();
-    }
-
-    public async void ExitAnimation()
-    {
-        await this.ExitAnimationAsync();
-    }
-
-    private async Task EnterAnimationAsync()
-    {
-        await this.transform.GetComponent<Image>().DOFade(1f, this._tweeningTime)
+        await this.transform.GetComponent<Image>().DOFade(1f, this._delayTime)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
     }
 
-    private async Task ExitAnimationAsync()
+    private async Task EndAnimationAsync()
     {
-        await this.transform.GetComponent<Image>().DOFade(0.01f, this._tweeningTime)
+        await this.transform.GetComponent<Image>().DOFade(0.01f, this._delayTime)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();

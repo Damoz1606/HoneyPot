@@ -10,6 +10,7 @@ public class ComboTile : Tile
 
     public override void OnEffect(Block block = null)
     {
+        if (!GameplayManagers.GameManager.IsGameActive) return;
         if (block == null || _hasEffectBeenActive) return;
         GameplayManagers.ScoreManager.OnScore(this._score);
         switch (_comboType)
@@ -23,7 +24,8 @@ public class ComboTile : Tile
                 _hasEffectBeenActive = true;
                 break;
             case ComboTypes.STAR:
-                GameplayManagers.ScoreManager.OnScore(this._score);
+                GameplayManagers.GridManager.Board.PopAll();
+                _hasEffectBeenActive = true;
                 break;
             default:
                 break;

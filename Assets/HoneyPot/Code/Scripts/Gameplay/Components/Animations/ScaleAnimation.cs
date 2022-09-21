@@ -4,37 +4,35 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class ScaleAnimation : MonoBehaviour
+public class ScaleAnimation : _AnimationBase
 {
-    [SerializeField] private float _tweeningTime;
-    [SerializeField] private Ease _tweeningEase;
 
     private void Start()
     {
         this.transform.localScale = Vector3.zero;
     }
 
-    public async void EnterAnimation()
+    public override async void StartAnimation()
     {
-        await this.EnterAnimationAsync();
+        await this.StartAnimationAsync();
     }
 
-    public async void ExitAnimation()
+    public override async void EndAnimation()
     {
-        await this.ExitAnimationAsync();
+        await this.EndAnimationAsync();
     }
 
-    private async Task EnterAnimationAsync()
+    private async Task StartAnimationAsync()
     {
-        await this.transform.GetComponent<RectTransform>().DOShakeScale(this._tweeningTime)
+        await this.transform.GetComponent<RectTransform>().DOScale(Vector3.one, this._delayTime)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();
     }
 
-    private async Task ExitAnimationAsync()
+    private async Task EndAnimationAsync()
     {
-        await this.transform.GetComponent<RectTransform>().DOPunchScale(Vector3.zero, this._tweeningTime)
+        await this.transform.GetComponent<RectTransform>().DOScale(Vector3.zero, this._delayTime)
                 .SetEase(this._tweeningEase)
                 .SetUpdate(true)
                 .Play().AsyncWaitForCompletion();

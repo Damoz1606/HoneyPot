@@ -80,10 +80,34 @@ public class Board : MonoBehaviour
         GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
     }
 
-    public void SwapBlock(Block currentBlock, Block nextBlock)
+    public async void SwapBlock(Block currentBlock, Block nextBlock)
     {
         if (!currentBlock.CanSwipe || !nextBlock.CanSwipe) return;
-        SwapUtils.Swap<Block, Tile>(currentBlock, nextBlock, this._gridComponent.Grid, this.tweeningTime);
+        currentBlock.IsSwapping = true;
+        nextBlock.IsSwapping = true;
+
+        await SwapUtils.SwapAsync<Block, Tile>(currentBlock, nextBlock, tweeningTime);
+
+        bool currentCanPop = PopUtils.CanPop<Block>(currentBlock);
+        bool nextCanPop = PopUtils.CanPop<Block>(nextBlock);
+
+        if (currentCanPop)
+        {
+            Vector2[] targets = PopUtils.Pop<Block>(currentBlock, this._gridComponent.Grid, tweeningTime);
+            DecreaseUtils.DecreaseAllAbove<Block>(targets, this._gridComponent.Grid);
+        }
+        if (nextCanPop)
+        {
+            Vector2[] targets = PopUtils.Pop<Block>(nextBlock, this._gridComponent.Grid, tweeningTime);
+            DecreaseUtils.DecreaseAllAbove<Block>(targets, this._gridComponent.Grid);
+        }
+        if (!nextCanPop && !currentCanPop)
+        {
+            await SwapUtils.SwapAsync<Block, Tile>(currentBlock, nextBlock, tweeningTime);
+        }
+
+        currentBlock.IsSwapping = false;
+        nextBlock.IsSwapping = false;
         this.TryPop();
     }
 
@@ -96,10 +120,14 @@ public class Board : MonoBehaviour
         }
     }
 
-    public Board PopAll()
+    public void PopAll()
     {
         PopUtils.PopAll<Block>(this._gridComponent.Grid, tweeningTime);
-        return this;
+    }
+
+    public void PopVerticalAxis(Block block)
+    {
+        PopUtils.PopVerticalAxis<Block>(block, this._gridComponent.Grid);
     }
 
     public void PopExplosion(Block block)

@@ -11,6 +11,7 @@ public static class Constants
     public const int COMBO_NORMAL = 2;
     public const int COMBO_BEE_POLLEN = 3;
     public const int COMBO_HONEYPOT = 4;
+    public const int COMBO_STAR = 4;
 
     // TWEENING TIME
     public const float TWEENING_TIME = 0.25f;

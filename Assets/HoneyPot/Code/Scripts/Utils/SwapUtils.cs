@@ -5,49 +5,7 @@ using UnityEngine;
 
 public static class SwapUtils
 {
-    public static async void Swap<T, C>(T currentCell, T nextCell, float tweeningTime = Constants.TWEENING_SWAP_TIME)
-    where T : Block
-    where C : Tile
-    {
-        currentCell.IsSwapping = true;
-        nextCell.IsSwapping = true;
-        await SwapAsync<T, C>(currentCell, nextCell, tweeningTime);
-        currentCell.IsSwapping = false;
-        nextCell.IsSwapping = false;
-    }
-
-    public static async void Swap<T, C>(T currentCell, T nextCell, Column<T>[] grid, float tweeningTime = Constants.TWEENING_SWAP_TIME)
-    where T : Block
-    where C : Tile
-    {
-        currentCell.IsSwapping = true;
-        nextCell.IsSwapping = true;
-        await SwapAsync<T, C>(currentCell, nextCell, tweeningTime);
-
-        bool currentCanPop = PopUtils.CanPop<T>(currentCell);
-        bool nextCanPop = PopUtils.CanPop<T>(nextCell);
-
-        if (currentCanPop)
-        {
-            Vector2[] targets = PopUtils.Pop<T>(currentCell, grid, tweeningTime);
-            DecreaseUtils.DecreaseAllAbove<T>(targets, grid);
-        }
-
-        if (nextCanPop)
-        {
-            Vector2[] targets = PopUtils.Pop<T>(currentCell, grid, tweeningTime);
-            DecreaseUtils.DecreaseAllAbove<T>(targets, grid);
-        }
-
-        if (!nextCanPop && !currentCanPop)
-        {
-            await SwapAsync<T, C>(currentCell, nextCell, tweeningTime);
-        }
-        currentCell.IsSwapping = false;
-        nextCell.IsSwapping = false;
-    }
-
-    private static async Task SwapAsync<T, C>(T currentCell, T nextCell, float tweeningTime = Constants.TWEENING_SWAP_TIME)
+    public static async Task SwapAsync<T, C>(T currentCell, T nextCell, float tweeningTime = Constants.TWEENING_SWAP_TIME)
     where T : Block
     where C : Tile
     {
@@ -66,14 +24,15 @@ public static class SwapUtils
 
         await sequence.Play().AsyncWaitForCompletion();
 
-        if (currentCell.Child.Type.Equals(TileTypes.COMBO))
-        {
-            currentCell.Child.OnEffect(currentCell);
-        }
+        ComboSwap<T>(currentCell);
+        ComboSwap<T>(nextCell);
+    }
 
-        if (nextCell.Child.Type.Equals(TileTypes.COMBO))
-        {
-            nextCell.Child.OnEffect(nextCell);
-        }
+    public static void ComboSwap<T>(T cell)
+    where T : Block
+    {
+        if (cell.Child.Type.Equals(TileTypes.COMBO))
+            cell.Child.OnEffect(cell);
+
     }
 }

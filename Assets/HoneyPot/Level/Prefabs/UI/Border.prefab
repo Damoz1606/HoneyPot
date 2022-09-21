@@ -288,10 +288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e821f7735160084299391ebd5d22790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayTime: 0.25
+  _tweeningEase: 2
   _moveDirection: 1
   _distance: 150
-  _tweeningTime: 0.25
-  _tweeningEase: 2
 --- !u!1 &4291057609342449233
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2071307317399984126}
   - {fileID: 352656675431840184}
@@ -352,10 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e821f7735160084299391ebd5d22790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDirection: 3
-  _distance: 100
-  _tweeningTime: 0.25
+  _delayTime: 0.25
   _tweeningEase: 2
+  _moveDirection: 3
+  _distance: 125
 --- !u!1 &4503584323644059700
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,10 +568,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e821f7735160084299391ebd5d22790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDirection: 0
-  _distance: 75
-  _tweeningTime: 0.25
+  _delayTime: 0.25
   _tweeningEase: 2
+  _moveDirection: 0
+  _distance: 150
 --- !u!1 &6323996829538901308
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,7 +752,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 813952518184775419}
   - {fileID: 6651826609624858148}
@@ -784,10 +784,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e821f7735160084299391ebd5d22790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDirection: 2
-  _distance: 200
-  _tweeningTime: 0.25
+  _delayTime: 0.25
   _tweeningEase: 2
+  _moveDirection: 2
+  _distance: 125
 --- !u!1 &8539272582667323860
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,7 +873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9168207642219727793}
-  - component: {fileID: 1625802571603618843}
+  - component: {fileID: 8068384944602116139}
   m_Layer: 5
   m_Name: Border
   m_TagString: Untagged
@@ -905,7 +905,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1625802571603618843
+--- !u!114 &8068384944602116139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -914,10 +914,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8968733148202921101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aefa6e8cd6980bc41bbb02ed768965b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 26737b3e33c53134388b6d993c496f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rects:
+  _delayTime: 0
+  _tweeningEase: 2
+  _animations:
   - {fileID: 4483163452376264938}
   - {fileID: 2758314929059514}
   - {fileID: 4080059258106007134}
