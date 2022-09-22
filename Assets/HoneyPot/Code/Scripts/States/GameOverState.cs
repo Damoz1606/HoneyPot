@@ -12,7 +12,7 @@ public class GameOverState : _StatesBase
 
     public override void OnDeactivate()
     {
-        GameplayManagers.UIManager.GameOverPopup.OnDeactivatePopup();
+        // GameplayManagers.UIManager.GameOverPopup.OnDeactivatePopup();
         Debug.Log("<color=red>Game Over State</color> OnDeactivate");
     }
 

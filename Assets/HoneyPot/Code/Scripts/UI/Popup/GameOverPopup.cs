@@ -22,6 +22,7 @@ public class GameOverPopup : _PopupBase
 
     public override void OnDeactivatePopup()
     {
+        this.gameObject.SetActive(true);
         StartCoroutine(OnDeactivatePopupCoroutine());
     }
 

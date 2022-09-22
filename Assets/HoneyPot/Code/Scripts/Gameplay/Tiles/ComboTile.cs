@@ -6,13 +6,14 @@ public class ComboTile : Tile
     [SerializeField] private ComboTypes _comboType;
     private bool _hasEffectBeenActive = false;
 
-    public ComboTypes ComboTypes { get { return this._comboType; } private set { this._comboType = value; } }
+    public ComboTypes ComboType { get { return this._comboType; } private set { this._comboType = value; } }
 
     public override void OnEffect(Block block = null)
     {
         if (!GameplayManagers.GameManager.IsGameActive) return;
         if (block == null || _hasEffectBeenActive) return;
         GameplayManagers.ScoreManager.OnScore(this._score);
+        GameplayManagers.HistoryManager.UpdateTiles(this.ComboType.ToString());
         switch (_comboType)
         {
             case ComboTypes.BOMB:
