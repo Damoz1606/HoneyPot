@@ -2,29 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ScoreHUD))]
 public class ScoreGoal : _GoalBase
 {
-    [SerializeField] private ScoreGoalUIController _controller;
-
+    private ScoreHUD _hud;
     private void Start()
     {
-        Debug.Log(this._required);
-        this._controller.Initialize((int)this._required);
+        this.SetHUD(this.GetComponent<ScoreHUD>());
     }
 
     public override void Complete()
     {
-        _controller.Completed();
+        _hud.OnDeactiveHUD();
     }
 
     public override void DrawHUD()
     {
-        _controller.UpdateHUD(0);
+        _hud.OnUpdateHUD();
         // throw new System.NotImplementedException();
     }
 
     public override bool IsAchived()
     {
         return GameplayManagers.ScoreManager.CurrentScore >= this._required;
+    }
+
+    public override void SetHUD(_HUDBase hud)
+    {
+        this._hud = (ScoreHUD)hud;
+        this._hud.Initialize((int)this._required);
     }
 }

@@ -414,9 +414,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7487489057807453894}
-  - component: {fileID: 6442889088932248903}
+  - component: {fileID: 584974631866829659}
+  - component: {fileID: 2580061856372576143}
   m_Layer: 5
-  m_Name: CollectionGoal
+  m_Name: CollectHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +445,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 125, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6442889088932248903
+--- !u!114 &584974631866829659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -453,13 +454,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7487489057807453945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a738aa08e57daf34db3d054375dcc45d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9dce16dd3315b6b4fabf8af9f67f4f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 1151144721490744720}
-  _completed: {fileID: 7564381078307084753}
-  _required: {fileID: 2590081718938451923}
+  _targetValue: {fileID: 2590081718938451923}
   _value: {fileID: 7487489057417242373}
+--- !u!114 &2580061856372576143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7487489057807453945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ff173590d511041a6052965cf266ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _required: 0
+  _tile: {fileID: 0}
 --- !u!1 &7564381078307084753
 GameObject:
   m_ObjectHideFlags: 0

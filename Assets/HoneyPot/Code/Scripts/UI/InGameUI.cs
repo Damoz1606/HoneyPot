@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AnimationController))]
-public class InGameUI : MonoBehaviour
+public class InGameUI : _UIBase
 {
     [SerializeField] private GameObject _doors;
     [SerializeField] private TextMeshProUGUI _textScore;
@@ -20,27 +20,27 @@ public class InGameUI : MonoBehaviour
         this._animationController = GetComponent<AnimationController>();
     }
 
-    public void StartAnimation()
+    public override void StartAnimation()
     {
         this._doors.SetActive(true);
         this._animationController.StartAnimation();
     }
 
-    public void EndAnimation()
+    public override void EndAnimation()
     {
         this._doors.SetActive(true);
         this._animationController.EndAnimation();
     }
 
-    public void UpdateScoreUI()
+    public override void UpdateUI()
     {
-        _sliderScore.SetValue(GameplayManagers.ScoreManager.CurrentScore);
-        this.ActiveReference();
-        this._textScore.text = $"{GameplayManagers.ScoreManager.CurrentScore}";
+        this.UpdateScoreUI();
     }
 
-    private void ActiveReference()
+    private void UpdateScoreUI()
     {
+        _sliderScore.SetValue(GameplayManagers.ScoreManager.CurrentScore);
+        this._textScore.text = $"{GameplayManagers.ScoreManager.CurrentScore}";
         if (GameplayManagers.ScoreManager.ScoreReferences[0] <= GameplayManagers.ScoreManager.CurrentScore && hasReferences)
         {
             _reference[0].UpdateReference();

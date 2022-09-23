@@ -15,12 +15,12 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        GameplayManagers.UIManager.InGameUI.UpdateScoreUI();
+        GameplayManagers.UIManager.InGameUI.UpdateUI();
     }
 
     public void OnScore(int scoreIncreaseAmount)
     {
         this._currentScore += scoreIncreaseAmount * this._increment;
-        GameplayManagers.UIManager.InGameUI.UpdateScoreUI();
+        GameplayManagers.UIManager.InGameUI.UpdateUI();
     }
 }
