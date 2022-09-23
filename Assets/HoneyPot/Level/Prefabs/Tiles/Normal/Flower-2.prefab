@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6605836849612583069}
   - component: {fileID: 3284943099709888222}
   m_Layer: 0
-  m_Name: Flower
+  m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 1
+  _score: 100
