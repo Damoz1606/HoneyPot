@@ -94,19 +94,19 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            GameplayManagers.GameManager.CurrentTetromino.RotationController.Rotate(true);
+            GameplayManagers.GameManager.CurrentTetrominoe.RotationController.Rotate(true);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            GameplayManagers.GameManager.CurrentTetromino.FallController.InstantFall();
+            GameplayManagers.GameManager.CurrentTetrominoe.FallController.InstantFall();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            GameplayManagers.GameManager.CurrentTetromino.MovementController.Move(Vector2.left);
+            GameplayManagers.GameManager.CurrentTetrominoe.MovementController.Move(Vector2.left);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            GameplayManagers.GameManager.CurrentTetromino.MovementController.Move(Vector2.right);
+            GameplayManagers.GameManager.CurrentTetrominoe.MovementController.Move(Vector2.right);
         }
     }
 

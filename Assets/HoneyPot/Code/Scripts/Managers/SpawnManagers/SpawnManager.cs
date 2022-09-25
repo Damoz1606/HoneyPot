@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private TetrominoSpawnManager _tetrominoSpawnManager;
-    [SerializeField] private TileSpawnManager _tileSpawnManager;
+    [SerializeField] private TetrominoePoolSpawner _tetrominoePoolSpawner;
+    [SerializeField] private BlockPoolSpawner _blockPoolSpawner;
+    [SerializeField] private NormalTilePoolSpawner _normalTilePoolSpawner;
+    [SerializeField] private ComboTilePoolSpawner _comboTilePoolSpawner;
 
-    public TetrominoSpawnManager TetrominoSpawnManager { get { return this._tetrominoSpawnManager; } }
-    public TileSpawnManager TileSpawnManager { get { return this._tileSpawnManager; } }
+    public TetrominoePoolSpawner TetrominoePoolSpawner { get { return this._tetrominoePoolSpawner; } }
+    public BlockPoolSpawner BlockPoolSpawner { get { return this._blockPoolSpawner; } }
+    public NormalTilePoolSpawner NormalTilePoolSpawner { get { return this._normalTilePoolSpawner; } }
+    public ComboTilePoolSpawner ComboTilePoolSpawner { get { return this._comboTilePoolSpawner; } }
 }

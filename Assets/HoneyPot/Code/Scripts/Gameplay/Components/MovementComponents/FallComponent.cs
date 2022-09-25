@@ -13,9 +13,9 @@ public class FallComponent : MonoBehaviour
         if (Time.time - this._lastFall >= this._transitionInterval)
         {
             this.transform.position += Vector3.down;
-            if (GameplayManagers.GridManager.Board.IsValidPosition(this.GetComponent<Tetromino>()))
+            if (GameplayManagers.GridManager.Board.IsValidPosition(this.GetComponent<Tetrominoe>()))
             {
-                GameplayManagers.GridManager.Board.UpdateTetromino(this.GetComponent<Tetromino>());
+                GameplayManagers.GridManager.Board.UpdateTetromino(this.GetComponent<Tetrominoe>());
             }
             else
             {
@@ -23,10 +23,10 @@ public class FallComponent : MonoBehaviour
                 GetComponent<FallComponent>().enabled = false;
                 GetComponent<HorizontalMovement>().enabled = false;
                 GetComponent<RotationComponent>().enabled = false;
-                GetComponent<Tetromino>().enabled = false;
-                GetComponent<Tetromino>().PlaceTilesOnGrid();
+                GetComponent<Tetrominoe>().enabled = false;
+                GetComponent<Tetrominoe>().PlaceTilesOnGrid();
 
-                GameplayManagers.GameManager.CurrentTetromino = null;
+                GameplayManagers.GameManager.CurrentTetrominoe = null;
 
                 GameplayManagers.GridManager.Board.PlaceNewTetromino();
             }

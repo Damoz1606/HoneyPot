@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class Block : MonoBehaviour
+public class Block : _PoolObjectBase
 {
     private bool _isSwapping = false;
     private bool _canSwipe = false;
@@ -99,10 +99,10 @@ public class Block : MonoBehaviour
 
     void Start()
     {
-        GameplayManagers.SpawnManager.TileSpawnManager.Spawn(out GameObject tile);
+        /* GameplayManagers.SpawnManager.TileSpawnManager.Spawn(out GameObject tile);
         tile.transform.position = this.transform.position;
         tile.transform.SetParent(this.transform);
-        this._child = tile.GetComponent<Tile>();
+        this._child = tile.GetComponent<Tile>(); */
         // tile.transform.localScale = Vector3.zero;
     }
 
@@ -137,12 +137,12 @@ public class Block : MonoBehaviour
         }
     }
 
-    public void Destroy(ParticlesTypes particle = ParticlesTypes.DEFAULT)
+    /* public void Destroy(ParticlesTypes particle = ParticlesTypes.DEFAULT)
     {
         this.Child.OnEffect();
         GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, particle);
         this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
-    }
+    } */
 
     public (List<Block>, List<Block>) GetAllConnections()
     {
@@ -179,5 +179,31 @@ public class Block : MonoBehaviour
         }
 
         return result;
+    }
+
+    public override void OnActivate()
+    {
+        this.gameObject.SetActive(true);
+        this.enabled = true;
+        GameplayManagers.SpawnManager.NormalTilePoolSpawner.Spawn();
+        GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.transform.position = this.transform.position;
+        GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.transform.SetParent(this.transform);
+        this._child = GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.GetComponent<Tile>();
+    }
+
+    public override void OnUpdate()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnDeactivate()
+    {
+        this.Child.OnEffect();
+        // GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, particle);
+        this.Child.OnDeactivate();
+        GameplayManagers.SpawnManager.BlockPoolSpawner.SetOnPool(this.gameObject);
+        // this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
+        this.enabled = false;
+        this.gameObject.SetActive(false);
     }
 }

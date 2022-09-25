@@ -14,7 +14,8 @@ public static class DestroyUtils
             if (!child.CanPop) continue;
             targets.Add(child.transform.position);
             grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
-            child.Destroy(type);
+            // child.Destroy(type);
+            child.OnDeactivate();
         }
         return targets;
     }
@@ -32,7 +33,8 @@ public static class DestroyUtils
             targets.Add(child);
             T cell = (T)grid[child.x].row[child.y];
             grid[child.x].row[child.y] = null;
-            cell.Destroy(type);
+            // cell.Destroy(type);
+            cell.OnDeactivate();
         }
         return targets;
     }

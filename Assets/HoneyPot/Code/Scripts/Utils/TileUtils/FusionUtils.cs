@@ -12,7 +12,7 @@ public static class FusionUtils
             connection.transform.DOMove(cell.transform.position, tweeningTime)
                 .SetEase(Ease.Linear)
                 .Play()
-                .OnComplete(() => cell.Destroy());
+                .OnComplete(() => cell.OnDeactivate());
         }
     }
 }

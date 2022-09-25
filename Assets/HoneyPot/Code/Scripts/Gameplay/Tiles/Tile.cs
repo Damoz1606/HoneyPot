@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public abstract class Tile : MonoBehaviour
+public abstract class Tile : _PoolObjectBase
 {
     [SerializeField] private TileTypes _type;
     [SerializeField] protected int _score = 100;

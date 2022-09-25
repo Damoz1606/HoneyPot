@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayState : _StatesBase
@@ -8,8 +9,8 @@ public class PlayState : _StatesBase
         {
             GameplayManagers.UIManager.ActivateUI(UITypes.INGAME);
             GameplayManagers.AudioManager.PlayMusic();
-            GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
-            GameplayManagers.GameManager.IsGameActive = true;
+            StartCoroutine(this.StartGameCoroutine());
+            // GameplayManagers.SpawnManager.TetrominoePoolSpawner.Spawn();
         }
         Debug.Log("<color=green>Play State</color> OnActive");
     }
@@ -23,11 +24,18 @@ public class PlayState : _StatesBase
 
     public override void OnUpdate()
     {
-        if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetromino != null)
+        if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetrominoe != null)
         {
-            GameplayManagers.GameManager.CurrentTetromino.FallController.FreeFall();
+            GameplayManagers.GameManager.CurrentTetrominoe.FallController.FreeFall();
         }
         GameplayManagers.GoalManager.CheckCompletedGoals();
         Debug.Log("<color=yellow>Play State</color> OnUpdate");
+    }
+
+    private IEnumerator StartGameCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        GameplayManagers.SpawnManager.TetrominoePoolSpawner.Spawn();
+        GameplayManagers.GameManager.IsGameActive = true;
     }
 }

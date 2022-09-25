@@ -6,10 +6,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform _blockHolder;
     [SerializeField] private bool _isGameActive;
-    private Tetromino _currentTetromino;
+    // private Tetromino _currentTetromino;
+    private Tetrominoe _currentTetrominoe;
     private _StatesBase _currentState;
 
-    public Tetromino CurrentTetromino { get { return this._currentTetromino; } set { this._currentTetromino = value; } }
+    // public Tetromino CurrentTetromino { get { return this._currentTetromino; } set { this._currentTetromino = value; } }
+    public Tetrominoe CurrentTetrominoe { get { return this._currentTetrominoe; } set { this._currentTetrominoe = value; } }
     public Transform BlockHolder { get { return this._blockHolder; } }
     public bool IsGameActive { get { return this._isGameActive; } set { this._isGameActive = value; } }
 

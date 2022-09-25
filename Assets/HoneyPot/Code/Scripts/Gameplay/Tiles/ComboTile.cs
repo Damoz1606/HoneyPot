@@ -8,6 +8,19 @@ public class ComboTile : Tile
 
     public ComboTypes ComboType { get { return this._comboType; } private set { this._comboType = value; } }
 
+    public override void OnActivate()
+    {
+        this.gameObject.SetActive(true);
+        this.enabled = true;
+    }
+
+    public override void OnDeactivate()
+    {
+        GameplayManagers.SpawnManager.ComboTilePoolSpawner.SetOnPool(this.gameObject);
+        this.enabled = false;
+        this.gameObject.SetActive(false);
+    }
+
     public override void OnEffect(Block block = null)
     {
         if (!GameplayManagers.GameManager.IsGameActive) return;
@@ -31,5 +44,10 @@ public class ComboTile : Tile
             default:
                 break;
         }
+    }
+
+    public override void OnUpdate()
+    {
+        throw new System.NotImplementedException();
     }
 }

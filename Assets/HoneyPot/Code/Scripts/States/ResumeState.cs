@@ -24,9 +24,9 @@ public class ResumeState : _StatesBase
 
     public override void OnUpdate()
     {
-        if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetromino != null)
+        if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetrominoe != null)
         {
-            GameplayManagers.GameManager.CurrentTetromino.FallController.FreeFall();
+            GameplayManagers.GameManager.CurrentTetrominoe.FallController.FreeFall();
         }
         Debug.Log("<color=yellow>Resume State</color> OnUpdate");
     }

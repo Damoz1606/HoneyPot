@@ -83,7 +83,7 @@ public static class PopUtils
             {
                 if (grid[x].row[y] == null) continue;
                 if (!grid[x].row[y].CanPop) continue;
-                grid[x].row[y].Destroy();
+                grid[x].row[y].OnDeactivate();
                 grid[x].row[y] = null;
             }
         }

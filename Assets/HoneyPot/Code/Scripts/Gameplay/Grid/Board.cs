@@ -41,34 +41,34 @@ public class Board : MonoBehaviour
         }
     }
 
-    public bool IsValidPosition(Tetromino tetromino)
+    public bool IsValidPosition(Tetrominoe tetrominoe)
     {
-        foreach (Block block in tetromino.Blocks)
+        foreach (Block block in tetrominoe.Blocks)
         {
             if (!this._gridComponent.IsInsideBounds(block.IntegerPosition))
                 return false;
             if (this._gridComponent.GetBlockAt(block.IntegerPosition) != null &&
-            this._gridComponent.GetBlockAt(block.IntegerPosition).transform.parent != tetromino.transform)
+            this._gridComponent.GetBlockAt(block.IntegerPosition).transform.parent != tetrominoe.transform)
                 return false;
         }
         return true;
     }
-
-    public void UpdateTetromino(Tetromino tetromino)
+    
+    public void UpdateTetromino(Tetrominoe tetrominoe)
     {
         for (int y = 0; y < this._gridComponent.Height; y++)
         {
             for (int x = 0; x < this._gridComponent.Width; x++)
             {
                 if (this._gridComponent.GetBlockAt(x, y) != null &&
-                this._gridComponent.GetBlockAt(x, y).transform.parent == tetromino.transform)
+                this._gridComponent.GetBlockAt(x, y).transform.parent == tetrominoe.transform)
                 {
                     this._gridComponent.SetBlockAt(x, y, null);
                 }
             }
         }
 
-        foreach (Block block in tetromino.Blocks)
+        foreach (Block block in tetrominoe.Blocks)
         {
             this._gridComponent.SetBlockAt(block.IntegerPosition, block);
         }
@@ -77,7 +77,7 @@ public class Board : MonoBehaviour
     public void PlaceNewTetromino()
     {
         this.TryPop();
-        GameplayManagers.SpawnManager.TetrominoSpawnManager.Spawn();
+        GameplayManagers.SpawnManager.TetrominoePoolSpawner.Spawn();
     }
 
     public async void SwapBlock(Block currentBlock, Block nextBlock)
