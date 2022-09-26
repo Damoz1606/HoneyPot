@@ -65,8 +65,8 @@ public class Tetrominoe : _PoolObjectBase
             child.CanSwipe = true;
             child.CanDecrease = true;
             child.CanPop = true;
-            child.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
             // child.ActivateChild();
+            child.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
         }
         this.OnDeactivate();
     }

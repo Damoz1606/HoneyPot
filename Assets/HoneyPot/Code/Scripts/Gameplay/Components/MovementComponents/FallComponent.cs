@@ -6,7 +6,13 @@ public class FallComponent : MonoBehaviour
 {
     [SerializeField] private float _transitionInterval = 0.8f;
     [SerializeField] private float _fastTransitionInterval = 0;
+    private float _auxiliarTransitionInterval = 0;
     private float _lastFall;
+
+    private void Start()
+    {
+        this._auxiliarTransitionInterval = this._transitionInterval;
+    }
 
     public void FreeFall()
     {
@@ -19,6 +25,7 @@ public class FallComponent : MonoBehaviour
             }
             else
             {
+                this._transitionInterval = this._auxiliarTransitionInterval;
                 this.transform.position += Vector3.up;
                 GetComponent<FallComponent>().enabled = false;
                 GetComponent<HorizontalMovement>().enabled = false;

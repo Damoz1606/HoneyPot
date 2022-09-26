@@ -29,6 +29,7 @@ public class ComboTilePoolSpawner : _SpawnerBase
                 break;
             default: break;
         }
+        this.ComboType = ComboTypes.BOMB;
     }
 
     public void SetOnPool(GameObject _pool)

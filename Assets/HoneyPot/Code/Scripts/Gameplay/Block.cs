@@ -12,7 +12,10 @@ public class Block : _PoolObjectBase
     private bool _canDecrease = false;
     private bool _canPop = false;
     private Tile _child;
+    private ParticlesTypes _particle = ParticlesTypes.DEFAULT;
     public Vector2Int IntegerPosition => VectorRound.Vector2Round(this.transform.position);
+
+    public ParticlesTypes Particles { set { this._particle = value; } get { return this._particle; } }
 
     public Block Top
     {
@@ -137,13 +140,6 @@ public class Block : _PoolObjectBase
         }
     }
 
-    /* public void Destroy(ParticlesTypes particle = ParticlesTypes.DEFAULT)
-    {
-        this.Child.OnEffect();
-        GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, particle);
-        this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
-    } */
-
     public (List<Block>, List<Block>) GetAllConnections()
     {
         return (GetConnectionsHorizontal(), GetConnectionsVertical());
@@ -185,6 +181,9 @@ public class Block : _PoolObjectBase
     {
         this.gameObject.SetActive(true);
         this.enabled = true;
+        this._canDecrease = false;
+        this._canPop = false;
+        this._canSwipe = false;
         GameplayManagers.SpawnManager.NormalTilePoolSpawner.Spawn();
         GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.transform.position = this.transform.position;
         GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.transform.SetParent(this.transform);
@@ -199,11 +198,12 @@ public class Block : _PoolObjectBase
     public override void OnDeactivate()
     {
         this.Child.OnEffect();
-        // GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, particle);
+        GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, this._particle);
         this.Child.OnDeactivate();
         GameplayManagers.SpawnManager.BlockPoolSpawner.SetOnPool(this.gameObject);
         // this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
         this.enabled = false;
         this.gameObject.SetActive(false);
+        this.Particles = ParticlesTypes.DEFAULT;
     }
 }

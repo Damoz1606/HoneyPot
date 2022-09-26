@@ -13,7 +13,6 @@ public class TetrominoePoolSpawner : _SpawnerBase
         tmp.transform.position = new Vector3(GameplayManagers.GridManager.GridWidth / 2, GameplayManagers.GridManager.GridHeight - Constants.GRID_GREACE_HEIGHT, 0);
         tmp.transform.rotation = Quaternion.identity;
         GameplayManagers.GameManager.CurrentTetrominoe = tmp.GetComponent<Tetrominoe>();
-        // tmp.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
 
         GameplayManagers.InputManager.IsInputActive = true;
         tmp.GetComponent<Tetrominoe>().OnActivate();

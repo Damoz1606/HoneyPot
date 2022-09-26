@@ -15,6 +15,7 @@ public static class DestroyUtils
             targets.Add(child.transform.position);
             grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
             // child.Destroy(type);
+            child.Particles = type;
             child.OnDeactivate();
         }
         return targets;
@@ -34,6 +35,7 @@ public static class DestroyUtils
             T cell = (T)grid[child.x].row[child.y];
             grid[child.x].row[child.y] = null;
             // cell.Destroy(type);
+            cell.Particles = type;
             cell.OnDeactivate();
         }
         return targets;
