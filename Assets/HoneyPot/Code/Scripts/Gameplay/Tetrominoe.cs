@@ -6,7 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(RotationComponent))]
 public class Tetrominoe : _PoolObjectBase
 {
-    [SerializeField] private List<GameObject> _pivots;
+    [SerializeField] private List<Vector3> _pivots;
+    [SerializeField] private TetrominoeTypes _type;
     private List<Block> _blocks = new List<Block>();
     private HorizontalMovement _movementController;
     private FallComponent _fallController;
@@ -15,6 +16,7 @@ public class Tetrominoe : _PoolObjectBase
     public HorizontalMovement MovementController { get { return this._movementController; } }
     public FallComponent FallController { get { return this._fallController; } }
     public RotationComponent RotationController { get { return this._rotationController; } }
+    public TetrominoeTypes TetrominoeTypes { get { return this._type; } }
     public List<Block> Blocks { get { return this._blocks; } }
 
     private void Awake()
@@ -26,31 +28,30 @@ public class Tetrominoe : _PoolObjectBase
 
     public override void OnActivate()
     {
-        this.gameObject.SetActive(true);
-        this.enabled = true;
+        this.transform.position = new Vector3(GameplayManagers.GridManager.GridWidth / 2, GameplayManagers.GridManager.GridHeight - Constants.GRID_GREACE_HEIGHT, 0);
+        this.transform.rotation = Quaternion.identity;
 
-        this._pivots.ForEach(pivot =>
+        foreach (Vector3 item in this._pivots)
         {
-            GameplayManagers.SpawnManager.BlockPoolSpawner.Spawn();
-            GameplayManagers.SpawnManager.BlockPoolSpawner.CurrentBlock.transform.position = pivot.transform.position;
-            this._blocks.Add(GameplayManagers.SpawnManager.BlockPoolSpawner.CurrentBlock);
-            GameplayManagers.SpawnManager.BlockPoolSpawner.CurrentBlock.transform.SetParent(this.transform);
-        });
+            Block block = GameplayManagers.SpawnManager.BlockSpawner.OnSpawn();
+            block.transform.SetParent(this.transform);
+            block.transform.position = Vector3.zero;
+            block.transform.localPosition = item;
+            this._blocks.Add(block);
+        }
 
         if (!GameplayManagers.GridManager.Board.IsValidPosition(this))
         {
             GameplayManagers.InputManager.IsInputActive = false;
             GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
-            this.OnDeactivate();
+            GameplayManagers.SpawnManager.OnKill(this);
         }
     }
 
     public override void OnDeactivate()
     {
-        this.enabled = false;
-        this.gameObject.SetActive(false);
-        this._blocks.Clear();
         GameplayManagers.GameManager.CurrentTetrominoe = null;
+        this._blocks.Clear();
     }
 
     public override void OnUpdate()
@@ -68,6 +69,6 @@ public class Tetrominoe : _PoolObjectBase
             // child.ActivateChild();
             child.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
         }
-        this.OnDeactivate();
+        GameplayManagers.SpawnManager.OnKill(this);
     }
 }

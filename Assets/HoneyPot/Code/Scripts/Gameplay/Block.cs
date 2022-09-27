@@ -134,6 +134,7 @@ public class Block : _PoolObjectBase
     private async Task CheckAndHoldChildAsync(float tweeningTime = 0.25f)
     {
         if (this._isSwapping) return;
+        if (this.Child == null) return;
         if (this.Child.transform.localPosition != Vector3.zero)
         {
             await this.Child.transform.DOLocalMove(Vector3.zero, tweeningTime).AsyncWaitForCompletion();
@@ -165,6 +166,7 @@ public class Block : _PoolObjectBase
 
         foreach (Block neighbour in blocks)
         {
+            if (this.Child == null) continue;
             if (neighbour == null) continue;
             if (exclude.Contains(neighbour)) continue;
             if (!neighbour.Child.Type.Equals(this.Child.Type)) continue;
@@ -179,15 +181,9 @@ public class Block : _PoolObjectBase
 
     public override void OnActivate()
     {
-        this.gameObject.SetActive(true);
-        this.enabled = true;
         this._canDecrease = false;
         this._canPop = false;
         this._canSwipe = false;
-        GameplayManagers.SpawnManager.NormalTilePoolSpawner.Spawn();
-        GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.transform.position = this.transform.position;
-        GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.transform.SetParent(this.transform);
-        this._child = GameplayManagers.SpawnManager.NormalTilePoolSpawner.CurrentTile.GetComponent<Tile>();
     }
 
     public override void OnUpdate()
@@ -197,13 +193,28 @@ public class Block : _PoolObjectBase
 
     public override void OnDeactivate()
     {
+        this._canDecrease = false;
+        this._canPop = false;
+        this._canSwipe = false;
         this.Child.OnEffect();
-        GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, this._particle);
-        this.Child.OnDeactivate();
-        GameplayManagers.SpawnManager.BlockPoolSpawner.SetOnPool(this.gameObject);
-        // this.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.Linear).OnComplete(() => Destroy(this.gameObject));
-        this.enabled = false;
-        this.gameObject.SetActive(false);
-        this.Particles = ParticlesTypes.DEFAULT;
+        // GameplayManagers.ParticlesManager.InstantiateParticles(this.transform.position, this._particle);
+        // this.Child.OnDeactivate();
+        // this.Particles = ParticlesTypes.DEFAULT;
+    }
+
+    public void AttachChild(Tile tile)
+    {
+        this._child = tile;
+        this._child.transform.SetParent(null);
+        this._child.transform.position = Vector3.zero;
+        this._child.transform.SetParent(this.transform);
+        this._child.transform.localPosition = Vector3.zero;
+        this._child.transform.rotation = Quaternion.identity;
+    }
+
+    public void DeattachChild()
+    {
+        this._child.transform.SetParent(null);
+        this._child = null;
     }
 }

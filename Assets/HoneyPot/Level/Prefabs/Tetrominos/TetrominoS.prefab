@@ -114,10 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pivots:
-  - {fileID: 3282452415447186472}
-  - {fileID: 6940468247862794339}
-  - {fileID: 7294874893092094582}
-  - {fileID: 13182308898221106}
+  - {x: 0, y: -1, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  _type: 4
 --- !u!114 &5960354918555589158
 MonoBehaviour:
   m_ObjectHideFlags: 0

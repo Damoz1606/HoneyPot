@@ -5,14 +5,13 @@ public class NormalTile : Tile
     public override void OnActivate()
     {
         this.gameObject.SetActive(true);
-        this.enabled = true;
+        this.transform.position = Vector3.zero;
     }
 
     public override void OnDeactivate()
     {
-        GameplayManagers.SpawnManager.NormalTilePoolSpawner.SetOnPool(this.gameObject);
         this.gameObject.SetActive(false);
-        this.enabled = false;
+        this.transform.position = Vector3.zero;
     }
 
     public override void OnEffect(Block block = null)

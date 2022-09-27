@@ -10,15 +10,12 @@ public class ComboTile : Tile
 
     public override void OnActivate()
     {
-        this.gameObject.SetActive(true);
-        this.enabled = true;
+        this._hasEffectBeenActive = false;
     }
 
     public override void OnDeactivate()
     {
-        GameplayManagers.SpawnManager.NormalTilePoolSpawner.SetOnPool(this.gameObject);
-        this.gameObject.SetActive(false);
-        this.enabled = false;
+        this._hasEffectBeenActive = false;
     }
 
     public override void OnEffect(Block block = null)

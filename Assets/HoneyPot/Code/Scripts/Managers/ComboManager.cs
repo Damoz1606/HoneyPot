@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class ComboManager : MonoBehaviour
 {
+    [SerializeField] private ComboTile _comboPrefabs;
 
-    public void InstanceCombo(ComboTypes combo, Block block)
+    public ComboTile InstanceCombo(ComboTypes combo)
     {
-        // Destroy(block.Child.gameObject);
-        block.Child.OnDeactivate();
-        block.Child = null;
         switch (combo)
         {
             case ComboTypes.BOMB:
-                GameplayManagers.SpawnManager.ComboTilePoolSpawner.ComboType = ComboTypes.BOMB;
-                GameplayManagers.SpawnManager.ComboTilePoolSpawner.Spawn();
-                break;
+                return (ComboTile)GameplayManagers.SpawnManager.BlockSpawner.GetSpawner(ComboTypes.BOMB).OnSpawn();
             case ComboTypes.HONEYPOT:
-                GameplayManagers.SpawnManager.ComboTilePoolSpawner.ComboType = ComboTypes.HONEYPOT;
-                GameplayManagers.SpawnManager.ComboTilePoolSpawner.Spawn();
-                break;
+                return (ComboTile)GameplayManagers.SpawnManager.BlockSpawner.GetSpawner(ComboTypes.HONEYPOT).OnSpawn();
+            default:
+                return null;
         }
-        block.Child = GameplayManagers.SpawnManager.ComboTilePoolSpawner.CurrentTile;
-        block.Child.transform.SetParent(block.transform);
     }
 }

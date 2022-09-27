@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 
 public static class PopUtils
@@ -84,7 +85,8 @@ public static class PopUtils
             {
                 if (grid[x].row[y] == null) continue;
                 if (!grid[x].row[y].CanPop) continue;
-                grid[x].row[y].OnDeactivate();
+                // grid[x].row[y].OnDeactivate();
+                GameplayManagers.SpawnManager.BlockSpawner.OnKill(grid[x].row[y]);
                 grid[x].row[y] = null;
             }
         }
@@ -101,18 +103,20 @@ public static class PopUtils
                 List<Vector2Int> vectors = new List<Vector2Int>();
                 connections.Remove(cell);
                 vectors.AddRange(connections.Select(o => o.IntegerPosition).ToArray());
-                GameplayManagers.ComboManager.InstanceCombo(ComboTypes.HONEYPOT, cell);
-                FusionUtils.FusionCells(cell, connections, grid);
-                return DestroyUtils.DestroyBlocks(vectors.ToArray(), grid);
+                ComboTile tile = GameplayManagers.ComboManager.InstanceCombo(ComboTypes.HONEYPOT);
+                GameplayManagers.SpawnManager.BlockSpawner.ReattachTile(cell, tile);
+                // FusionUtils.FusionCells(cell, connections, grid);
+                return DestroyUtils.DestroyBlocks(connections, grid);
             }
             else if (connections.Count > Constants.COMBO_BEE_POLLEN)
             {
                 List<Vector2Int> vectors = new List<Vector2Int>();
                 connections.Remove(cell);
                 vectors.AddRange(connections.Select(o => o.IntegerPosition).ToArray());
-                GameplayManagers.ComboManager.InstanceCombo(ComboTypes.BOMB, cell);
-                FusionUtils.FusionCells(cell, connections, grid);
-                return DestroyUtils.DestroyBlocks(vectors.ToArray(), grid);
+                ComboTile tile = GameplayManagers.ComboManager.InstanceCombo(ComboTypes.BOMB);
+                GameplayManagers.SpawnManager.BlockSpawner.ReattachTile(cell, tile);
+                // FusionUtils.FusionCells(cell, connections, grid);
+                return DestroyUtils.DestroyBlocks(connections, grid);
             }
             else return DestroyUtils.DestroyBlocks(connections, grid);
         }

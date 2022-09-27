@@ -77,7 +77,7 @@ public class Board : MonoBehaviour
     public void PlaceNewTetromino()
     {
         this.TryPop();
-        GameplayManagers.SpawnManager.TetrominoePoolSpawner.Spawn();
+        GameplayManagers.SpawnManager.Spawn();
     }
 
     public async void SwapBlock(Block currentBlock, Block nextBlock)

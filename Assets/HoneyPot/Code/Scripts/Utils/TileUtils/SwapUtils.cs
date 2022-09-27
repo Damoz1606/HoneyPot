@@ -31,6 +31,7 @@ public static class SwapUtils
     public static void ComboSwap<T>(T cell)
     where T : Block
     {
+        if (cell.Child == null) return;
         if (cell.Child.Type.Equals(TileTypes.COMBO))
             cell.Child.OnEffect(cell);
 

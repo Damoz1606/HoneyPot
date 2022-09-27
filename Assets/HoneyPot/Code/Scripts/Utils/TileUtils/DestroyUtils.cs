@@ -11,12 +11,8 @@ public static class DestroyUtils
         foreach (T child in connections)
         {
             if (child == null) continue;
-            if (!child.CanPop) continue;
+            if (!DestroyBlock(child.transform.position, grid, type)) continue;
             targets.Add(child.transform.position);
-            grid[child.IntegerPosition.x].row[child.IntegerPosition.y] = null;
-            // child.Destroy(type);
-            child.Particles = type;
-            child.OnDeactivate();
         }
         return targets;
     }
@@ -29,15 +25,22 @@ public static class DestroyUtils
         List<Vector2> targets = new List<Vector2>();
         foreach (Vector2Int child in connections)
         {
-            if (grid[child.x].row[child.y] == null) continue;
-            if (!grid[child.x].row[child.y].CanPop) continue;
+            if (!DestroyBlock(child, grid, type)) continue;
             targets.Add(child);
-            T cell = (T)grid[child.x].row[child.y];
-            grid[child.x].row[child.y] = null;
-            // cell.Destroy(type);
-            cell.Particles = type;
-            cell.OnDeactivate();
         }
         return targets;
+    }
+
+    public static bool DestroyBlock<T>(Vector2 connection, Column<T>[] grid, ParticlesTypes type = ParticlesTypes.DEFAULT)
+    where T : Block => DestroyBlock(VectorRound.Vector2Round(connection), grid, type);
+    public static bool DestroyBlock<T>(Vector2Int connection, Column<T>[] grid, ParticlesTypes type = ParticlesTypes.DEFAULT)
+    where T : Block
+    {
+        if (grid[connection.x].row[connection.y] == null) return false;
+        if (!grid[connection.x].row[connection.y].CanPop) return false;
+        T cell = (T)grid[connection.x].row[connection.y];
+        grid[connection.x].row[connection.y] = null;
+        GameplayManagers.SpawnManager.BlockSpawner.OnKill(cell);
+        return true;
     }
 }
