@@ -49,7 +49,6 @@ public static class DecreaseUtils
             if (grid[x].row[y] == null) continue;
             if (!grid[x].row[y].CanDecrease) continue;
             grid[x].row[newY] = grid[x].row[y];
-            Debug.Log($"Vector: {x}, {newY}");
             grid[x].row[y] = null;
 
             var sequence = DOTween.Sequence();

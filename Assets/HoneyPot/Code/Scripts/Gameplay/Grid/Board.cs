@@ -53,7 +53,7 @@ public class Board : MonoBehaviour
         }
         return true;
     }
-    
+
     public void UpdateTetromino(Tetrominoe tetrominoe)
     {
         for (int y = 0; y < this._gridComponent.Height; y++)
@@ -77,7 +77,7 @@ public class Board : MonoBehaviour
     public void PlaceNewTetromino()
     {
         this.TryPop();
-        GameplayManagers.SpawnManager.Spawn();
+        GameplayManagers.SpawnManager.TetrominoeSpawner.OnSpawn();
     }
 
     public async void SwapBlock(Block currentBlock, Block nextBlock)
@@ -88,7 +88,7 @@ public class Board : MonoBehaviour
 
         await SwapUtils.SwapAsync<Block, Tile>(currentBlock, nextBlock, tweeningTime);
 
-        bool currentCanPop = PopUtils.CanPop<Block>(currentBlock);
+        bool currentCanPop = PopUtils.CanPop<Block>(this._gridComponent.Grid);
         bool nextCanPop = PopUtils.CanPop<Block>(nextBlock);
 
         if (currentCanPop)

@@ -4,47 +4,23 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private List<KeyPair<TetrominoeTypes, TetrominoeSpawner>> _tetrominoeSpawnerKeyPair;
+    [SerializeField] private AllTetrominoesSpawner _tetrominoeSpawner;
     [SerializeField] private BlockSpawner _blockSpawner;
-    private Dictionary<TetrominoeTypes, TetrominoeSpawner> _tetrominoeSpawnerDictionary = new Dictionary<TetrominoeTypes, TetrominoeSpawner>();
 
-    public BlockSpawner BlockSpawner { get { return this._blockSpawner; } }
+    [SerializeField] private bool _usePool = false;
 
-    private void Awake() => _tetrominoeSpawnerKeyPair.ForEach(item => _tetrominoeSpawnerDictionary.Add(item.key, item.value));
-
-
-    public void Spawn()
+    public bool UsePool
     {
-        int randomIndex = Random.Range(0, this._tetrominoeSpawnerDictionary.Count);
-        Tetrominoe tmp = this.GetSpawner(randomIndex).OnSpawn();
-        GameplayManagers.GameManager.CurrentTetrominoe = tmp.GetComponent<Tetrominoe>();
-        // tmp.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
-
-        GameplayManagers.InputManager.IsInputActive = true;
-    }
-
-    private TetrominoeSpawner GetSpawner(int index)
-    {
-        switch (index)
+        set
         {
-            case 0:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.I];
-            case 1:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.J];
-            case 2:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.L];
-            case 3:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.O];
-            case 4:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.S];
-            case 5:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.T];
-            case 6:
-                return this._tetrominoeSpawnerDictionary[TetrominoeTypes.Z];
-            default:
-                return null;
+            this._usePool = value;
+            this._tetrominoeSpawner.UsePool = this._usePool;
+            this._blockSpawner.UsePool = this._usePool;
         }
     }
 
-    public void OnKill(Tetrominoe tetrominoe) => this._tetrominoeSpawnerDictionary[tetrominoe.TetrominoeTypes].OnKill(tetrominoe);
+    public BlockSpawner BlockSpawner { get { return this._blockSpawner; } }
+    public AllTetrominoesSpawner TetrominoeSpawner { get { return this._tetrominoeSpawner; } }
+
+    private void Awake() => this.UsePool = this._usePool;
 }

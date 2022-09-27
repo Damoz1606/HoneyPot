@@ -18,6 +18,16 @@ public class BlockSpawner : _SpawnerBase<Block>
         this._comboSpawnerKeyPair.ForEach(item => _comboSpawnerDictionary.Add(item.key, item.value));
     }
 
+    public override bool UsePool
+    {
+        set
+        {
+            this._usePool = value;
+            this._tileSpawnerKeyPair.ForEach(item => item.value.UsePool = this._usePool);
+            this._comboSpawnerKeyPair.ForEach(item => item.value.UsePool = this._usePool);
+        }
+    }
+
     public void ReattachTile(Block shape, Tile tile)
     {
         _tileSpawnerDictionary[shape.Child.Type].OnKill(shape.Child);
@@ -58,7 +68,16 @@ public class BlockSpawner : _SpawnerBase<Block>
     public override Block OnSpawn()
     {
         int randomIndex = UnityEngine.Random.Range(0, this._tileSpawnerDictionary.Count);
-        Block block = (this._usePool) ? this.Pool.Get() : this.OnCreate();
+        Block block;
+        if (this._usePool)
+        {
+            block = this.Pool.Get();
+        }
+        else
+        {
+            block = this.OnCreate();
+            block.OnActivate();
+        }
         Tile tile = this.GetSpawner(randomIndex).OnSpawn();
         block.AttachChild(tile);
         return block;

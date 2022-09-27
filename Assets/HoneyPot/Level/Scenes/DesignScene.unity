@@ -633,7 +633,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: 4527022192118909537, guid: fbe9882b8665c1840a0d337f5fcc0d3f,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &79132014
@@ -1376,22 +1376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a6cba7396bf304cb735051f0bc8447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tetrominoeSpawnerKeyPair:
-  - key: 0
-    value: {fileID: 1092599253}
-  - key: 1
-    value: {fileID: 1280576143}
-  - key: 2
-    value: {fileID: 1411920300}
-  - key: 3
-    value: {fileID: 1218581794}
-  - key: 4
-    value: {fileID: 310441034}
-  - key: 5
-    value: {fileID: 546770557}
-  - key: 6
-    value: {fileID: 76549215}
+  _tetrominoeSpawner: {fileID: 424459207}
   _blockSpawner: {fileID: 742344534}
+  _usePool: 1
 --- !u!114 &259357580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,7 +1645,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: -4473238560657141509, guid: bb40f5eede1a9bb4aae9ffcdd0927f3b,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &314743119
@@ -2205,7 +2192,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1508801786}
   _objectPrefab: {fileID: -4625655630580213537, guid: 774033e95c3376e4b85cad7257dfeb7a,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 16
   _maxCapacity: 40
 --- !u!1 &410087039
@@ -2423,6 +2410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424459206}
+  - component: {fileID: 424459207}
   m_Layer: 0
   m_Name: Tetrominoes
   m_TagString: Untagged
@@ -2443,8 +2431,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1092599252}
-  - {fileID: 1411920299}
   - {fileID: 1280576142}
+  - {fileID: 1411920299}
   - {fileID: 1218581793}
   - {fileID: 310441033}
   - {fileID: 546770556}
@@ -2452,6 +2440,34 @@ Transform:
   m_Father: {fileID: 1454192593}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424459207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424459205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 477d34c8c527c804eb29f99b976b663d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tetrominoeSpawnerKeyPair:
+  - key: 0
+    value: {fileID: 1092599253}
+  - key: 1
+    value: {fileID: 1280576143}
+  - key: 2
+    value: {fileID: 1411920300}
+  - key: 3
+    value: {fileID: 1218581794}
+  - key: 4
+    value: {fileID: 310441034}
+  - key: 5
+    value: {fileID: 546770557}
+  - key: 6
+    value: {fileID: 76549215}
+  _usePool: 1
 --- !u!1 &457952157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3013,7 +3029,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: -4173842959619725765, guid: 782b0634a27d1064e9fc179f2fbde5b7,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &553402085
@@ -3198,7 +3214,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1508801786}
   _objectPrefab: {fileID: 5218031944373632669, guid: 473a3d68f6b0456469943c35cf201c5b,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 10
   _maxCapacity: 30
 --- !u!1 &653855307
@@ -3489,7 +3505,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1508801786}
   _objectPrefab: {fileID: 2049484500511465828, guid: c7a70582dd73b17458ff9fa1495d8b9c,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 16
   _maxCapacity: 40
 --- !u!4 &665350050 stripped
@@ -3787,7 +3803,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 653855308}
   _objectPrefab: {fileID: 2622188340427968982, guid: d4213a62737328f4ba081e404cd72aef,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 32
   _maxCapacity: 100
   _tileSpawnerKeyPair:
@@ -5775,7 +5791,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: 205750553481423078, guid: ea10e8a5af941e8448c74eb839f6473d,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &1118038234
@@ -5940,7 +5956,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1508801786}
   _objectPrefab: {fileID: 5158646462834198152, guid: 0e3bcc9ccd3c4f2418747e5f164b08eb,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 16
   _maxCapacity: 40
 --- !u!1 &1172724652
@@ -6342,7 +6358,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: 2129411428934365021, guid: e073046b0c91bd2489a26861f6915e77,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &1248184002
@@ -6600,7 +6616,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 424459206}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1280576143
 MonoBehaviour:
@@ -6617,7 +6633,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: -1671598931619511118, guid: cafcbf12d06093f47a441f08e72e8a87,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &1296389076
@@ -7281,7 +7297,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1508801786}
   _objectPrefab: {fileID: -2379981057126967309, guid: dbcfbc8cf3c6f4049870d67e1d474ca6,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 5
   _maxCapacity: 20
 --- !u!4 &1388421803 stripped
@@ -7393,7 +7409,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 424459206}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1411920300
 MonoBehaviour:
@@ -7410,7 +7426,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1834236998}
   _objectPrefab: {fileID: 1042449621584650747, guid: 406f2f94d5ef45a46afecf0acb5caf1e,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 1
   _maxCapacity: 5
 --- !u!1 &1415337943
@@ -10208,7 +10224,7 @@ MonoBehaviour:
   _poolContainer: {fileID: 1508801786}
   _objectPrefab: {fileID: 1210480434272754519, guid: d0a5c495cf3a3674b82bc349f677888a,
     type: 3}
-  _usePool: 1
+  _usePool: 0
   _defaultCapacity: 16
   _maxCapacity: 40
 --- !u!1 &2042637192

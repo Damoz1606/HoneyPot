@@ -43,8 +43,8 @@ public class Tetrominoe : _PoolObjectBase
         if (!GameplayManagers.GridManager.Board.IsValidPosition(this))
         {
             GameplayManagers.InputManager.IsInputActive = false;
+            GameplayManagers.SpawnManager.TetrominoeSpawner.OnKill(this);
             GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
-            GameplayManagers.SpawnManager.OnKill(this);
         }
     }
 
@@ -69,6 +69,6 @@ public class Tetrominoe : _PoolObjectBase
             // child.ActivateChild();
             child.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
         }
-        GameplayManagers.SpawnManager.OnKill(this);
+        GameplayManagers.SpawnManager.TetrominoeSpawner.OnKill(this);
     }
 }

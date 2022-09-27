@@ -126,15 +126,15 @@ public static class PopUtils
     where T : Block
     {
         List<T> connections = new List<T> {
-            cell,
-            (T) cell.Top,
-            (T) cell.Bottom,
-            (T) cell.Right,
-            (cell.Right != null) ? (T)cell.Right.Top : null,
-            (cell.Right != null) ? (T)cell.Right.Bottom : null,
-            (T) cell.Left,
             (cell.Left != null) ? (T)cell.Left.Top : null,
+            (T) cell.Left,
             (cell.Left != null) ? (T)cell.Left.Bottom : null,
+            (T) cell.Top,
+            cell,
+            (T) cell.Bottom,
+            (cell.Right != null) ? (T)cell.Right.Top : null,
+            (T) cell.Right,
+            (cell.Right != null) ? (T)cell.Right.Bottom : null,
         };
         return DestroyUtils.DestroyBlocks(connections, grid, ParticlesTypes.BEES).ToArray();
     }

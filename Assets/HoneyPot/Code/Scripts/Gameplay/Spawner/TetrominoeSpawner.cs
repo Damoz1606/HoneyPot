@@ -10,7 +10,16 @@ public class TetrominoeSpawner : _SpawnerBase<Tetrominoe>
 
     public override Tetrominoe OnSpawn()
     {
-        return (this._usePool) ? this.Pool.Get() : this.OnCreate();
+        if (this._usePool)
+        {
+            return this.Pool.Get();
+        }
+        else
+        {
+            Tetrominoe shape = this.OnCreate();
+            shape.OnActivate();
+            return shape;
+        }
     }
 
     protected override Tetrominoe OnCreate()

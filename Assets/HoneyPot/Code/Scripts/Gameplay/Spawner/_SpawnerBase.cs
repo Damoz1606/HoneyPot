@@ -10,6 +10,7 @@ public abstract class _SpawnerBase<T> : MonoBehaviour where T : Object
     [SerializeField] protected bool _usePool = false;
     [SerializeField] protected int _defaultCapacity = 10;
     [SerializeField] protected int _maxCapacity = 100;
+    public virtual bool UsePool { set { this._usePool = value; } get { return this._usePool; } }
     private ObjectPool<T> _pool;
     protected ObjectPool<T> Pool
     {
@@ -20,6 +21,8 @@ public abstract class _SpawnerBase<T> : MonoBehaviour where T : Object
             return this._pool;
         }
     }
+
+    private void Awake() => this._pool = new ObjectPool<T>(OnCreate, OnGet, OnReleased, OnRemove, false, this._defaultCapacity, this._maxCapacity);
 
     public abstract T OnSpawn();
     public abstract void OnKill(T shape);
