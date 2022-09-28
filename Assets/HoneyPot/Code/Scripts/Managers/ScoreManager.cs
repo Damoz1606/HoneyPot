@@ -8,10 +8,22 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int _maxScore = 1000;
     [SerializeField] private int _increment = 1;
 
+    [SerializeField] private ScoreChannel _scoreChannel;
+
     public int CurrentScore { get { return this._currentScore; } }
     public float MaxScore { get { return this._maxScore; } }
     public int Increment { set { this.Increment = value; } }
     public float[] ScoreReferences => new[] { _maxScore * 0.5f, _maxScore * 0.75f, _maxScore * 1 };
+
+    private void OnEnable()
+    {
+        this._scoreChannel.OnScoreIncreaseListener += OnScore;
+    }
+
+    private void OnDisable()
+    {
+        this._scoreChannel.OnScoreIncreaseListener -= OnScore;
+    }
 
     void Start()
     {

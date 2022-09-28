@@ -4,39 +4,56 @@ using UnityEngine;
 
 public class GoalManager : MonoBehaviour
 {
-    [SerializeField] private List<_GoalBase> _goals;
+    [SerializeField] private List<ChallengeCollect> _challengeCollect;
+    [SerializeField] private ChallengeScore _challengeScore;
+    [SerializeField] private ChallengeChannel _challengeChannel;
 
-    public List<_GoalBase> Goals { get { return _goals; } }
-    private bool _goalsHasBeenCompleted = false;
+    private bool _challengeHasBeenCompleted = false;
+
+    private void OnEnable()
+    {
+        this._challengeChannel.OnChallengeChangeListener += this.CheckCompletedGoals;
+    }
+
+    private void OnDisable()
+    {
+        this._challengeChannel.OnChallengeChangeListener -= this.CheckCompletedGoals;
+    }
 
     private void OnGUI()
     {
-        if (this._goals.Count > 0)
-            this._goals.ForEach(goal => goal.DrawHUD());
+        if (this._challengeCollect.Count > 0)
+            this._challengeCollect.ForEach(challenge => challenge.DrawHUD());
     }
 
     public void CheckCompletedGoals()
     {
-
-        if (this._goals.Count > 0)
+        if (this._challengeCollect.Count > 0)
         {
-            this._goalsHasBeenCompleted = true;
-            this._goals.ForEach(goal =>
+            this._challengeHasBeenCompleted = true;
+            this._challengeCollect.ForEach(challenge =>
             {
-                this._goalsHasBeenCompleted = goal.IsAchived() && this._goalsHasBeenCompleted;
-                if (goal.IsAchived())
+                this._challengeHasBeenCompleted = challenge.IsAchived() && this._challengeHasBeenCompleted;
+                if (challenge.IsAchived())
                 {
-                    goal.Complete();
-                    Destroy(goal);
+                    challenge.OnComplete();
+                    // Destroy(challenge);
                 }
             });
         }
-        this.EndGame();
+        if (this._challengeScore != null)
+        {
+            if (_challengeScore.IsAchived())
+            {
+                _challengeScore.OnComplete();
+            }
+        }
+        // this.EndGame();
     }
 
     private void EndGame()
     {
-        if (this._goalsHasBeenCompleted)
+        if (this._challengeHasBeenCompleted)
             GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
     }
 }

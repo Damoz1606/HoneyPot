@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CollectHUD : _HUDBase
+public class CollectHUD : MonoBehaviour, IHUD
 {
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _targetValue;
@@ -17,19 +17,19 @@ public class CollectHUD : _HUDBase
         this._targetValue.text = required.ToString();
     }
 
-    public override void OnActiveHUD()
+    public void OnActiveHUD()
     {
         this.transform.localScale = Vector3.zero;
         this.gameObject.SetActive(true);
         this.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
     }
 
-    public override void OnDeactiveHUD()
+    public void OnDeactiveHUD()
     {
         this.transform.DOScale(Vector3.zero, 1f).SetEase(Ease.Linear).OnComplete(() => this.gameObject.SetActive(false));
     }
 
-    public override void OnUpdateHUD()
+    public void OnUpdateHUD()
     {
         this._value.text = Value.ToString();
     }

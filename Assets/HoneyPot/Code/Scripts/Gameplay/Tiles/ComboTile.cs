@@ -22,8 +22,10 @@ public class ComboTile : Tile
     {
         if (!GameplayManagers.GameManager.IsGameActive) return;
         if (block == null || _hasEffectBeenActive) return;
-        GameplayManagers.ScoreManager.OnScore(this._score);
-        GameplayManagers.HistoryManager.UpdateTiles(this.ComboType.ToString());
+        /* GameplayManagers.ScoreManager.OnScore(this._score);
+        GameplayManagers.HistoryManager.UpdateTiles(this.ComboType.ToString()); */
+        if (this._scoreChannel) this._scoreChannel.OnScoreIncreaseTrigger(this._score);
+        if (this._collectChannel) this._collectChannel.OnTileCollectTrigger(this);
         switch (_comboType)
         {
             case ComboTypes.BOMB:

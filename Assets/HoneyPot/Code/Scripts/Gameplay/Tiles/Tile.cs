@@ -8,6 +8,8 @@ public abstract class Tile : _PoolObjectBase
 {
     [SerializeField] private TileTypes _type;
     [SerializeField] protected int _score = 100;
+    [SerializeField] protected ChallengeCollectChannel _collectChannel;
+    [SerializeField] protected ScoreChannel _scoreChannel;
 
     public TileTypes Type { get { return this._type; } }
 

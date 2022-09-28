@@ -28,7 +28,7 @@ public class PlayState : _StatesBase
         {
             GameplayManagers.GameManager.CurrentTetrominoe.FallController.FreeFall();
         }
-        GameplayManagers.GoalManager.CheckCompletedGoals();
+        // GameplayManagers.GoalManager.CheckCompletedGoals();
         Debug.Log("<color=yellow>Play State</color> OnUpdate");
     }
 
