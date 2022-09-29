@@ -26,7 +26,7 @@ public class PlayState : _StatesBase
     {
         if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetrominoe != null)
         {
-            GameplayManagers.GameManager.CurrentTetrominoe.FallController.FreeFall();
+            GameplayManagers.GameManager.CurrentTetrominoe.FallComponent.FreeFall();
         }
         // GameplayManagers.GoalManager.CheckCompletedGoals();
         Debug.Log("<color=yellow>Play State</color> OnUpdate");
@@ -35,7 +35,7 @@ public class PlayState : _StatesBase
     private IEnumerator StartGameCoroutine()
     {
         yield return new WaitForSecondsRealtime(1);
-        GameplayManagers.SpawnManager.TetrominoeSpawner.OnSpawn();
+        GameplayManagers.SpawnManager.TetrominoeNormalSpawner.OnSpawn();
         GameplayManagers.GameManager.IsGameActive = true;
     }
 }

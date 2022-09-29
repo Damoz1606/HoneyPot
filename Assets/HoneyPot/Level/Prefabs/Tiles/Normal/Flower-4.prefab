@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 923792623841017200}
-  - component: {fileID: -4625655630580213537}
+  - component: {fileID: -7169000134035882374}
   m_Layer: 0
   m_Name: Flower-4
   m_TagString: Tile - Normal
@@ -131,7 +131,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4625655630580213537
+--- !u!114 &-7169000134035882374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7133537360079685419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd76e03a7692454da5e9f46391bf293, type: 3}
+  m_Script: {fileID: 11500000, guid: ad6231c22629b724d8b2a9de4fd75235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 3
-  _score: 100
-  _collectChannel: {fileID: 11400000, guid: 45fb4cd7dedc26443b91593c7e4443bb, type: 2}
-  _scoreChannel: {fileID: 11400000, guid: b6ca23d5b14e3b041ad63ea39fc93369, type: 2}
+  data:
+    tileType: 3
+    score: 100
+    _challengeCollectChannel: {fileID: 11400000, guid: 45fb4cd7dedc26443b91593c7e4443bb,
+      type: 2}
+    _scoreChannel: {fileID: 11400000, guid: b6ca23d5b14e3b041ad63ea39fc93369, type: 2}

@@ -1,0 +1,117 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(SwipeComponent))]
+public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
+{
+    public bool CanPop { get; set; }
+    public bool CanDecrease { get; set; }
+    public bool CanSwap { get; set; }
+    public bool IsSwapping { get; set; }
+    public ITile tile { get; set; }
+
+    public Vector3Int Position => VectorRound.Vector3Round(this.transform.position);
+
+    public IBlock Top => (this.Position.y < GameplayManagers.GridManager.GridHeight - 1) ? GameplayManagers.GridManager.Board.GetAt(this.Position.x, this.Position.y + 1) : default;
+
+    public IBlock Bottom => (this.Position.y > 0) ? GameplayManagers.GridManager.Board.GetAt(this.Position.x, this.Position.y - 1) : default;
+
+    public IBlock Right => (this.Position.x < GameplayManagers.GridManager.GridWidth - 1) ? GameplayManagers.GridManager.Board.GetAt(this.Position.x + 1, this.Position.y) : default;
+
+    public IBlock Left => (this.Position.x > 0) ? GameplayManagers.GridManager.Board.GetAt(this.Position.x - 1, this.Position.y) : default;
+
+    public List<IBlock> Neighbourhood => new List<IBlock> { Top, Left, Right, Bottom };
+
+    public List<IBlock> NeighboursVertical => new List<IBlock> { Top, Bottom };
+
+    public List<IBlock> NeighboursHorizontal => new List<IBlock> { Left, Right };
+
+    public void AttachTile(ITile tile)
+    {
+        this.DeattachTile();
+        this.tile = tile;
+        this.tile.transform.SetParent(this.transform);
+        ObjectPosition.ObjectResetLocalPosition(this.tile.gameObject);
+        ObjectPosition.ObjectResetRotation(this.tile.gameObject);
+    }
+
+    public void DeattachTile()
+    {
+        if (tile == null) return;
+        this.tile.transform.SetParent(null);
+        this.tile = null;
+    }
+
+    public List<IBlock> GetConnections(List<IBlock> exclude = null)
+    {
+        List<IBlock> result = new List<IBlock> { this, };
+        if (exclude == null)
+            exclude = new List<IBlock> { this, };
+        else
+            exclude.Add(this);
+
+        foreach (IBlock neighbour in Neighbourhood)
+        {
+            if (this.tile == null) continue;
+            if (neighbour == null) continue;
+            if (exclude.Contains(neighbour)) continue;
+            if (!neighbour.tile.type.Equals(this.tile.type)) continue;
+            result.AddRange(neighbour.GetConnections(exclude));
+        }
+        return result;
+    }
+
+    public List<IBlock> GetConnections(AxisTypes axis, List<IBlock> neighbours = null, List<IBlock> exclude = null)
+    {
+        List<IBlock> result = new List<IBlock> { this, };
+        if (exclude == null)
+            exclude = new List<IBlock> { this, };
+        else
+            exclude.Add(this);
+
+        if (neighbours == null)
+            if (axis.Equals(AxisTypes.HORIZONTAL))
+                neighbours = this.NeighboursHorizontal;
+            else if (axis.Equals(AxisTypes.VERTICAL))
+                neighbours = this.NeighboursVertical;
+
+        foreach (IBlock neighbour in neighbours)
+        {
+            if (this.tile == null) continue;
+            if (neighbour == null) continue;
+            if (exclude.Contains(neighbour)) continue;
+            if (!neighbour.tile.type.Equals(this.tile.type)) continue;
+            if (axis == AxisTypes.HORIZONTAL)
+                result.AddRange(neighbour.GetConnections(axis, neighbour.NeighboursHorizontal, exclude));
+            else if (axis == AxisTypes.VERTICAL)
+                result.AddRange(neighbour.GetConnections(axis, neighbour.NeighboursVertical, exclude));
+        }
+        return result;
+    }
+
+    public void OnActivate()
+    {
+        this.CanDecrease = false;
+        this.CanSwap = false;
+        this.CanPop = false;
+        this.IsSwapping = false;
+    }
+
+    public void OnDeactivate()
+    {
+        this.CanDecrease = false;
+        this.CanSwap = false;
+        this.CanPop = false;
+        this.IsSwapping = false;
+    }
+
+    public void OnEffect()
+    {
+        this.tile.OnEffect(this);
+    }
+
+    public void OnUpdate()
+    {
+
+    }
+}

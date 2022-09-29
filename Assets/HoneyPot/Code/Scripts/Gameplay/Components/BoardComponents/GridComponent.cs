@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GridComponent : MonoBehaviour
 {
-    private Column<Block>[] _grid;
+    private Column<IBlock>[] _grid;
 
-    public Column<Block>[] Grid { get { return this._grid; } }
+    public Column<IBlock>[] Grid { get { return this._grid; } }
 
     public int Width { private set; get; }
     public int Height { private set; get; }
@@ -15,10 +15,10 @@ public class GridComponent : MonoBehaviour
     {
         this.Width = width;
         this.Height = height;
-        this._grid = new Column<Block>[width];
+        this._grid = new Column<IBlock>[width];
         for (int x = 0; x < width; x++)
         {
-            this._grid[x] = new Column<Block>(height);
+            this._grid[x] = new Column<IBlock>(height);
         }
     }
 
@@ -29,23 +29,15 @@ public class GridComponent : MonoBehaviour
         return (position.x >= 0 && position.x < this.Width && position.y >= 0);
     }
 
-    public Block GetBlockAt(int x, int y) => this.GetBlockAt(new Vector2Int(x, y));
-    public Block GetBlockAt(Vector2 position) => this.GetBlockAt(VectorRound.Vector2Round(position));
-    public Block GetBlockAt(Vector2Int position)
-    {
-        return (IsInsideBounds(position)) ? this._grid[(int)position.x].row[(int)position.y] : null;
-    }
+    public IBlock GetAt(int x, int y) => this.GetAt(new Vector2Int(x, y));
+    public IBlock GetAt(Vector2 position) => this.GetAt(VectorRound.Vector2Round(position));
+    public IBlock GetAt(Vector2Int position) => (IsInsideBounds(position)) ? this._grid[(int)position.x].row[(int)position.y] : null;
 
-    public void SetBlockAt(int x, int y, Block block) => this.SetBlockAt(new Vector2Int(x, y), block);
-    public void SetBlockAt(Vector2 position, Block block) => this.SetBlockAt(VectorRound.Vector2Round(position), block);
-    public void SetBlockAt(Vector2Int position, Block block)
+    public void SetAt(int x, int y, IBlock block) => this.SetAt(new Vector2Int(x, y), block);
+    public void SetAt(Vector2 position, IBlock block) => this.SetAt(VectorRound.Vector2Round(position), block);
+    public void SetAt(Vector2Int position, IBlock block)
     {
         if (IsInsideBounds(position))
             this._grid[position.x].row[position.y] = block;
-    }
-
-    public void ClearGrid()
-    {
-
     }
 }

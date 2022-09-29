@@ -20,9 +20,9 @@ public class SwipeComponent : MonoBehaviour
         return desirePosition;
     }
 
-    public void SwipeBlock(Block nextBlock)
+    public void SwipeBlock(IBlock nextBlock)
     {
-        Block current = this.GetComponent<Block>();
+        IBlock current = this.GetComponent<IBlock>();
         GameplayManagers.GridManager.Board.SwapBlock(current, nextBlock);
     }
 }

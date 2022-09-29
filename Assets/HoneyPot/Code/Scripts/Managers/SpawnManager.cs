@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private AllTetrominoesSpawner _tetrominoeSpawner;
-    [SerializeField] private BlockSpawner _blockSpawner;
-
-    [SerializeField] private bool _usePool = false;
+    [SerializeField] private TetrominoNormalSpawner _tetrominoeNormalSpawner;
+    [SerializeField] private BlockNormalPool _blockNormalSpawner;
+    [SerializeField] private bool _usePool = true;
 
     public bool UsePool
     {
         set
         {
             this._usePool = value;
-            this._tetrominoeSpawner.UsePool = this._usePool;
-            this._blockSpawner.UsePool = this._usePool;
+            this._tetrominoeNormalSpawner.UsePool = this._usePool;
+            this._blockNormalSpawner.UsePool = this._usePool;
         }
     }
 
-    public BlockSpawner BlockSpawner { get { return this._blockSpawner; } }
-    public AllTetrominoesSpawner TetrominoeSpawner { get { return this._tetrominoeSpawner; } }
+    public BlockNormalPool BlockNormalSpawner { get { return this._blockNormalSpawner; } }
+    public TetrominoNormalSpawner TetrominoeNormalSpawner { get { return this._tetrominoeNormalSpawner; } }
 
     private void Awake() => this.UsePool = this._usePool;
 }

@@ -26,7 +26,7 @@ public class ResumeState : _StatesBase
     {
         if (GameplayManagers.GameManager.IsGameActive && GameplayManagers.GameManager.CurrentTetrominoe != null)
         {
-            GameplayManagers.GameManager.CurrentTetrominoe.FallController.FreeFall();
+            GameplayManagers.GameManager.CurrentTetrominoe.FallComponent.FreeFall();
         }
         Debug.Log("<color=yellow>Resume State</color> OnUpdate");
     }

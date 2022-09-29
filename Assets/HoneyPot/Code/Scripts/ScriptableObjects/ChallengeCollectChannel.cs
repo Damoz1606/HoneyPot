@@ -4,10 +4,10 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "ChallengeCollectChannel", menuName = "HoneyPot/ChallengeCollectChannel", order = 0)]
 public class ChallengeCollectChannel : ScriptableObject
 {
-    public UnityAction<Tile> OnTileCollectListener;
+    public UnityAction<ITile> ListenCollectTile;
 
-    public void OnTileCollectTrigger(Tile value)
+    public void TriggerCollectTile(ITile value)
     {
-        this.OnTileCollectListener?.Invoke(value);
+        this.ListenCollectTile?.Invoke(value);
     }
 }

@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private float _tapInterval = 0.5f;
     [SerializeField] private float _errorSwipeValue = 0.5f;
     private Vector2 _currentSwipe;
-    private Block _selectedBlock;
+    private IBlock _selectedBlock;
 
     public bool IsInputActive { set { this._isInputActive = value; } get { return this._isInputActive; } }
 
@@ -60,26 +60,26 @@ public class InputManager : MonoBehaviour
 
     private void SwipeEvent()
     {
-        Block nextBlock;
+        IBlock nextBlock;
         Vector2Int blockPosition;
 
         switch (this.GetSwipe())
         {
             case SwipeTypes.UP:
-                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(true));
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.gameObject.GetComponent<SwipeComponent>().GetNextVerticalPosition(true));
+                nextBlock = GameplayManagers.GridManager.Board.GetAt(blockPosition);
                 break;
             case SwipeTypes.DOWN:
-                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextVerticalPosition(false));
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.gameObject.GetComponent<SwipeComponent>().GetNextVerticalPosition(false));
+                nextBlock = GameplayManagers.GridManager.Board.GetAt(blockPosition);
                 break;
             case SwipeTypes.RIGHT:
-                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(true));
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.gameObject.GetComponent<SwipeComponent>().GetNextHorizontalPosition(true));
+                nextBlock = GameplayManagers.GridManager.Board.GetAt(blockPosition);
                 break;
             case SwipeTypes.LEFT:
-                blockPosition = VectorRound.Vector2Round(this._selectedBlock.GetComponent<SwipeComponent>().GetNextHorizontalPosition(false));
-                nextBlock = GameplayManagers.GridManager.Board.GetBlockAt(blockPosition);
+                blockPosition = VectorRound.Vector2Round(this._selectedBlock.gameObject.GetComponent<SwipeComponent>().GetNextHorizontalPosition(false));
+                nextBlock = GameplayManagers.GridManager.Board.GetAt(blockPosition);
                 break;
             default:
                 nextBlock = null;
@@ -94,19 +94,19 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            GameplayManagers.GameManager.CurrentTetrominoe.RotationController.Rotate(true);
+            GameplayManagers.GameManager.CurrentTetrominoe.RotationComponent.Rotate(true);
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            GameplayManagers.GameManager.CurrentTetrominoe.FallController.InstantFall();
+            GameplayManagers.GameManager.CurrentTetrominoe.FallComponent.InstantFall();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            GameplayManagers.GameManager.CurrentTetrominoe.MovementController.Move(Vector2.left);
+            GameplayManagers.GameManager.CurrentTetrominoe.HorizontalMovement.Move(Vector2.left);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            GameplayManagers.GameManager.CurrentTetrominoe.MovementController.Move(Vector2.right);
+            GameplayManagers.GameManager.CurrentTetrominoe.HorizontalMovement.Move(Vector2.right);
         }
     }
 
@@ -119,7 +119,7 @@ public class InputManager : MonoBehaviour
         {
             this._startMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             this._buttonDownPhaseStart = Time.time;
-            this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(VectorRound.Vector2Round(_startMousePosition));
+            this._selectedBlock = GameplayManagers.GridManager.Board.GetAt(VectorRound.Vector2Round(_startMousePosition));
         }
 
         if (this._selectedBlock != null && Input.GetMouseButtonUp(0))
@@ -151,7 +151,7 @@ public class InputManager : MonoBehaviour
                 case TouchPhase.Began:
                     this._startTouchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                     this._touchDownPhaseStart = Time.time;
-                    this._selectedBlock = GameplayManagers.GridManager.Board.GetBlockAt(VectorRound.Vector2Round(_startTouchPosition));
+                    this._selectedBlock = GameplayManagers.GridManager.Board.GetAt(VectorRound.Vector2Round(_startTouchPosition));
                     break;
                 case TouchPhase.Ended:
                     if (this._selectedBlock != null && (Time.time - this._touchDownPhaseStart > this._tapInterval))

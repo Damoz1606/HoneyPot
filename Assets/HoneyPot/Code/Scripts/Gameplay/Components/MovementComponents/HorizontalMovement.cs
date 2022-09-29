@@ -9,9 +9,9 @@ public class HorizontalMovement : MonoBehaviour
     {
         float movement = (direction.Equals(Vector2.right)) ? this.deltaMovement : -this.deltaMovement;
         this.transform.position += new Vector3(movement, 0, 0);
-        if (GameplayManagers.GridManager.Board.IsValidPosition(this.GetComponent<Tetrominoe>()))
+        if (GameplayManagers.GridManager.Board.IsValidPosition(this.GetComponent<ITetrominoe>()))
         {
-            GameplayManagers.GridManager.Board.UpdateTetromino(this.GetComponent<Tetrominoe>());
+            GameplayManagers.GridManager.Board.UpdateTetromino(this.GetComponent<ITetrominoe>());
         }
         else
         {

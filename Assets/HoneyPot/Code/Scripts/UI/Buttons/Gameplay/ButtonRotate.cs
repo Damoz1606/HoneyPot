@@ -7,6 +7,6 @@ public class ButtonRotate : _ButtonEventBase
     public override void ButtonEvent()
     {
         if (GameplayManagers.InputManager.IsInputActive)
-            GameplayManagers.GameManager.CurrentTetrominoe.RotationController.Rotate(true);
+            GameplayManagers.GameManager.CurrentTetrominoe.RotationComponent.Rotate(true);
     }
 }

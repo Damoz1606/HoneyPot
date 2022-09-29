@@ -34,5 +34,6 @@ public class ScoreManager : MonoBehaviour
     {
         this._currentScore += scoreIncreaseAmount * this._increment;
         GameplayManagers.UIManager.InGameUI.UpdateUI();
+        
     }
 }
