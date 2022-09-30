@@ -30,11 +30,8 @@ public class BlockNormalPool : APoolFactory<BlockNormal>
 
     public void ChangeTile(IBlock block, ITile tile)
     {
-        if (block.tile.type.Equals(TileTypes.COMBO))
-            this._tileComboPoolDictionary[((TileCombo)block.tile).comboType].OnKill((TileCombo)block.tile);
-        else
-            this._tileNormalPoolDictionary[((TileNormal)block.tile).type].OnKill((TileNormal)block.tile);
-        block.DeattachTile();
+        ITile oldTile = block.tile;
+        this._tileNormalPoolDictionary[((TileNormal)oldTile).type].OnKill((TileNormal)oldTile);
         block.AttachTile(tile);
     }
 
@@ -57,6 +54,12 @@ public class BlockNormalPool : APoolFactory<BlockNormal>
 
     public override void OnKill(BlockNormal shape)
     {
+        ITile tile = shape.tile;
+        shape.DeattachTile();
+        if (tile.type.Equals(TileTypes.COMBO))
+            this._tileComboPoolDictionary[((TileCombo)tile).comboType].OnKill(((TileCombo)tile));
+        else
+            this._tileNormalPoolDictionary[((TileNormal)tile).type].OnKill(((TileNormal)tile));
         if (this._usePool) this.Pool.Release(shape);
         else this.OnRemove(shape);
     }

@@ -8,6 +8,8 @@ where T : IBlock
 
     void Pop(T block);
     void Pop();
+    void PopAllBlocks();
+    void PopAround(T block);
 
     void DestroyBlock(Vector3Int vector);
 }

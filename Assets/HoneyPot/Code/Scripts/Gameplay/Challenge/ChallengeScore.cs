@@ -10,12 +10,12 @@ public class ChallengeScore : MonoBehaviour, IChallenge
 
     private void OnEnable()
     {
-        this._scoreChannel.OnScoreIncreaseListener += this.OnEventTrigger;
+        this._scoreChannel.ListenScore += this.OnEventTrigger;
     }
 
     private void OnDisable()
     {
-        this._scoreChannel.OnScoreIncreaseListener -= this.OnEventTrigger;
+        this._scoreChannel.ListenScore -= this.OnEventTrigger;
     }
 
     public void DrawHUD()

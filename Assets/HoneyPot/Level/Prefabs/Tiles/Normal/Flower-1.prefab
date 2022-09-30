@@ -51,6 +51,8 @@ MonoBehaviour:
     _challengeCollectChannel: {fileID: 11400000, guid: 45fb4cd7dedc26443b91593c7e4443bb,
       type: 2}
     _scoreChannel: {fileID: 11400000, guid: b6ca23d5b14e3b041ad63ea39fc93369, type: 2}
+    _channelTileEvents: {fileID: 11400000, guid: 435643c95286ebe4292496a4eb078f5d,
+      type: 2}
 --- !u!1 &5934811453063053225
 GameObject:
   m_ObjectHideFlags: 0

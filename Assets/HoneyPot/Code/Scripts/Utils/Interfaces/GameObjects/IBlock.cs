@@ -7,6 +7,7 @@ public interface IBlock : IGameObject
     bool CanDecrease { get; set; }
     bool CanSwap { get; set; }
     bool IsSwapping { get; set; }
+    bool IsDecreasing { get; set; }
     ITile tile { get; set; }
     Vector3Int Position { get; }
     IBlock Top { get; }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridComponent : MonoBehaviour
+public class GridComponent : MonoBehaviour, IGrid<IBlock>
 {
     private Column<IBlock>[] _grid;
 

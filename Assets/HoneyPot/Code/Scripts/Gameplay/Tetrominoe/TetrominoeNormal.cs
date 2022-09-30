@@ -66,6 +66,6 @@ public class TetrominoeNormal : MonoBehaviour, ITetrominoe, IPoolObject
             block.transform.SetParent(GameplayManagers.GameManager.BlockHolder);
         });
 
-        /* Pool Released */
+        GameplayManagers.SpawnManager.TetrominoeNormalSpawner.OnKill(this);
     }
 }

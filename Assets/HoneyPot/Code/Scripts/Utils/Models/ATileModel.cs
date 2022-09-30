@@ -7,4 +7,5 @@ public abstract class ATileModel
 
     [SerializeField] public ChallengeCollectChannel _challengeCollectChannel;
     [SerializeField] public ScoreChannel _scoreChannel;
+    [SerializeField] public ChannelTile _channelTileEvents;
 }

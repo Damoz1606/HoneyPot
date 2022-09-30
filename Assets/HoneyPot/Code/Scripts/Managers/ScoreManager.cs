@@ -17,12 +17,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        this._scoreChannel.OnScoreIncreaseListener += OnScore;
+        this._scoreChannel.ListenScore += OnScore;
     }
 
     private void OnDisable()
     {
-        this._scoreChannel.OnScoreIncreaseListener -= OnScore;
+        this._scoreChannel.ListenScore -= OnScore;
     }
 
     void Start()
@@ -34,6 +34,6 @@ public class ScoreManager : MonoBehaviour
     {
         this._currentScore += scoreIncreaseAmount * this._increment;
         GameplayManagers.UIManager.InGameUI.UpdateUI();
-        
+
     }
 }

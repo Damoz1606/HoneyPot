@@ -8,6 +8,7 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
     public bool CanDecrease { get; set; }
     public bool CanSwap { get; set; }
     public bool IsSwapping { get; set; }
+    public bool IsDecreasing { get; set; }
     public ITile tile { get; set; }
 
     public Vector3Int Position => VectorRound.Vector3Round(this.transform.position);
@@ -26,10 +27,21 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
 
     public List<IBlock> NeighboursHorizontal => new List<IBlock> { Left, Right };
 
+    private void Update()
+    {
+        /* if (this.IsSwapping) return;
+        if (this.tile == null) return;
+        if (this.tile.transform.localPosition != Vector3.zero)
+            this.tile.transform.localPosition = Vector3.zero; */
+    }
+
+
     public void AttachTile(ITile tile)
     {
         this.DeattachTile();
         this.tile = tile;
+        this.tile.transform.SetParent(null);
+        ObjectPosition.ObjectResetPosition(this.tile.gameObject);
         this.tile.transform.SetParent(this.transform);
         ObjectPosition.ObjectResetLocalPosition(this.tile.gameObject);
         ObjectPosition.ObjectResetRotation(this.tile.gameObject);
@@ -79,6 +91,7 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
         {
             if (this.tile == null) continue;
             if (neighbour == null) continue;
+            if (neighbour.tile == null) continue;
             if (exclude.Contains(neighbour)) continue;
             if (!neighbour.tile.type.Equals(this.tile.type)) continue;
             if (axis == AxisTypes.HORIZONTAL)
@@ -95,6 +108,7 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
         this.CanSwap = false;
         this.CanPop = false;
         this.IsSwapping = false;
+        this.IsDecreasing = false;
     }
 
     public void OnDeactivate()
@@ -103,6 +117,8 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
         this.CanSwap = false;
         this.CanPop = false;
         this.IsSwapping = false;
+        this.IsDecreasing = false;
+        this.DeattachTile();
     }
 
     public void OnEffect()

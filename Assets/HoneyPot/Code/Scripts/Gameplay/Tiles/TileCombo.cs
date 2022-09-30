@@ -25,10 +25,10 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
         switch (this.comboType)
         {
             case ComboTypes.BOMB:
-                Debug.Log("Explote");
+                this.data._channelTileEvents.TriggerBomb(block);
                 break;
             case ComboTypes.HONEYPOT:
-                Debug.Log("Clear all");
+                this.data._channelTileEvents.TriggerHoneypot();
                 break;
             default: break;
         }

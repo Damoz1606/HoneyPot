@@ -13,7 +13,7 @@ public class ComboManager : MonoBehaviour
             case ComboTypes.BOMB:
                 return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[ComboTypes.BOMB].OnSpawn();
             case ComboTypes.HONEYPOT:
-                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[ComboTypes.BOMB].OnSpawn();
+                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[ComboTypes.HONEYPOT].OnSpawn();
             default:
                 return null;
         }
