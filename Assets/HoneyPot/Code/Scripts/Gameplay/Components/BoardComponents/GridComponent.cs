@@ -40,4 +40,25 @@ public class GridComponent : MonoBehaviour, IGrid<IBlock>
         if (IsInsideBounds(position))
             this._grid[position.x].row[position.y] = block;
     }
+
+    public void RemoveAt(int x, int y)
+    {
+        if (this._grid[x].row[y] == null) return;
+        if (!this._grid[x].row[y].CanPop) return;
+        this._grid[x].row[y].OnEffect();
+        this._grid[x].row[y] = null;
+        this.DecreaseAt(x, y + 1);
+    }
+
+    public void DecreaseAt(int x, int y)
+    {
+        if (y >= this.Height - 1 || y < 0) return;
+        if (this._grid[x].row[y] == null) return;
+        if (!this._grid[x].row[y].CanDecrease) return;
+        this._grid[x].row[y - 1] = this._grid[x].row[y];
+        this._grid[x].row[y] = null;
+        this._grid[x].row[y - 1].transform.position += Vector3.down;
+        // this._grid[x].row[y - 1].MoveTo(VectorRound.Vector3Round(this._grid[x].row[y - 1].transform.position + Vector3.down));
+        this.DecreaseAt(x, y + 1);
+    }
 }

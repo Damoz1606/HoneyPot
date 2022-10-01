@@ -12,7 +12,6 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    // [SerializeField] float tweeningTime = 0.25f;
     private GridComponent _gridComponent;
     private IPop<IBlock> _popComponent;
     private ISwap<IBlock> _swapComponent;

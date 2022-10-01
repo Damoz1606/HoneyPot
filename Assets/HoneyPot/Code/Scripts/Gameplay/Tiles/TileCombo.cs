@@ -8,6 +8,7 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
 
     public void OnActivate()
     {
+        this.transform.localScale = Vector3.one;
         this.data.hasEffectBeenActive = false;
     }
 

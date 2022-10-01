@@ -5,7 +5,10 @@ public class TileNormal : MonoBehaviour, ITile, IPoolObject
     [SerializeField] private TileNormalModel data;
     [SerializeField] public TileTypes type => data.tileType;
 
-    public void OnActivate() { }
+    public void OnActivate()
+    {
+        this.transform.localScale = Vector3.one;
+    }
 
     public void OnDeactivate() { }
 

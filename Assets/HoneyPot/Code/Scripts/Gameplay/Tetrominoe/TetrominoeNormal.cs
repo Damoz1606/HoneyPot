@@ -23,15 +23,15 @@ public class TetrominoeNormal : MonoBehaviour, ITetrominoe, IPoolObject
     {
         ObjectPosition.ObjectResetLocalPosition(this.gameObject);
         ObjectPosition.ObjectResetPosition(this.gameObject);
-        ObjectPosition.ObjectResetPosition(this.gameObject);
+        ObjectPosition.ObjectResetRotation(this.gameObject);
         this.transform.localPosition = new Vector3(GameplayManagers.GridManager.GridWidth / 2, GameplayManagers.GridManager.GridHeight - Constants.GRID_GREACE_HEIGHT, 0);
 
         this._data._pivots.ForEach(vector =>
         {
             IBlock block = GameplayManagers.SpawnManager.BlockNormalSpawner.OnSpawn();
-            ObjectPosition.ObjectResetPosition(block.gameObject);
             block.transform.SetParent(this.transform);
-            ObjectPosition.ObjectResetLocalPosition(block.gameObject);
+            // ObjectPosition.ObjectResetLocalPosition(block.gameObject);
+            ObjectPosition.ObjectResetPosition(block.gameObject);
             ObjectPosition.ObjectResetRotation(block.gameObject);
             block.transform.localPosition = vector;
             this.Blocks.Add(block);

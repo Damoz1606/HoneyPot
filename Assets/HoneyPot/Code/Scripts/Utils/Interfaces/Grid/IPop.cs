@@ -11,5 +11,5 @@ where T : IBlock
     void PopAllBlocks();
     void PopAround(T block);
 
-    void DestroyBlock(Vector3Int vector);
+    // void DestroyBlock(Vector3Int vector);
 }

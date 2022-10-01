@@ -158,6 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1327a85e6f5979844a6c7fd9f881e905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tweening:
+    tweeningTime: 0.25
+    tweeningEase: 30
 --- !u!1 &2732296565771149707
 GameObject:
   m_ObjectHideFlags: 0

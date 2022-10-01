@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBlock : IGameObject
+public interface IBlock : IGameObject, IMovement
 {
     bool CanPop { get; set; }
     bool CanDecrease { get; set; }

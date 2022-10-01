@@ -3104,10 +3104,6 @@ MonoBehaviour:
     value: {fileID: 926593915}
   - key: 1
     value: {fileID: 1550097631}
-  - key: 2
-    value: {fileID: 1069164215}
-  - key: 3
-    value: {fileID: 2120165839}
   _tileComboPools:
   - key: 2
     value: {fileID: 695753147}
@@ -3730,7 +3726,6 @@ GameObject:
   - component: {fileID: 762640273}
   - component: {fileID: 762640277}
   - component: {fileID: 762640274}
-  - component: {fileID: 762640280}
   - component: {fileID: 762640279}
   - component: {fileID: 762640278}
   m_Layer: 0
@@ -3793,6 +3788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tweening:
     tweeningTime: 0.25
+    tweeningEase: 30
 --- !u!114 &762640279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3807,21 +3803,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tweening:
     tweeningTime: 0.25
+    tweeningEase: 30
   _challengeTile: {fileID: 11400000, guid: 435643c95286ebe4292496a4eb078f5d, type: 2}
---- !u!114 &762640280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762640272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02fa9c7295d82149a91210da51cd61f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tweening:
-    tweeningTime: 0.25
 --- !u!1 &767284966
 GameObject:
   m_ObjectHideFlags: 0

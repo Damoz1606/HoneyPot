@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923792623841017200}
   - component: {fileID: -7169000134035882374}
+  - component: {fileID: 7661695706849699099}
   m_Layer: 0
   m_Name: Flower-4
   m_TagString: Tile - Normal
@@ -151,3 +152,15 @@ MonoBehaviour:
     _scoreChannel: {fileID: 11400000, guid: b6ca23d5b14e3b041ad63ea39fc93369, type: 2}
     _channelTileEvents: {fileID: 11400000, guid: 435643c95286ebe4292496a4eb078f5d,
       type: 2}
+--- !u!114 &7661695706849699099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7133537360079685419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a19808a7053c543a4d2a4fcaa4e8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
