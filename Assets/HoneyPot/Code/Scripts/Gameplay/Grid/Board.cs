@@ -96,7 +96,7 @@ public class Board : MonoBehaviour
             this._popComponent.Pop(currentBlock);
         if (nextCanPop)
             this._popComponent.Pop(nextBlock);
-        if (!nextCanPop && !currentCanPop)
+        if ((!nextCanPop && !currentCanPop) && (!currentBlock.tile.type.Equals(TileTypes.COMBO) && !nextBlock.tile.type.Equals(TileTypes.COMBO)))
             await this._swapComponent.Swap(currentBlock, nextBlock);
 
         currentBlock.IsSwapping = false;

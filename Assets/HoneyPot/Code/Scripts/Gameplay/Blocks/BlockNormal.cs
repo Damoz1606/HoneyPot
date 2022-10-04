@@ -93,6 +93,8 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
         foreach (IBlock neighbour in neighbours)
         {
             if (neighbour == null) continue;
+            if (neighbour.tile == null) continue;
+            if (this.tile == null) continue;
             if (exclude.Contains(neighbour)) continue;
             if (!neighbour.tile.type.Equals(this.tile.type)) continue;
             if (axis == AxisTypes.HORIZONTAL)
@@ -115,6 +117,7 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
 
     public void OnDeactivate()
     {
+        this.transform.localScale = Vector3.one;
         this.CanDecrease = false;
         this.CanSwap = false;
         this.CanPop = false;

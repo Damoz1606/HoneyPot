@@ -63,6 +63,7 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
             Vector3Int vector = item.Position;
             item.MoveTo(block.Position);
             this._gridComponent.RemoveAt(vector.x, vector.y);
+            this._gridComponent.DecreaseAt(vector.x, vector.y + 1);
         });
     }
 
@@ -71,7 +72,7 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
         if (blocks.Count <= Constants.COMBO_NORMAL) return;
         else
         {
-            /* if (blocks.Count > Constants.COMBO_HONEYPOT)
+            if (blocks.Count > Constants.COMBO_HONEYPOT)
             {
                 blocks.Remove(block);
                 TileCombo tile = GameplayManagers.ComboManager.InstanceCombo(ComboTypes.HONEYPOT);
@@ -84,14 +85,18 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
                 TileCombo tile = GameplayManagers.ComboManager.InstanceCombo(ComboTypes.BOMB);
                 GameplayManagers.SpawnManager.BlockNormalSpawner.ChangeTile(block, tile);
                 this.FusionCellsTo(block, blocks);
-            } */
-            List<Vector3Int> vectors = new List<Vector3Int>();
-            foreach (IBlock item in blocks)
+            }
+            else
             {
-                if (!item.CanPop) return;
-                if (!item.CanDecrease) return;
-                this._gridComponent.RemoveAt(item.Position.x, item.Position.y);
-            };
+                foreach (IBlock item in blocks)
+                {
+                    if (!item.CanPop) return;
+                    if (!item.CanDecrease) return;
+                    item.OnEffect();
+                    this._gridComponent.RemoveAt(item.Position.x, item.Position.y);
+                    this._gridComponent.DecreaseAt(item.Position.x, item.Position.y + 1);
+                };
+            }
         }
     }
 
@@ -124,10 +129,39 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
 
     public void PopAllBlocks()
     {
+        int width = this._gridComponent.Width;
+        int height = this._gridComponent.Height;
 
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                IBlock block = this._gridComponent.GetAt(x, y);
+                if (block == null) continue;
+                if (!block.CanPop) continue;
+                this._gridComponent.RemoveAt(x, y);
+            }
+        }
     }
 
     public void PopAround(IBlock block)
     {
+        List<IBlock> blocks = new List<IBlock> {
+            (block.Left != null) ? block.Left.Top : null,
+            block.Left,
+            (block.Left != null) ? block.Left.Bottom : null,
+            block.Top,
+            block.Bottom,
+            (block.Right != null) ? block.Right.Top : null,
+            block.Right,
+            (block.Right != null) ? block.Right.Bottom : null,
+        };
+
+        foreach (var item in blocks)
+        {
+            if (item == null) continue;
+            this._gridComponent.RemoveAt(item.Position.x, item.Position.y);
+            this._gridComponent.DecreaseAt(item.Position.x, item.Position.y + 1);
+        }
     }
 }

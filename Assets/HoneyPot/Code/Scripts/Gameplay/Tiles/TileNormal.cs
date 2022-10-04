@@ -10,7 +10,10 @@ public class TileNormal : MonoBehaviour, ITile, IPoolObject
         this.transform.localScale = Vector3.one;
     }
 
-    public void OnDeactivate() { }
+    public void OnDeactivate()
+    {
+        this.transform.localScale = Vector3.one;
+    }
 
     public void OnEffect(IBlock block = null)
     {

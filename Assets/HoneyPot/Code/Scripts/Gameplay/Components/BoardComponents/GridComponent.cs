@@ -43,11 +43,14 @@ public class GridComponent : MonoBehaviour, IGrid<IBlock>
 
     public void RemoveAt(int x, int y)
     {
-        if (this._grid[x].row[y] == null) return;
-        if (!this._grid[x].row[y].CanPop) return;
-        this._grid[x].row[y].OnEffect();
+        IBlock block = this._grid[x].row[y];
+        if (block == null) return;
+        if (!block.CanPop) return;
         this._grid[x].row[y] = null;
-        this.DecreaseAt(x, y + 1);
+        block.CanPop = false;
+        block.CanPop = true;
+        block.OnEffect();
+        // this.DecreaseAt(x, y + 1);
     }
 
     public void DecreaseAt(int x, int y)
@@ -55,10 +58,12 @@ public class GridComponent : MonoBehaviour, IGrid<IBlock>
         if (y >= this.Height - 1 || y < 0) return;
         if (this._grid[x].row[y] == null) return;
         if (!this._grid[x].row[y].CanDecrease) return;
+        // this._grid[x].row[y].CanDecrease = false;
         this._grid[x].row[y - 1] = this._grid[x].row[y];
         this._grid[x].row[y] = null;
         this._grid[x].row[y - 1].transform.position += Vector3.down;
-        // this._grid[x].row[y - 1].MoveTo(VectorRound.Vector3Round(this._grid[x].row[y - 1].transform.position + Vector3.down));
+        // this._grid[x].row[y - 1].MoveTo(VectorRound.Vector3Round(new Vector3(x, y - 1)));
         this.DecreaseAt(x, y + 1);
+        // this._grid[x].row[y - 1].CanDecrease = true;
     }
 }

@@ -14,12 +14,14 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
 
     public void OnDeactivate()
     {
+        this.transform.localScale = Vector3.one;
         this.data.hasEffectBeenActive = false;
     }
 
     public void OnEffect(IBlock block = null)
     {
         if (!GameplayManagers.GameManager.IsGameActive) return;
+        GameplayManagers.GameManager.IsGameActive = false;
         if (block == null || this.data.hasEffectBeenActive) return;
         if (this.data._scoreChannel != null) this.data._scoreChannel.TriggerScore(this.data.score);
         if (this.data._challengeCollectChannel != null) this.data._challengeCollectChannel.TriggerCollectTile(this);
@@ -33,6 +35,7 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
                 break;
             default: break;
         }
+        GameplayManagers.GameManager.IsGameActive = true;
         this.data.hasEffectBeenActive = true;
     }
 

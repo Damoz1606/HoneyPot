@@ -15,11 +15,12 @@ public class SwapComponent : MonoBehaviour, ISwap<IBlock>
 
     public void ComboSwap(IBlock block)
     {
-        /* if (block == null) return;
+        if (block == null) return;
         if (block.tile == null) return;
         if (block.tile.type.Equals(TileTypes.COMBO))
-            this._gridComponent.RemoveAt(block.Position.x, block.Position.y); */
+            this._gridComponent.RemoveAt(block.Position.x, block.Position.y);
     }
+
 
     public async Task Swap(IBlock currentBlock, IBlock nextBlock)
     {
@@ -39,7 +40,7 @@ public class SwapComponent : MonoBehaviour, ISwap<IBlock>
 
         currentBlock.AttachTile(nextTile);
         nextBlock.AttachTile(currentTile);
-        // this.ComboSwap(currentBlock);
-        // this.ComboSwap(nextBlock);
+        this.ComboSwap(currentBlock);
+        this.ComboSwap(nextBlock);
     }
 }
