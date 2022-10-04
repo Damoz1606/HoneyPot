@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface IPop<T>
@@ -8,8 +9,10 @@ where T : IBlock
 
     void Pop(T block);
     void Pop();
-    void PopAllBlocks();
-    void PopAround(T block);
+    void PopAllBlocks(object block);
+    // void PopAllBlocks();
+    // void PopAround(T block);
+    void PopAround(object block);
 
     // void DestroyBlock(Vector3Int vector);
 }

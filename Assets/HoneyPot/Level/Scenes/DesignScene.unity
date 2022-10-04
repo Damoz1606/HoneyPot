@@ -1503,8 +1503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c97fab1437be744ae9b252347edbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _challengeCollect:
-  - {fileID: 1403956089}
+  _challengeCollect: []
   _challengeScore: {fileID: 0}
   _challengeChannel: {fileID: 11400000, guid: 5dd0021668c57e54c932d9d9027d1e92, type: 2}
 --- !u!114 &259357596

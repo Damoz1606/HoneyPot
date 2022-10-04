@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int _maxScore = 1000;
     [SerializeField] private int _increment = 1;
 
-    [SerializeField] private ScoreChannel _scoreChannel;
+    // [SerializeField] private ScoreChannel _scoreChannel;
 
     public int CurrentScore { get { return this._currentScore; } }
     public float MaxScore { get { return this._maxScore; } }
@@ -17,12 +17,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        this._scoreChannel.ListenScore += OnScore;
+        EventManager.StartListening(EventEnum.SCORE.ToString(), this.OnScore);
     }
 
     private void OnDisable()
     {
-        this._scoreChannel.ListenScore -= OnScore;
+        EventManager.StopListening(EventEnum.SCORE.ToString(), this.OnScore);
     }
 
     void Start()
@@ -30,10 +30,10 @@ public class ScoreManager : MonoBehaviour
         GameplayManagers.UIManager.InGameUI.UpdateUI();
     }
 
-    public void OnScore(int scoreIncreaseAmount)
+    public void OnScore(object message)
     {
-        this._currentScore += scoreIncreaseAmount * this._increment;
+        var amount = (int)message;
+        this._currentScore += amount * this._increment;
         GameplayManagers.UIManager.InGameUI.UpdateUI();
-
     }
 }

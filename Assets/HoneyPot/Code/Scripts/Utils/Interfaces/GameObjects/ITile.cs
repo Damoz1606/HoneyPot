@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ITile : IGameObject
 {
-    TileTypes type { get; }
+    TileNormalType type { get; }
 
     void OnEffect(IBlock block = default);
 }

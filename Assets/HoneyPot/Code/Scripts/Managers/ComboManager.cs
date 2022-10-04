@@ -6,14 +6,14 @@ public class ComboManager : MonoBehaviour
 {
     [SerializeField] private TileCombo _comboPrefabs;
 
-    public TileCombo InstanceCombo(ComboTypes combo)
+    public TileCombo InstanceCombo(TileComboType combo)
     {
         switch (combo)
         {
-            case ComboTypes.BOMB:
-                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[ComboTypes.BOMB].OnSpawn();
-            case ComboTypes.HONEYPOT:
-                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[ComboTypes.HONEYPOT].OnSpawn();
+            case TileComboType.BOMB:
+                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[TileComboType.BOMB].OnSpawn();
+            case TileComboType.HONEYPOT:
+                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[TileComboType.HONEYPOT].OnSpawn();
             default:
                 return null;
         }

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class BlockNormalPool : APoolFactory<BlockNormal>
 {
-    [SerializeField] private List<KeyPair<TileTypes, TileNormalPool>> _tileNormalPools;
-    [SerializeField] private List<KeyPair<ComboTypes, TileComboPool>> _tileComboPools;
-    private Dictionary<TileTypes, TileNormalPool> _tileNormalPoolDictionary = new Dictionary<TileTypes, TileNormalPool>();
-    private Dictionary<ComboTypes, TileComboPool> _tileComboPoolDictionary = new Dictionary<ComboTypes, TileComboPool>();
+    [SerializeField] private List<KeyPair<TileNormalType, TileNormalPool>> _tileNormalPools;
+    [SerializeField] private List<KeyPair<TileComboType, TileComboPool>> _tileComboPools;
+    private Dictionary<TileNormalType, TileNormalPool> _tileNormalPoolDictionary = new Dictionary<TileNormalType, TileNormalPool>();
+    private Dictionary<TileComboType, TileComboPool> _tileComboPoolDictionary = new Dictionary<TileComboType, TileComboPool>();
 
-    public Dictionary<TileTypes, TileNormalPool> TileNormalPoolDictionary => this._tileNormalPoolDictionary;
-    public Dictionary<ComboTypes, TileComboPool> TileComboPoolDictionary => this._tileComboPoolDictionary;
+    public Dictionary<TileNormalType, TileNormalPool> TileNormalPoolDictionary => this._tileNormalPoolDictionary;
+    public Dictionary<TileComboType, TileComboPool> TileComboPoolDictionary => this._tileComboPoolDictionary;
 
     public override bool UsePool
     {
@@ -30,7 +30,7 @@ public class BlockNormalPool : APoolFactory<BlockNormal>
 
     public void ChangeTile(IBlock block, ITile tile)
     {
-        if (block.tile.Equals(TileTypes.COMBO))
+        if (block.tile.Equals(TileNormalType.COMBO))
             this._tileComboPoolDictionary[((TileCombo)block.tile).comboType].OnKill((TileCombo)block.tile);
         else
             this._tileNormalPoolDictionary[((TileNormal)block.tile).type].OnKill((TileNormal)block.tile);
@@ -38,20 +38,20 @@ public class BlockNormalPool : APoolFactory<BlockNormal>
         block.AttachTile(tile);
     }
 
-    private TileTypes GetType(int index)
+    private TileNormalType GetType(int index)
     {
         switch (index)
         {
             case 0:
-                return TileTypes.FLOWER_1;
+                return TileNormalType.FLOWER_1;
             case 1:
-                return TileTypes.FLOWER_2;
+                return TileNormalType.FLOWER_2;
             case 2:
-                return TileTypes.FLOWER_3;
+                return TileNormalType.FLOWER_3;
             case 3:
-                return TileTypes.FLOWER_4;
+                return TileNormalType.FLOWER_4;
             default:
-                return TileTypes.FLOWER_1;
+                return TileNormalType.FLOWER_1;
         }
     }
 
@@ -59,7 +59,7 @@ public class BlockNormalPool : APoolFactory<BlockNormal>
     {
         ITile tile = shape.tile;
         shape.DeattachTile();
-        if (tile.type.Equals(TileTypes.COMBO))
+        if (tile.type.Equals(TileNormalType.COMBO))
             this._tileComboPoolDictionary[((TileCombo)tile).comboType].OnKill(((TileCombo)tile));
         else
             this._tileNormalPoolDictionary[((TileNormal)tile).type].OnKill(((TileNormal)tile));
