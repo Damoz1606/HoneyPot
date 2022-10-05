@@ -86,13 +86,13 @@ public class EventManager : MonoBehaviour
     /// <param name="message"></param>
     public static void TriggerEvent(string channelName, string eventName, object message)
     {
-        Dictionary<string, UnityAction<object>> thisChannel;
+        Dictionary<string, UnityAction<object>> thisChannel = null;
         if (Instance.eventDictionary.TryGetValue(channelName, out thisChannel))
         {
-            UnityAction<object> thisEvent;
+            UnityAction<object> thisEvent = null;
             if (thisChannel.TryGetValue(eventName, out thisEvent))
             {
-                thisEvent.Invoke(message);
+                thisEvent?.Invoke(message);
             }
         }
     }

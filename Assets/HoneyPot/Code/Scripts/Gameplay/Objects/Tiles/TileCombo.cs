@@ -24,6 +24,7 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
         GameplayManagers.GameManager.IsGameActive = false;
         if (block == null || this.data.hasEffectBeenActive) return;
         EventManager.TriggerEvent(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.data.score);
+        EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.COLLECT, this);
         switch (this.comboType)
         {
             case TileComboType.BOMB:

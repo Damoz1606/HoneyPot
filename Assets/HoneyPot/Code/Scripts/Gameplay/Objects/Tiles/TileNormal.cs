@@ -25,6 +25,7 @@ public class TileNormal : MonoBehaviour, ITile, IPoolObject
         if (!GameplayManagers.GameManager.IsGameActive) return;
         if (this.hasEffectBeenActive) return;
         EventManager.TriggerEvent(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.data.score);
+        EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.COLLECT, this);
         this.hasEffectBeenActive = true;
     }
 
