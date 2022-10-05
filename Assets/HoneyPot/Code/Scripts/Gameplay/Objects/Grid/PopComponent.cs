@@ -18,14 +18,14 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
 
     private void OnEnable()
     {
-        EventManager.StartListening(EventEnum.POP_AROUND.ToString(), this.PopAround);
-        EventManager.StartListening(EventEnum.POP_ALL.ToString(), this.PopAllBlocks);
+        EventManager.StartListening(Channels.POP_CHANNEL, PopEvent.POP_AROUND, this.PopAround);
+        EventManager.StartListening(Channels.POP_CHANNEL, PopEvent.POP_ALL, this.PopAllBlocks);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListening(EventEnum.POP_AROUND.ToString(), this.PopAround);
-        EventManager.StopListening(EventEnum.POP_ALL.ToString(), this.PopAllBlocks);
+        EventManager.StopListening(Channels.POP_CHANNEL, PopEvent.POP_AROUND, this.PopAround);
+        EventManager.StopListening(Channels.POP_CHANNEL, PopEvent.POP_ALL, this.PopAllBlocks);
     }
 
     public bool CanPop()

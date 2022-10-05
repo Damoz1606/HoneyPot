@@ -23,14 +23,14 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
         if (!GameplayManagers.GameManager.IsGameActive) return;
         GameplayManagers.GameManager.IsGameActive = false;
         if (block == null || this.data.hasEffectBeenActive) return;
-        EventManager.TriggerEvent(EventEnum.SCORE.ToString(), this.data.score);
+        EventManager.TriggerEvent(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.data.score);
         switch (this.comboType)
         {
             case TileComboType.BOMB:
-                EventManager.TriggerEvent(EventEnum.POP_AROUND.ToString(), block);
+                EventManager.TriggerEvent(Channels.POP_CHANNEL, PopEvent.POP_AROUND, block);
                 break;
             case TileComboType.HONEYPOT:
-                EventManager.TriggerEvent(EventEnum.POP_ALL.ToString(), null);
+                EventManager.TriggerEvent(Channels.POP_CHANNEL, PopEvent.POP_ALL, block);
                 break;
             default: break;
         }

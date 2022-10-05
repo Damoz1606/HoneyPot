@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-    private Dictionary<string, UnityAction<object>> eventDictionary;
+    private Dictionary<string, Dictionary<string, UnityAction<object>>> eventDictionary;
 
     public static EventManager Instance { get; private set; }
 
@@ -23,40 +23,77 @@ public class EventManager : MonoBehaviour
     {
         if (this.eventDictionary == null)
         {
-            eventDictionary = new Dictionary<string, UnityAction<object>>();
+            eventDictionary = new Dictionary<string, Dictionary<string, UnityAction<object>>>();
         }
     }
 
-    public static void StartListening(string eventName, UnityAction<object> listener)
+
+    /// <summary>
+    /// Store a channel and it's event
+    /// </summary>
+    /// <param name="channelName"></param>
+    /// <param name="eventName"></param>
+    /// <param name="listener"></param>
+    public static void StartListening(string channelName, string eventName, UnityAction<object> listener)
     {
-        UnityAction<object> thisEvent;
-        if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        Dictionary<string, UnityAction<object>> thisChannel;
+        if (Instance.eventDictionary.TryGetValue(channelName, out thisChannel))
         {
-            thisEvent += listener;
-            Instance.eventDictionary[eventName] = thisEvent;
+            UnityAction<object> thisEvent;
+            if (thisChannel.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent += listener;
+                thisChannel[eventName] = thisEvent;
+            }
+            else
+            {
+                thisEvent += listener;
+                thisChannel.Add(eventName, thisEvent);
+            }
         }
         else
         {
-            thisEvent += listener;
-            Instance.eventDictionary.Add(eventName, thisEvent);
+            Instance.eventDictionary.Add(channelName, new() { { eventName, listener } });
         }
     }
 
-    public static void StopListening(string eventName, UnityAction<object> listener)
+    /// <summary>
+    /// Stop listening an event with of a given channel
+    /// </summary>
+    /// <param name="channelName"></param>
+    /// <param name="eventName"></param>
+    /// <param name="listener"></param>
+    public static void StopListening(string channelName, string eventName, UnityAction<object> listener)
     {
         if (Instance == null) return;
-        UnityAction<object> thisEvent;
-        if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        Dictionary<string, UnityAction<object>> thisChannel;
+        if (Instance.eventDictionary.TryGetValue(channelName, out thisChannel))
         {
-            thisEvent -= listener;
-            Instance.eventDictionary[eventName] = thisEvent;
+            UnityAction<object> thisEvent;
+            if (thisChannel.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent -= listener;
+                thisChannel[eventName] = thisEvent;
+            }
         }
     }
 
-    public static void TriggerEvent(string eventName, object message)
+    /// <summary>
+    /// Trigger an event of a given channel
+    /// </summary>
+    /// <param name="channelName"></param>
+    /// <param name="eventName"></param>
+    /// <param name="message"></param>
+    public static void TriggerEvent(string channelName, string eventName, object message)
     {
-        UnityAction<object> thisEvent;
-        if (Instance.eventDictionary.TryGetValue(eventName, out thisEvent))
-            thisEvent.Invoke(message);
+        Dictionary<string, UnityAction<object>> thisChannel;
+        if (Instance.eventDictionary.TryGetValue(channelName, out thisChannel))
+        {
+            UnityAction<object> thisEvent;
+            if (thisChannel.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent.Invoke(message);
+            }
+        }
     }
 }

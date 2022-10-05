@@ -17,12 +17,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListening(EventEnum.SCORE.ToString(), this.OnScore);
+        EventManager.StartListening(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.OnScore);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListening(EventEnum.SCORE.ToString(), this.OnScore);
+        EventManager.StopListening(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.OnScore);
     }
 
     void Start()

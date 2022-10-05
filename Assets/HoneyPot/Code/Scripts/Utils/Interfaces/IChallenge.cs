@@ -2,7 +2,8 @@ using UnityEngine;
 
 public interface IChallenge
 {
-    void OnComplete();
-    bool IsAchived();
-    void DrawHUD();
+    void Initialize();
+    void OnGoalComplete();
+    void CheckGoals();
+    void CloseChallenge();
 }
