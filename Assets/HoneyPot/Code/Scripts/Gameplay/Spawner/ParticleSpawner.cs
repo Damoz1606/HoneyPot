@@ -21,19 +21,21 @@ public class ParticleSpawner : MonoBehaviour, ISpawn<Particle>
     public void OnSpawn(object message)
     {
         Dictionary<string, object> dictionary = (Dictionary<string, object>)message;
-        Debug.Log(dictionary[Constants.POSITION]);
         Vector3 vector = (Vector3Int)dictionary[Constants.POSITION];
         ParticlesTypes type = (ParticlesTypes)dictionary[Constants.TYPE];
         Particle particle;
         switch (type)
         {
             case ParticlesTypes.DEFAULT:
+                GameplayManagers.AudioManager.PlaySFX(GameplayManagers.AudioManager.SFXBubble);
                 particle = this._bubblePool.OnSpawn();
                 break;
             case ParticlesTypes.BEES:
+                GameplayManagers.AudioManager.PlaySFX(GameplayManagers.AudioManager.SFXBee);
                 particle = this._beePool.OnSpawn();
                 break;
             default:
+                GameplayManagers.AudioManager.PlaySFX(GameplayManagers.AudioManager.SFXBubble);
                 particle = this._bubblePool.OnSpawn();
                 break;
         }

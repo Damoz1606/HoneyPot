@@ -35,10 +35,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _sfxStar;
     [SerializeField] private AudioClip _sfxQueen;
 
-    public AudioClip SFXBubble { get { return this._sfxBubbles; } }
-    public AudioClip SFXBee { get { return this._sfxBees; } }
-    public AudioClip SFXStar { get { return this._sfxStar; } }
-    public AudioClip SFXQueen { get { return this._sfxQueen; } }
+    public AudioClip SFXBubble => this._sfxBubbles;
+    public AudioClip SFXBee => this._sfxBees;
+    public AudioClip SFXStar => this._sfxStar;
+    public AudioClip SFXQueen => this._sfxQueen;
 
     public void PlaySFX(AudioClip clip)
     {
@@ -64,10 +64,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _uiPause;
     [SerializeField] private AudioClip _uiStar;
 
-    public AudioClip UIClick { get { return this._uiClick; } }
-    public AudioClip UIGameOver { get { return this._uiGameOver; } }
-    public AudioClip UIPause { get { return this._uiPause; } }
-    public AudioClip UIStar { get { return this._uiStar; } }
+    public AudioClip UIClick => this._uiClick;
+    public AudioClip UIGameOver => this._uiGameOver;
+    public AudioClip UIPause => this._uiPause;
+    public AudioClip UIStar => this._uiStar;
 
     public void PlayUI(AudioClip clip)
     {
