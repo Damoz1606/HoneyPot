@@ -20,4 +20,9 @@ public static class Constants
     public const float TWEENING_POP_TIME = 0.25f;
     public const float TWEENING_SWAP_TIME = 0.25f;
     public const float TWEENING_FUSION_TIME = 0.25f;
+
+
+    // Global consts
+    public const string POSITION = "POSITION";
+    public const string TYPE = "TYPE";
 }

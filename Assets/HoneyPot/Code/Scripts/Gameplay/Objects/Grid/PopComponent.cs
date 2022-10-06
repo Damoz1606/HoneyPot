@@ -181,7 +181,7 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
         foreach (var item in blocks)
         {
             if (item == null) continue;
-            this._gridComponent.RemoveAt(item.Position.x, item.Position.y);
+            this._gridComponent.RemoveAt(item.Position.x, item.Position.y, ParticlesTypes.BEES);
             this._gridComponent.DecreaseAt(item.Position.x, item.Position.y + 1);
         }
     }

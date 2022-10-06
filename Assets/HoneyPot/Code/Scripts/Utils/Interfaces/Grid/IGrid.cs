@@ -12,5 +12,5 @@ where T : IBlock
     T GetAt(int x, int y);
     void SetAt(int x, int y, T block);
     void DecreaseAt(int x, int y);
-    void RemoveAt(int x, int y);
+    void RemoveAt(int x, int y, ParticlesTypes type = ParticlesTypes.DEFAULT);
 }

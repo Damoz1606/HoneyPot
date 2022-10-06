@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5716230117149861132}
   - component: {fileID: 6793567712452978191}
   - component: {fileID: -4685139726175464953}
+  - component: {fileID: 5432374826212776033}
   m_Layer: 0
   m_Name: HoneyBubbles - Light
   m_TagString: Untagged
@@ -4826,3 +4827,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 3
+--- !u!114 &5432374826212776033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135518321614120521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7025ed7a23fc0d45898f972051b8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0

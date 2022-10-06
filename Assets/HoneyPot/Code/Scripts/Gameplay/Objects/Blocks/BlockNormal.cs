@@ -125,9 +125,12 @@ public class BlockNormal : MonoBehaviour, IBlock, IPoolObject
         this.IsDecreasing = false;
     }
 
-    public void OnEffect()
+    public void OnEffect(ParticlesTypes type = ParticlesTypes.DEFAULT)
     {
         this.tile.OnEffect(this);
+        EventManager.TriggerEvent(Channels.PARTICLE_CHANNEL,
+        ParticleEvent.START_PARTICLE,
+        new Dictionary<string, object> { { Constants.POSITION, this.Position }, { Constants.TYPE, type } });
         this.transform.DOScale(Vector3.zero, this._tweening.tweeningTime)
         .SetEase(this._tweening.tweeningEase)
         .Play()

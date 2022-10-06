@@ -20,7 +20,7 @@ public interface IBlock : IGameObject, IMovement
 
     void AttachTile(ITile tile);
     void DeattachTile();
-    void OnEffect();
+    void OnEffect(ParticlesTypes type = ParticlesTypes.DEFAULT);
     List<IBlock> GetConnections(List<IBlock> exclude = null);
     List<IBlock> GetConnections(AxisTypes axis, List<IBlock> neighbours = null, List<IBlock> exclude = null);
 

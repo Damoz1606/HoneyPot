@@ -41,7 +41,7 @@ public class GridComponent : MonoBehaviour, IGrid<IBlock>
             this._grid[position.x].row[position.y] = block;
     }
 
-    public void RemoveAt(int x, int y)
+    public void RemoveAt(int x, int y, ParticlesTypes type = ParticlesTypes.DEFAULT)
     {
         IBlock block = this._grid[x].row[y];
         if (block == null) return;
@@ -49,7 +49,7 @@ public class GridComponent : MonoBehaviour, IGrid<IBlock>
         this._grid[x].row[y] = null;
         block.CanPop = false;
         block.CanPop = true;
-        block.OnEffect();
+        block.OnEffect(type);
         // this.DecreaseAt(x, y + 1);
     }
 

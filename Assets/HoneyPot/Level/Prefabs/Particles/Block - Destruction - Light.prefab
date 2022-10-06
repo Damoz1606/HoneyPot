@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 233673847466811482}
   - component: {fileID: 7909368607816905105}
   - component: {fileID: 3355525812053209584}
+  - component: {fileID: 2383037323369763343}
   m_Layer: 0
   m_Name: Block - Destruction - Light
   m_TagString: Untagged
@@ -4835,3 +4836,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 5
+--- !u!114 &2383037323369763343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210303241053622572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7025ed7a23fc0d45898f972051b8277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
