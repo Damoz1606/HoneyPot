@@ -155,6 +155,9 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
             {
                 IBlock block = this._gridComponent.GetAt(x, y);
                 if (block == null) continue;
+                EventManager.TriggerEvent(Channels.PARTICLE_CHANNEL,
+                ParticleEvent.START_PARTICLE,
+                new Dictionary<string, object> { { Constants.POSITION, block.Position }, { Constants.TYPE, ParticlesTypes.DEFAULT } });
                 block.transform.DOScale(Vector3.zero, 0.25f)
                 .SetEase(Ease.OutBounce)
                 .Play()
