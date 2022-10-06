@@ -24,20 +24,20 @@ where T : MonoBehaviour, IPoolObject
             return this._pool;
         }
     }
-    public T OnCreate() => Instantiate(this._objectPrefab, Vector3.zero, Quaternion.identity);
-    public void OnGet(T shape)
+    public virtual T OnCreate() => Instantiate(this._objectPrefab, Vector3.zero, Quaternion.identity);
+    public virtual void OnGet(T shape)
     {
         shape.gameObject.SetActive(true);
         shape.OnActivate();
     }
-    public void OnReleased(T shape)
+    public virtual void OnReleased(T shape)
     {
         shape.OnDeactivate();
         shape.transform.SetParent(this._poolContainer);
         shape.gameObject.SetActive(false);
 
     }
-    public void OnRemove(T shape) => Destroy(shape.gameObject);
+    public virtual void OnRemove(T shape) => Destroy(shape.gameObject);
     public abstract void OnKill(T shape);
     public abstract T OnSpawn();
 }

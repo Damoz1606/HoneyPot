@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(AnimationController))]
 public class InGameUI : _UIBase
 {
+    [SerializeField] private CollectGoalUISpawner _collectGUISpawner;
+
     [SerializeField] private GameObject _doors;
     [SerializeField] private TextMeshProUGUI _textScore;
     [SerializeField] private SliderScore _sliderScore;

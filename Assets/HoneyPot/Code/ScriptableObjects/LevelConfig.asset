@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea5e24e0e0bec5479b477297cbd30c4, type: 3}
-  m_Name: CollectGoalSample
+  m_Script: {fileID: 11500000, guid: 9484f7d369bbb9c4c9242c641cf8e78c, type: 3}
+  m_Name: LevelConfig
   m_EditorClassIdentifier: 
-  _requireAmount: 2
-  _tileNormalType: 0
-  _tileComboType: 0
-  _sprite: {fileID: 21300000, guid: e4b8fe9bd17cd2d4e9d703e075881c25, type: 3}
+  _useCollectGoal: 0
+  _collectGoals: []
+  _useScoreGoal: 0
+  _scoreGoal: {fileID: 0}

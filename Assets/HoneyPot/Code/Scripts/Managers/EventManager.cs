@@ -6,18 +6,28 @@ public class EventManager : MonoBehaviour
 {
     private Dictionary<string, Dictionary<string, UnityAction<object>>> eventDictionary;
 
-    public static EventManager Instance { get; private set; }
-
-    private void Awake()
+    private static EventManager eventManager;
+    public static EventManager Instance
     {
-        if (Instance != null && Instance != this)
-            Destroy(this);
-        else
+        get
         {
-            Instance = this;
-            this.Initialize();
+            if (!eventManager)
+            {
+                eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;
+
+                if (!eventManager)
+                {
+                    // Debug.LogError("There needs to be one active EventManager script on a GameObject in your scene.");
+                }
+                else
+                {
+                    eventManager.Initialize();
+                }
+            }
+            return eventManager;
         }
     }
+
 
     public void Initialize()
     {
@@ -36,7 +46,8 @@ public class EventManager : MonoBehaviour
     /// <param name="listener"></param>
     public static void StartListening(string channelName, string eventName, UnityAction<object> listener)
     {
-        Dictionary<string, UnityAction<object>> thisChannel;
+
+        Dictionary<string, UnityAction<object>> thisChannel = null;
         if (Instance.eventDictionary.TryGetValue(channelName, out thisChannel))
         {
             UnityAction<object> thisEvent;
@@ -65,7 +76,7 @@ public class EventManager : MonoBehaviour
     /// <param name="listener"></param>
     public static void StopListening(string channelName, string eventName, UnityAction<object> listener)
     {
-        if (Instance == null) return;
+        if (eventManager == null) return;
         Dictionary<string, UnityAction<object>> thisChannel;
         if (Instance.eventDictionary.TryGetValue(channelName, out thisChannel))
         {

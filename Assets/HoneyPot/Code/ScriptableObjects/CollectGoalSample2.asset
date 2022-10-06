@@ -15,3 +15,4 @@ MonoBehaviour:
   _requireAmount: 5
   _tileNormalType: 1
   _tileComboType: 0
+  _sprite: {fileID: 21300000, guid: 4fca22a2c75d9e04ea692444df77c6ea, type: 3}

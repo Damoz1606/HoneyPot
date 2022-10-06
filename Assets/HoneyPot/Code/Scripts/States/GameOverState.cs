@@ -4,7 +4,7 @@ public class GameOverState : _StatesBase
 {
     public override void OnActivate()
     {
-        // GameplayManagers.GridManager.Board.PopAll();
+        EventManager.TriggerEvent(Channels.POP_CHANNEL, PopEvent.POP_ALL_WITHOUT_DISTINGUITION, null);
         // GameplayManagers.AudioManager.PlayPopupOpen();
         GameplayManagers.UIManager.GameOverPopup.OnActivatePopup();
         Debug.Log("<color=green>Game Over State</color> OnActive");

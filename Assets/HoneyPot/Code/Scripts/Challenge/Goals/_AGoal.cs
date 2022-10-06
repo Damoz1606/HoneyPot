@@ -28,6 +28,7 @@ public abstract class _AGoal : ScriptableObject
     {
         this.Completed = true;
         this._uniqueID = "";
+        EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CHECK_GOALS, null);
     }
 
     public virtual void Initialize()

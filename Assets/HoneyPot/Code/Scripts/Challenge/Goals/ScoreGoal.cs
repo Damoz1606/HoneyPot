@@ -7,12 +7,12 @@ public class ScoreGoal : _AGoal
     {
         base.Initialize();
         EventManager.StartListening(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.UpdateGoal);
+        EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.START_SCORE_GUI, this);
     }
 
     protected override void Complete()
     {
         base.Complete();
-        Debug.Log($"{this.CurrentAmount}/{this.RequireAmount} => Complete goal");
         EventManager.StopListening(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.UpdateGoal);
     }
 
@@ -20,7 +20,6 @@ public class ScoreGoal : _AGoal
     {
         int score = (int)message;
         this.CurrentAmount += score;
-        Debug.Log($"{this.CurrentAmount}/{this.RequireAmount}");
         EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CHECK_GOALS, null);
         this.Evaluate();
     }

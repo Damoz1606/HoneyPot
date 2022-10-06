@@ -20,12 +20,14 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
     {
         EventManager.StartListening(Channels.POP_CHANNEL, PopEvent.POP_AROUND, this.PopAround);
         EventManager.StartListening(Channels.POP_CHANNEL, PopEvent.POP_ALL, this.PopAllBlocks);
+        EventManager.StartListening(Channels.POP_CHANNEL, PopEvent.POP_ALL_WITHOUT_DISTINGUITION, this.PopAllBlocksWithoutDistigntion);
     }
 
     private void OnDisable()
     {
         EventManager.StopListening(Channels.POP_CHANNEL, PopEvent.POP_AROUND, this.PopAround);
         EventManager.StopListening(Channels.POP_CHANNEL, PopEvent.POP_ALL, this.PopAllBlocks);
+        EventManager.StopListening(Channels.POP_CHANNEL, PopEvent.POP_ALL_WITHOUT_DISTINGUITION, this.PopAllBlocksWithoutDistigntion);
     }
 
     public bool CanPop()
@@ -138,6 +140,26 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
                 if (block == null) continue;
                 if (!block.CanPop) continue;
                 this._gridComponent.RemoveAt(x, y);
+            }
+        }
+    }
+
+    public void PopAllBlocksWithoutDistigntion(object message)
+    {
+        int width = this._gridComponent.Width;
+        int height = this._gridComponent.Height;
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                IBlock block = this._gridComponent.GetAt(x, y);
+                if (block == null) continue;
+                block.transform.DOScale(Vector3.zero, 0.25f)
+                .SetEase(Ease.OutBounce)
+                .Play()
+                .OnComplete(() => GameplayManagers.SpawnManager.BlockNormalSpawner.OnKill((BlockNormal)block));
+                this._gridComponent.SetAt(x, y, default);
             }
         }
     }
