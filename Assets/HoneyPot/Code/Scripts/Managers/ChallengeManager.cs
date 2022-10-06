@@ -28,14 +28,12 @@ public class ChallengeManager : MonoBehaviour
 
     public void CheckGoals(object message)
     {
-        Debug.Log("Checking...");
         bool completed = _goals.All(goal => goal.Completed);
         if (completed) this.Complete();
     }
 
     public void Complete()
     {
-        Debug.Log("Complete!!!");
         GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
     }
 }
