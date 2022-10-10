@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63a067d06377014598e6aca5a03ad90, type: 3}
   m_Name: ScoreSample
   m_EditorClassIdentifier: 
-  _requireAmount: 10000
+  _requireAmount: 1000

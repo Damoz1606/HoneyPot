@@ -1627,11 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5ec2310da6e8546953c8678d605a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goals:
-  - {fileID: 11400000, guid: 2df7ed27c8613fd499fa1af69d261372, type: 2}
-  - {fileID: 11400000, guid: 67b68760ce2756446b56b275a5eabd7d, type: 2}
-  - {fileID: 11400000, guid: 0343e6fd587713f469860cd37f4d8f37, type: 2}
-  - {fileID: 11400000, guid: e433413cd2ed7a146bc166aee756b927, type: 2}
+  _goals: []
 --- !u!114 &259357597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,6 +4163,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2df7ed27c8613fd499fa1af69d261372, type: 2}
     - {fileID: 11400000, guid: 67b68760ce2756446b56b275a5eabd7d, type: 2}
     - {fileID: 11400000, guid: e433413cd2ed7a146bc166aee756b927, type: 2}
+    - {fileID: 11400000, guid: 0343e6fd587713f469860cd37f4d8f37, type: 2}
   _grid:
     width: 10
     height: 16

@@ -48,7 +48,6 @@ public class GridComponent : MonoBehaviour, IGrid<IBlock>
         if (!block.CanPop) return;
         this._grid[x].row[y] = null;
         block.CanPop = false;
-        block.CanPop = true;
         block.OnEffect(type);
         // this.DecreaseAt(x, y + 1);
     }

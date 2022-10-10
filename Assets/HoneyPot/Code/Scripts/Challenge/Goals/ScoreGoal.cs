@@ -12,6 +12,7 @@ public class ScoreGoal : _AGoal
 
     protected override void Complete()
     {
+        EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.END_SCORE_GUI, this);
         base.Complete();
         EventManager.StopListening(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.UpdateGoal);
     }

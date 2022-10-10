@@ -20,8 +20,6 @@ public class GridManager : MonoBehaviour, IManager
         this._gridHeight = ConfigurationManager.Instance.Grid.height;
         this._gridWidth = ConfigurationManager.Instance.Grid.width;
 
-        Debug.Log($"{this._gridWidth}, {this._gridHeight}");
-
         Transform[,] grid = new Transform[this._gridWidth, this._gridHeight];
         if (this._board != null) this._board.InitGrid(this._gridWidth, this._gridHeight);
     }

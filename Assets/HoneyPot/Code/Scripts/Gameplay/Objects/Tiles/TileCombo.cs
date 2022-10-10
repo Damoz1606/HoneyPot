@@ -21,7 +21,6 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
     public void OnEffect(IBlock block = null)
     {
         if (!GameplayManagers.GameManager.IsGameActive) return;
-        GameplayManagers.GameManager.IsGameActive = false;
         if (block == null || this.data.hasEffectBeenActive) return;
         EventManager.TriggerEvent(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.data.score);
         EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.COLLECT, this);
@@ -35,7 +34,6 @@ public class TileCombo : MonoBehaviour, ITile, IPoolObject
                 break;
             default: break;
         }
-        GameplayManagers.GameManager.IsGameActive = true;
         this.data.hasEffectBeenActive = true;
     }
 

@@ -18,7 +18,7 @@ public class ScoreGoalGUISpawner : MonoBehaviour, ISpawn<ScoreGUI>
     {
         ScoreGUI ui = this.OnSpawn();
         ui.OnActivate(message);
-        ui.OnDeactivate();
+        ui.OnActivate();
     }
 
     public void OnKill(ScoreGUI shape)

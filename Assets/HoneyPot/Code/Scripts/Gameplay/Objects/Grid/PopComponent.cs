@@ -92,7 +92,6 @@ public class PopComponent : MonoBehaviour, IFusion<IBlock>, IPop<IBlock>, ICombo
                 {
                     if (!item.CanPop) return;
                     if (!item.CanDecrease) return;
-                    item.OnEffect();
                     this._gridComponent.RemoveAt(item.Position.x, item.Position.y);
                     this._gridComponent.DecreaseAt(item.Position.x, item.Position.y + 1);
                 };

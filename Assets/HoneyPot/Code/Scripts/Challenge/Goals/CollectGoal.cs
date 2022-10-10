@@ -19,9 +19,8 @@ public class CollectGoal : _AGoal
     public override void UpdateGoal(object message)
     {
         ITile tile = (ITile)message;
-        if ((tile.type.Equals(TileNormalType.COMBO) &&
-        tile.type.Equals(this._tileComboType)) ||
-        tile.type.Equals(this._tileNormalType))
+        if ((tile.type.Equals(TileNormalType.COMBO) && ((TileCombo)tile).comboType.Equals(this._tileComboType)) ||
+        (tile.type.Equals(this._tileNormalType) && !tile.type.Equals(TileNormalType.COMBO)))
         {
             CurrentAmount += 1;
             EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.UPDATE_COLLECT_GUI, this);
@@ -32,6 +31,7 @@ public class CollectGoal : _AGoal
 
     protected override void Complete()
     {
+        EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.END_COLLECT_GUI, this);
         base.Complete();
         EventManager.StopListening(Channels.CHALLENGE_CHANNEL, ChallengeEvent.COLLECT, this.UpdateGoal);
     }
