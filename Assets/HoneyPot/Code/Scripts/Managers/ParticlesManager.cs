@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticlesManager : MonoBehaviour
+public class ParticlesManager : MonoBehaviour, IManager
 {
     [SerializeField] private GameObject _particlesExplodePrefab;
     [SerializeField] private GameObject _particlesBeesPrefab;
@@ -25,5 +25,9 @@ public class ParticlesManager : MonoBehaviour
                 Instantiate(this._particlesExplodePrefab, position, Quaternion.identity);
                 break;
         }
+    }
+
+    public void SetUp()
+    {
     }
 }

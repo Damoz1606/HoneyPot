@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IManager
 {
     [SerializeField] private Transform _blockHolder;
     [SerializeField] private bool _isGameActive;
@@ -18,11 +18,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         this.IsGameActive = false;
-    }
-
-    void Start()
-    {
-        this.SetState(GameStates.PLAY);
     }
 
     void Update()
@@ -61,5 +56,10 @@ public class GameManager : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    public void SetUp()
+    {
+        this.SetState(GameStates.PLAY);
     }
 }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IManager
 {
     [SerializeField] private PausePopup _pausePopup;
     [SerializeField] private GameOverPopup _gameOverPopup;
@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(this.ActiveInGameCoroutine());
         }
+    }
+
+    public void SetUp()
+    {
+        
     }
 
     private IEnumerator ActiveInGameCoroutine()

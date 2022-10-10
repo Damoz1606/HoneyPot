@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour, IManager
 {
     [SerializeField] private TetrominoNormalSpawner _tetrominoeNormalSpawner;
     [SerializeField] private BlockNormalPool _blockNormalSpawner;
@@ -20,6 +20,11 @@ public class SpawnManager : MonoBehaviour
 
     public BlockNormalPool BlockNormalSpawner { get { return this._blockNormalSpawner; } }
     public TetrominoNormalSpawner TetrominoeNormalSpawner { get { return this._tetrominoeNormalSpawner; } }
+
+    public void SetUp()
+    {
+        
+    }
 
     private void Awake() => this.UsePool = this._usePool;
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IManager
 {
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _sfxSource;
@@ -86,4 +86,9 @@ public class AudioManager : MonoBehaviour
         this._uiSource.volume = volume;
     }
     #endregion
+
+    public void SetUp()
+    {
+
+    }
 }

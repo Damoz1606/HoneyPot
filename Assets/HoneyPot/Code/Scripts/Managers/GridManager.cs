@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager : MonoBehaviour, IManager
 {
     // [SerializeField] private GridTetromino _gridTetromino;
     [SerializeField] private Board _board;
@@ -15,8 +15,13 @@ public class GridManager : MonoBehaviour
     public int GridHeight { get { return this._gridHeight; } }
     public int GridWidth { get { return this._gridWidth; } }
 
-    private void Start()
+    public void SetUp()
     {
+        this._gridHeight = ConfigurationManager.Instance.Grid.height;
+        this._gridWidth = ConfigurationManager.Instance.Grid.width;
+
+        Debug.Log($"{this._gridWidth}, {this._gridHeight}");
+
         Transform[,] grid = new Transform[this._gridWidth, this._gridHeight];
         if (this._board != null) this._board.InitGrid(this._gridWidth, this._gridHeight);
     }

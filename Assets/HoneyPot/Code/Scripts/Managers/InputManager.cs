@@ -8,7 +8,7 @@ public enum InputMethods
     PhoneInput
 }
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour, IManager
 {
     [SerializeField] private InputMethods _inputMethod;
     [SerializeField] private bool _isInputActive;
@@ -87,6 +87,10 @@ public class InputManager : MonoBehaviour
         }
 
         if (nextBlock != null) GameplayManagers.GridManager.Board.SwapBlock(_selectedBlock, nextBlock);
+    }
+
+    public void SetUp()
+    {
     }
 
     #region ComputerInput

@@ -2,14 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ChallengeManager : MonoBehaviour
+public class ChallengeManager : MonoBehaviour, IManager
 {
     [SerializeField] private List<_AGoal> _goals;
-
-    private void Start()
-    {
-        this.Initialize();
-    }
 
     public void Initialize()
     {
@@ -35,5 +30,11 @@ public class ChallengeManager : MonoBehaviour
     public void Complete()
     {
         GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
+    }
+
+    public void SetUp()
+    {
+        this._goals = ConfigurationManager.Instance.Goals._goals;
+        this.Initialize();
     }
 }

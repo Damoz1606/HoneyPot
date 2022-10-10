@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
+
     private Dictionary<string, Dictionary<string, UnityAction<object>>> eventDictionary;
 
     private static EventManager eventManager;
