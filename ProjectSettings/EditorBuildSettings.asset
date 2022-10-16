@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/HoneyPot/Level/Scenes/MainMenu.unity
+    guid: a7c05d4490ce9c745b3afb17dda465a9
+  - enabled: 1
+    path: Assets/HoneyPot/Level/Scenes/LevelSelector.unity
+    guid: 5000d8e799ea06e48a4cd32887b52529
+  - enabled: 1
     path: Assets/HoneyPot/Level/Scenes/DesignScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
