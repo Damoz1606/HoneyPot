@@ -14,6 +14,7 @@ public class LevelSelection : MonoBehaviour
     }
 
     [SerializeField] ConfigurationStruct configuration;
+    [SerializeField] private AUIBase _loadUI;
 
     public void StartLevelEvent(int scene)
     {
@@ -26,6 +27,8 @@ public class LevelSelection : MonoBehaviour
 
     private IEnumerator StartLevelEventAsyncOperation(int sceneID)
     {
+        _loadUI.StartUI();
+        yield return new WaitForSecondsRealtime(1f);
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
 
         while (!operation.isDone)
