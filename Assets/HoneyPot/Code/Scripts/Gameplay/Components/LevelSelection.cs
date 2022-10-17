@@ -33,7 +33,7 @@ public class LevelSelection : MonoBehaviour
 
         while (!operation.isDone)
         {
-            Debug.Log($"Loading... {operation.progress * 100}%");
+            // Debug.Log($"Loading... {operation.progress * 100}%");
             yield return null;
         }
     }
