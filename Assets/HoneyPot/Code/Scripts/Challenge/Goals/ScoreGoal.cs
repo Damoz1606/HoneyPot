@@ -14,6 +14,8 @@ public class ScoreGoal : _AGoal
     {
         EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.END_SCORE_GUI, this);
         base.Complete();
+        if (this.IsTutorial) EventManager.TriggerEvent(Channels.TUTORIAL_CHANNEL, TutorialEvent.TUTORIAL, null);
+        EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CHECK_GOALS, null);
         EventManager.StopListening(Channels.SCORE_CHANNEL, ScoreEvent.INCREASE, this.UpdateGoal);
     }
 
@@ -21,7 +23,6 @@ public class ScoreGoal : _AGoal
     {
         int score = (int)message;
         this.CurrentAmount += score;
-        EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CHECK_GOALS, null);
         this.Evaluate();
     }
 }

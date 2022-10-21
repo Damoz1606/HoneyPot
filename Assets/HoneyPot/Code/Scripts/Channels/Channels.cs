@@ -7,4 +7,5 @@ public static class Channels
     public const string PARTICLE_CHANNEL = "PARTICLE_CHANNEL";
     public const string POP_CHANNEL = "POP_CHANNEL";
     public const string UI_CHANNEL = "UI_CHANNEL";
+    public const string TUTORIAL_CHANNEL = "TUTORIAL_CHANNEL";
 }

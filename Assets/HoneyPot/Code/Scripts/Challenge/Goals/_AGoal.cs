@@ -3,11 +3,13 @@ using UnityEngine;
 public abstract class _AGoal : ScriptableObject
 {
     [SerializeField] private int _requireAmount;
+    [SerializeField] private bool _isTutorial = false;
     private string _uniqueID;
     private int _currentAmount;
     private bool _completed;
 
     public string UniqueID => this._uniqueID;
+    public bool IsTutorial => this._isTutorial;
 
     public int RequireAmount
     {
@@ -38,7 +40,7 @@ public abstract class _AGoal : ScriptableObject
         this._uniqueID = System.Guid.NewGuid().ToString();
     }
 
-    protected void Evaluate()
+    protected virtual void Evaluate()
     {
         if (this._currentAmount >= this._requireAmount)
             this.Complete();

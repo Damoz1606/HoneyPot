@@ -101,6 +101,7 @@ public class Board : MonoBehaviour
 
         currentBlock.IsSwapping = false;
         nextBlock.IsSwapping = false;
+        EventManager.TriggerEvent(Channels.TUTORIAL_CHANNEL, TutorialEvent.SWIPE, null);
         this.TryPop();
     }
 

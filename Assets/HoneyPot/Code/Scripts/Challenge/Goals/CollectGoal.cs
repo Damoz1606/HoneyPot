@@ -24,7 +24,6 @@ public class CollectGoal : _AGoal
         {
             CurrentAmount += 1;
             EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.UPDATE_COLLECT_GUI, this);
-            EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CHECK_GOALS, null);
         }
         this.Evaluate();
     }
@@ -33,6 +32,8 @@ public class CollectGoal : _AGoal
     {
         EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.END_COLLECT_GUI, this);
         base.Complete();
+        if (this.IsTutorial) EventManager.TriggerEvent(Channels.TUTORIAL_CHANNEL, TutorialEvent.TUTORIAL, null);
+        EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CHECK_GOALS, null);
         EventManager.StopListening(Channels.CHALLENGE_CHANNEL, ChallengeEvent.COLLECT, this.UpdateGoal);
     }
 }

@@ -8,12 +8,17 @@ public class ComboManager : MonoBehaviour
 
     public TileCombo InstanceCombo(TileComboType combo)
     {
+        TileCombo tileCombo;
         switch (combo)
         {
             case TileComboType.BOMB:
-                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[TileComboType.BOMB].OnSpawn();
+                tileCombo = (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[TileComboType.BOMB].OnSpawn();
+                EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CRAFT, tileCombo);
+                return tileCombo;
             case TileComboType.HONEYPOT:
-                return (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[TileComboType.HONEYPOT].OnSpawn();
+                tileCombo = (TileCombo)GameplayManagers.SpawnManager.BlockNormalSpawner.TileComboPoolDictionary[TileComboType.HONEYPOT].OnSpawn();
+                EventManager.TriggerEvent(Channels.CHALLENGE_CHANNEL, ChallengeEvent.CRAFT, tileCombo);
+                return tileCombo;
             default:
                 return null;
         }

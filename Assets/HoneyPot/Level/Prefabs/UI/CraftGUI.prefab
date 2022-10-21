@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d6db7bcf96ca81e40ae1f2f7f2091c56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80e0b838873e4f94a897fe6631a45b28, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -259,9 +259,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7327444460577222483}
   - component: {fileID: 7327444460577222482}
-  - component: {fileID: -2731370735706272230}
+  - component: {fileID: 4057137573065300591}
   m_Layer: 5
-  m_Name: CollectUI
+  m_Name: CraftGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &-2731370735706272230
+--- !u!114 &4057137573065300591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7327444460577222444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72e3457879c1e648b8510e3197f07e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 447cd89e754c48e4782600c845e328b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 7327444460882419563}
