@@ -4,10 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    private void Start()
-    {
-        this.LoadSceneOperation(1);
-    }
 
     public void LoadSceneOperation(int sceneID)
     {
