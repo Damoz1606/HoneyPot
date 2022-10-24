@@ -4168,7 +4168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goals:
     _goals:
-    - {fileID: 11400000, guid: 89be563edd0f2374a962bb88d63a7403, type: 2}
+    - {fileID: 11400000, guid: 4fc552a67a754ea4f8bef0af91cc4b89, type: 2}
   _grid:
     width: 10
     height: 16
