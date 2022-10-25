@@ -5,5 +5,5 @@ public enum GameStates
     GAMEOVER,
     PAUSE,
     PLAY,
-    RESUME
+    WINNER
 }

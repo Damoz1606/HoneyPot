@@ -14,6 +14,11 @@ public class ConfigurationManager : MonoBehaviour
     public GoalStruct Goals { get => _goals; set => _goals = value; }
     public ScoreStruct Score { get => _score; set => _score = value; }
     public GridStruct Grid { get => _grid; set => _grid = value; }
+    public int WorldID { get; set; }
+    public int LevelID { get; set; }
+    public int MusicAudioLevel { get; set; }
+    public int SFXAudioLevel { get; set; }
+    public int UIAudioLevel { get; set; }
 
     private void Awake()
     {

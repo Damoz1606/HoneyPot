@@ -26,15 +26,18 @@ public class ActiveTutorial : MonoBehaviour
     {
         if (this.stats[0] == null || !this.stats[0].hasCompleteTutorial)
         {
+
             ConfigurationManager.Instance.Goals = configuration._goals;
             ConfigurationManager.Instance.Grid = configuration._grid;
             ConfigurationManager.Instance.Score = configuration._score;
-
+            ConfigurationManager.Instance.LevelID = 0;
+            this.stats[0].hasCompleteTutorial = true;
             StartCoroutine(StartLevelEventAsyncOperation(2));
+            Storage.Instance.Store<GameStats>(this.stats[0], $"{Storage.ROOT}{StorageConstants.GAME_STATS}");
         }
         else
         {
-            SceneManager.LoadScene(1);
+            StartCoroutine(StartLevelEventAsyncOperation(1));
         }
     }
 

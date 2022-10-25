@@ -16,12 +16,16 @@ public class LevelSelection : MonoBehaviour
 
     [SerializeField] public ConfigurationStruct configuration;
     [SerializeField] private AUIBase _loadUI;
+    [SerializeField] private int _worldID = 0;
+    [SerializeField] private int _levelID = 0;
 
     public void StartLevelEvent(int scene)
     {
         ConfigurationManager.Instance.Goals = configuration._goals;
         ConfigurationManager.Instance.Grid = configuration._grid;
         ConfigurationManager.Instance.Score = configuration._score;
+        ConfigurationManager.Instance.LevelID = this._levelID;
+        ConfigurationManager.Instance.WorldID = this._worldID;
 
         StartCoroutine(StartLevelEventAsyncOperation(scene));
     }

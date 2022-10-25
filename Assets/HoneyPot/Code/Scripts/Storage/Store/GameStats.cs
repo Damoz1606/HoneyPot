@@ -7,4 +7,5 @@ public class GameStats
     public int audioVolume = 50;
     public int sfxVolume = 50;
     public int uiVolume = 50;
+    public LevelStore[] completedLevels;
 }

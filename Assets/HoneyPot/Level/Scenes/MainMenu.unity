@@ -1194,6 +1194,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1414391265}
     m_Modifications:
+    - target: {fileID: 4938256969189609942, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969189609942, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969189609942, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969189609942, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969426870507, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969426870507, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969426870507, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 576
+      objectReference: {fileID: 0}
     - target: {fileID: 4938256969854313934, guid: 86d8b19c9352f5544b0be34ba22efd2e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1303,6 +1338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Loading
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938256969854313937, guid: 86d8b19c9352f5544b0be34ba22efd2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d8b19c9352f5544b0be34ba22efd2e, type: 3}

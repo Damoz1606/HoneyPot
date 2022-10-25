@@ -6,6 +6,6 @@ public class ButtonResume : _ButtonEventBase
 {
     public override void ButtonEvent()
     {
-        GameplayManagers.GameManager.SetState(GameStates.RESUME);
+        GameplayManagers.GameManager.SetState(GameStates.PLAY);
     }
 }

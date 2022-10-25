@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour, IManager
 {
     [SerializeField] private Transform _blockHolder;
     [SerializeField] private bool _isGameActive;
+    private bool _hasStarted = false;
     // private Tetromino _currentTetromino;
     private ITetrominoe _currentTetrominoe;
     private _StatesBase _currentState;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour, IManager
     public ITetrominoe CurrentTetrominoe { get { return this._currentTetrominoe; } set { this._currentTetrominoe = value; } }
     public Transform BlockHolder { get { return this._blockHolder; } }
     public bool IsGameActive { get { return this._isGameActive; } set { this._isGameActive = value; } }
+    public bool HasStarted { get => this._hasStarted; set => this._hasStarted = value; }
 
     private void Awake()
     {
@@ -51,8 +53,8 @@ public class GameManager : MonoBehaviour, IManager
                 return typeof(PauseState);
             case GameStates.PLAY:
                 return typeof(PlayState);
-            case GameStates.RESUME:
-                return typeof(ResumeState);
+            case GameStates.WINNER:
+                return typeof(WinnerState);
             default:
                 return null;
         }

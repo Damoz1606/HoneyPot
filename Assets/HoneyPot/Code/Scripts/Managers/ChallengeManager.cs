@@ -29,7 +29,7 @@ public class ChallengeManager : MonoBehaviour, IManager
 
     public void Complete()
     {
-        GameplayManagers.GameManager.SetState(GameStates.GAMEOVER);
+        GameplayManagers.GameManager.SetState(GameStates.WINNER);
     }
 
     public void SetUp()

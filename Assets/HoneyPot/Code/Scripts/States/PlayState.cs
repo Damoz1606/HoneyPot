@@ -35,7 +35,11 @@ public class PlayState : _StatesBase
     private IEnumerator StartGameCoroutine()
     {
         yield return new WaitForSecondsRealtime(1);
-        GameplayManagers.SpawnManager.TetrominoeNormalSpawner.OnSpawn();
+        if (!GameplayManagers.GameManager.HasStarted)
+        {
+            GameplayManagers.SpawnManager.TetrominoeNormalSpawner.OnSpawn();
+            GameplayManagers.GameManager.HasStarted = true;
+        }
         GameplayManagers.GameManager.IsGameActive = true;
     }
 }

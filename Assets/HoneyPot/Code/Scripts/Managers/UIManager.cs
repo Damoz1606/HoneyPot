@@ -8,10 +8,12 @@ public class UIManager : MonoBehaviour, IManager
 {
     [SerializeField] private PausePopup _pausePopup;
     [SerializeField] private GameOverPopup _gameOverPopup;
+    [SerializeField] private WinnerPopup _winnerPopup;
     [SerializeField] private InGameUI _inGameUI;
 
     public PausePopup PausePopup { get { return this._pausePopup; } }
     public GameOverPopup GameOverPopup { get { return this._gameOverPopup; } }
+    public WinnerPopup WinnerPopup { get { return this._winnerPopup; } }
     public InGameUI InGameUI { get { return this._inGameUI; } }
 
     public void ActivateUI(UITypes ui)
@@ -24,7 +26,7 @@ public class UIManager : MonoBehaviour, IManager
 
     public void SetUp()
     {
-        
+
     }
 
     private IEnumerator ActiveInGameCoroutine()
