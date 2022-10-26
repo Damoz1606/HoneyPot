@@ -14,8 +14,9 @@ public class ActiveTutorial : MonoBehaviour
     }
     [SerializeField] public ConfigurationStruct configuration;
     [SerializeField] private AUIBase _loadUI;
-
+    [SerializeField] private bool _isArcadeMode = false;
     private List<GameStats> stats;
+    public bool IsArcadeMode { set => this._isArcadeMode = value; get => this._isArcadeMode; }
 
     private void Start()
     {
@@ -37,7 +38,18 @@ public class ActiveTutorial : MonoBehaviour
         }
         else
         {
-            StartCoroutine(StartLevelEventAsyncOperation(1));
+            if (_isArcadeMode)
+            {
+                ConfigurationManager.Instance.Grid = configuration._grid;
+                configuration._score.maxScore = 10000;
+                ConfigurationManager.Instance.Score = configuration._score;
+                ConfigurationManager.Instance.LevelID = 0;
+                StartCoroutine(StartLevelEventAsyncOperation(2));
+            }
+            else
+            {
+                StartCoroutine(StartLevelEventAsyncOperation(1));
+            }
         }
     }
 

@@ -63,11 +63,13 @@ public class AudioManager : MonoBehaviour, IManager
     [SerializeField] private AudioClip _uiGameOver;
     [SerializeField] private AudioClip _uiPause;
     [SerializeField] private AudioClip _uiStar;
+    [SerializeField] private AudioClip _uiWinner;
 
     public AudioClip UIClick => this._uiClick;
     public AudioClip UIGameOver => this._uiGameOver;
     public AudioClip UIPause => this._uiPause;
     public AudioClip UIStar => this._uiStar;
+    public AudioClip UIWinner => this._uiWinner;
 
     public void PlayUI(AudioClip clip)
     {

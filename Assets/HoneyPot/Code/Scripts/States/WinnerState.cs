@@ -8,6 +8,7 @@ public class WinnerState : _StatesBase
     {
         EventManager.TriggerEvent(Channels.POP_CHANNEL, PopEvent.POP_ALL_WITHOUT_DISTINGUITION, null);
         // GameplayManagers.AudioManager.PlayPopupOpen();
+        GameplayManagers.AudioManager.PlayUI(GameplayManagers.AudioManager.UIWinner);
         GameplayManagers.UIManager.WinnerPopup.OnActivatePopup();
         GameStats stats = Storage.Instance.Read<GameStats>($"{Storage.ROOT}{StorageConstants.GAME_STATS}")[0];
         List<LevelStore> levels = new List<LevelStore>();
@@ -22,7 +23,7 @@ public class WinnerState : _StatesBase
         {
             levels = new List<LevelStore>(stats.completedLevels);
             int level = levels.FindIndex(o => o.levelId == ConfigurationManager.Instance.LevelID);
-            if (levels[level] != null)
+            if (level >= 0 && levels[level] != null)
             {
                 levels[level] = new LevelStore(ConfigurationManager.Instance.LevelID, ConfigurationManager.Instance.WorldID, starCount);
             }

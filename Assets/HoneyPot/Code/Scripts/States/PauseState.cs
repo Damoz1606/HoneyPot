@@ -13,6 +13,8 @@ public class PauseState : _StatesBase
     {
         // GameplayManagers.AudioManager.PlayPopupClose();
         GameplayManagers.UIManager.PausePopup.OnDeactivatePopup();
+        GameplayManagers.GameManager.IsGameActive = true;
+        GameplayManagers.InputManager.IsInputActive = true;
         Time.timeScale = 1;
         Debug.Log("<color=red>Pause State</color> OnDeactivate");
     }

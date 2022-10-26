@@ -13,7 +13,6 @@ public class SwipeGoal : _AGoal
     {
         ITile tile = (ITile)message;
         CurrentAmount += 1;
-        if (this.IsTutorial) EventManager.TriggerEvent(Channels.TUTORIAL_CHANNEL, TutorialEvent.TUTORIAL, null);
         this.Evaluate();
     }
 

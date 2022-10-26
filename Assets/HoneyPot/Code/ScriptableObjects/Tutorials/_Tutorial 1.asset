@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3c7a7d24c1407418f052eba1ad6329, type: 3}
+  m_Name: _Tutorial 1
+  m_EditorClassIdentifier: 
+  _requireAmount: 0
+  _isTutorial: 1
+  _startMessage: Hi! Welcome to honeypot!!!!
+  _endMessage: With this you can continue over the game, good luck
+  _tutorials:
+  - message: The flowers can be swipe, just hold and move to the desire direction
+    tutorial: {fileID: 11400000, guid: 63b0b58b1ce5f3345af565234b82a4b6, type: 2}
+    canvasPosition: {x: 0, y: 0}
+  - message: If you join 4 flowers in a row or column, a bomb is craft
+    tutorial: {fileID: 11400000, guid: ddd18bf225aee2b409d8300a3b1aef4f, type: 2}
+    canvasPosition: {x: 0, y: 0}
+  - message: A bomb can be activate by swipping it
+    tutorial: {fileID: 11400000, guid: ddd18bf225aee2b409d8300a3b1aef4f, type: 2}
+    canvasPosition: {x: 0, y: 0}
+  - message: If you join 5 flowers in a row or column, a bomb is craft
+    tutorial: {fileID: 11400000, guid: 219d16b4b2db5f64f9a5334c78bee33e, type: 2}
+    canvasPosition: {x: 0, y: 0}
+  - message: A honeypot can be activate by swipping it
+    tutorial: {fileID: 11400000, guid: e3000f9cc0f5fda4c9fc58de812381db, type: 2}
+    canvasPosition: {x: 0, y: 0}

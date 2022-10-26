@@ -6,6 +6,7 @@ public class GameOverState : _StatesBase
     {
         EventManager.TriggerEvent(Channels.POP_CHANNEL, PopEvent.POP_ALL_WITHOUT_DISTINGUITION, null);
         // GameplayManagers.AudioManager.PlayPopupOpen();
+        GameplayManagers.AudioManager.PlayUI(GameplayManagers.AudioManager.UIGameOver);
         GameplayManagers.UIManager.GameOverPopup.OnActivatePopup();
         Debug.Log("<color=green>Game Over State</color> OnActive");
     }

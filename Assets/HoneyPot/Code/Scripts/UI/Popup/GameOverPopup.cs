@@ -5,7 +5,6 @@ using TMPro;
 
 public class GameOverPopup : _PopupBase
 {
-    [SerializeField] private Star[] _stars;
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Awake()
@@ -31,8 +30,6 @@ public class GameOverPopup : _PopupBase
         yield return new WaitForSecondsRealtime(1f);
         this._animationController.StartAnimation();
         GameplayManagers.AudioManager.PlayUI(GameplayManagers.AudioManager.UIGameOver);
-        yield return new WaitForSecondsRealtime(1.25f);
-        this.ActiveStars();
         yield break;
     }
 
@@ -42,29 +39,6 @@ public class GameOverPopup : _PopupBase
         this._animationController.EndAnimation();
         yield return new WaitForSecondsRealtime(0.5f);
         this.gameObject.SetActive(false);
-        yield break;
-    }
-
-    private void ActiveStars()
-    {
-        StartCoroutine(ActiveStarsCoroutine());
-    }
-    private IEnumerator ActiveStarsCoroutine()
-    {
-        if (GameplayManagers.ScoreManager.ScoreReferences[0] <= GameplayManagers.ScoreManager.CurrentScore)
-        {
-            _stars[0].UpdateReference();
-        }
-        if (GameplayManagers.ScoreManager.ScoreReferences[1] <= GameplayManagers.ScoreManager.CurrentScore)
-        {
-            yield return new WaitForSecondsRealtime(0.25f);
-            _stars[1].UpdateReference();
-        }
-        if (GameplayManagers.ScoreManager.ScoreReferences[2] <= GameplayManagers.ScoreManager.CurrentScore)
-        {
-            yield return new WaitForSecondsRealtime(0.25f);
-            _stars[2].UpdateReference();
-        }
         yield break;
     }
 }
