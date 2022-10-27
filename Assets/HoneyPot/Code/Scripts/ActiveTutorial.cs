@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,23 +19,37 @@ public class ActiveTutorial : MonoBehaviour
     private List<GameStats> stats;
     public bool IsArcadeMode { set => this._isArcadeMode = value; get => this._isArcadeMode; }
 
-    private void Start()
+    private async void Start()
     {
-        this.stats = Storage.Instance.Read<GameStats>($"{Storage.ROOT}{StorageConstants.GAME_STATS}");
+        await this.CheckFileAsync();
     }
 
-    public void CheckTutorial()
+    private async Task CheckFileAsync()
     {
-        if (this.stats[0] == null || !this.stats[0].hasCompleteTutorial)
-        {
+        this.stats = await Storage.Instance.ReadAsync<GameStats>($"{StorageConstants.GAME_STATS}");
+    }
 
+    private async Task UpdateFileAsync()
+    {
+        await Storage.Instance.StoreAsync<GameStats>(this.stats[0], $"{StorageConstants.GAME_STATS}");
+    }
+
+    public async void CheckTutorial()
+    {
+        await this.CheckTutorialAsync();
+    }
+
+    public async Task CheckTutorialAsync()
+    {
+        if (this.stats[0] == null || (this.stats[0] != null && !this.stats[0].hasCompleteTutorial))
+        {
             ConfigurationManager.Instance.Goals = configuration._goals;
             ConfigurationManager.Instance.Grid = configuration._grid;
             ConfigurationManager.Instance.Score = configuration._score;
             ConfigurationManager.Instance.LevelID = 0;
             this.stats[0].hasCompleteTutorial = true;
             StartCoroutine(StartLevelEventAsyncOperation(2));
-            Storage.Instance.Store<GameStats>(this.stats[0], $"{Storage.ROOT}{StorageConstants.GAME_STATS}");
+            await this.UpdateFileAsync();
         }
         else
         {

@@ -15,7 +15,7 @@ public class LevelButtonUIController : MonoBehaviour
     private void Start()
     {
         _text.text = $"{_levelID}";
-        GameStats game = Storage.Instance.Read<GameStats>($"{Storage.ROOT}{StorageConstants.GAME_STATS}")[0];
+        GameStats game = Storage.Instance.Read<GameStats>($"{StorageConstants.GAME_STATS}")[0];
         if (game.completedLevels == null) return;
         List<LevelStore> levels = new List<LevelStore>(game.completedLevels);
         LevelStore level = levels.Find(obj => obj.levelId == this._levelID);

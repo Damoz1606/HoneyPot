@@ -10,16 +10,21 @@ public class InGameUI : _UIBase
 
     [SerializeField] private GameObject _doors;
     [SerializeField] private TextMeshProUGUI _textScore;
+    [SerializeField] private TextMeshProUGUI _textLevel;
     [SerializeField] private SliderScore _sliderScore;
     [SerializeField] private Star[] _reference;
 
     private AnimationController _animationController;
     private bool hasReferences = true;
 
-
     private void Awake()
     {
         this._animationController = GetComponent<AnimationController>();
+    }
+
+    private void Start()
+    {
+        this._textLevel.text = $"{ConfigurationManager.Instance.LevelID}";
     }
 
     public override void StartAnimation()

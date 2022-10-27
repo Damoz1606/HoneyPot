@@ -1550,6 +1550,7 @@ MonoBehaviour:
   _collectGUISpawner: {fileID: 114985849}
   _doors: {fileID: 1056702398}
   _textScore: {fileID: 841777061}
+  _textLevel: {fileID: 1827371936}
   _sliderScore: {fileID: 55884657}
   _reference:
   - {fileID: 290977476}
@@ -2118,7 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c27db653e794d41b9132926ceb35d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMethod: 0
+  _inputMethod: 1
   _isInputActive: 0
   _tapInterval: 0
   _errorSwipeValue: 0.5
