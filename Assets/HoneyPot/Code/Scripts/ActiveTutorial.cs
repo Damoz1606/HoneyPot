@@ -55,6 +55,7 @@ public class ActiveTutorial : MonoBehaviour
         {
             if (_isArcadeMode)
             {
+                ConfigurationManager.Instance.Goals = default;
                 ConfigurationManager.Instance.Grid = configuration._grid;
                 configuration._score.maxScore = 10000;
                 ConfigurationManager.Instance.Score = configuration._score;

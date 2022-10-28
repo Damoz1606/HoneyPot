@@ -91,7 +91,6 @@ public class Storage
             T sample = default;
             this.Store<T>(sample, filename);
         }
-        Debug.Log(path);
         Task<string> json = default;
         try
         {

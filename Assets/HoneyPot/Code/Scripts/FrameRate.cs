@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FrameRate : MonoBehaviour
 {
+    [SerializeField] private int _frameRate = Constants.FRAME_RATE;
     private void Awake()
     {
-        Application.targetFrameRate = Constants.FRAME_RATE;
+        Application.targetFrameRate = this._frameRate;
     }
 }

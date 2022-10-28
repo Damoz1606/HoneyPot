@@ -10,6 +10,14 @@ public class CollectUI : MonoBehaviour, IGoalUI, IPoolObject
     [SerializeField] private TextMeshProUGUI currentText;
 
     private string associateID;
+    private RectTransform _rectTransform;
+
+    private void Start()
+    {
+        _rectTransform = GetComponent<RectTransform>();
+        _rectTransform.localPosition = Vector3.zero;
+        _rectTransform.localScale = Vector3.one;
+    }
 
     private void OnEnable()
     {
@@ -27,7 +35,6 @@ public class CollectUI : MonoBehaviour, IGoalUI, IPoolObject
     public void OnActivate(object message)
     {
         this.OnEnable();
-        this.GetComponent<RectTransform>().localScale = Vector3.one;
         CollectGoal goal = (CollectGoal)message;
         this.associateID = goal.UniqueID;
         this.sprite.sprite = goal.Sprite;
@@ -63,7 +70,7 @@ public class CollectUI : MonoBehaviour, IGoalUI, IPoolObject
 
     public void OnDeactivate()
     {
-        this.GetComponent<RectTransform>().DOScale(Vector3.zero, 1)
+        _rectTransform.DOScale(Vector3.zero, 1)
         .SetEase(Ease.InSine)
         .Play()
         .OnComplete(() =>

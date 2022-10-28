@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98433b393f812254d948aacdf5af8520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transitionInterval: 0.5
+  _transitionInterval: 0.75
   _fastTransitionInterval: 0
 --- !u!114 &-6376416362238191850
 MonoBehaviour:

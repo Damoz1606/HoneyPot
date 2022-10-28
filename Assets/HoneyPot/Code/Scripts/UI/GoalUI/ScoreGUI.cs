@@ -7,6 +7,14 @@ public class ScoreGUI : MonoBehaviour, IGoalUI, IPoolObject
     [SerializeField] private TextMeshProUGUI requiredText;
     private string associateID;
 
+    private RectTransform _rectTransform;
+    private void Start()
+    {
+        _rectTransform = GetComponent<RectTransform>();
+        _rectTransform.localPosition = Vector3.zero;
+        _rectTransform.localScale = Vector3.one;
+    }
+
     private void OnEnable()
     {
         EventManager.StartListening(Channels.UI_CHANNEL, UIEvent.END_SCORE_GUI, this.OnDeactivate);
@@ -20,7 +28,6 @@ public class ScoreGUI : MonoBehaviour, IGoalUI, IPoolObject
     public void OnActivate(object message)
     {
         this.OnEnable();
-        this.GetComponent<RectTransform>().localScale = Vector3.one;
         ScoreGoal goal = (ScoreGoal)message;
         this.associateID = goal.UniqueID;
         this.requiredText.text = $"{goal.RequireAmount}";
@@ -42,7 +49,7 @@ public class ScoreGUI : MonoBehaviour, IGoalUI, IPoolObject
 
     public void OnDeactivate()
     {
-        this.GetComponent<RectTransform>().DOScale(Vector3.zero, 1)
+        _rectTransform.DOScale(Vector3.zero, 1)
         .SetEase(Ease.InSine)
         .Play()
         .OnComplete(() =>

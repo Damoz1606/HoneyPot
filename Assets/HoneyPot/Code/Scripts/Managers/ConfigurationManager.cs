@@ -32,4 +32,11 @@ public class ConfigurationManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
+
+    public void ClearConfig()
+    {
+        this.Goals = default;
+        this.Score = default;
+        this.Grid = default;
+    }
 }

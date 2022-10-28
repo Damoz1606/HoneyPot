@@ -8,7 +8,8 @@ public class ChallengeManager : MonoBehaviour, IManager
 
     public void Initialize()
     {
-        _goals.ForEach(goal => goal.Initialize());
+        if (_goals != null)
+            _goals.ForEach(goal => goal.Initialize());
     }
 
     private void OnEnable()

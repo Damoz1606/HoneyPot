@@ -25,8 +25,9 @@ public class TutorialGUI : MonoBehaviour, IGoalUI, IPoolObject
     {
         this.OnEnable();
         TutorialGoal goal = (TutorialGoal)message;
+        this.GetComponent<RectTransform>().localPosition = Vector3.zero;
         this.GetComponent<RectTransform>().localScale = Vector3.one;
-        this.GetComponent<RectTransform>().anchoredPosition = new Vector2(275, 475);
+        this.GetComponent<RectTransform>().anchoredPosition = new Vector3(275, 475, 0);
         this.associateID = goal.UniqueID;
         this._currentTutorial.text = $"{goal.CurrentAmount + 1}";
         this._tutorialTotal.text = $"{goal.TutorialCount}";
