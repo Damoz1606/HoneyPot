@@ -1,0 +1,938 @@
+fileFormatVersion: 2
+guid: 2b110adc913ecc24081bf541d315e719
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Border - Horizontal - Honeycomb - Default
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 51
+        width: 116
+        height: 463
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50323975}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd68df4510b69844b87e106ec158f4ce
+      internalID: 1697579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border - Horizontal - Honeycomb -Black
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 51
+        width: 116
+        height: 463
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50323975}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e453ab0ffa8dae4fb9d14e6d551c3bf
+      internalID: -513636590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border - Vertical - Honeycomb - Default
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1938
+        width: 303
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a2a42915b3afc4d8b0078e694341a5
+      internalID: 1763004721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border - Vertical - Honeycomb -Black
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1828
+        width: 303
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ecea51ba1e2efc45a2c918f8e1367c9
+      internalID: -125328725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Default - Pressed
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1309
+        width: 247
+        height: 104
+      alignment: 9
+      pivot: {x: 0.5020243, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c500e2ea67a7a4099d929cf8990d78
+      internalID: -644670988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Default - Pressed - Dark
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1413
+        width: 247
+        height: 104
+      alignment: 9
+      pivot: {x: 0.5020243, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1080b96e2234694c8c7baee4c43381c
+      internalID: -1476925639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Default - Stroke
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1517
+        width: 248
+        height: 104
+      alignment: 9
+      pivot: {x: 0.50403225, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74d09065038e07e48a6e48c9f6175933
+      internalID: 1741172916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Default - Stroke - Dark
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1621
+        width: 248
+        height: 104
+      alignment: 9
+      pivot: {x: 0.50403225, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f484ecd3983317e4bb4f3b65404b8393
+      internalID: -44915615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Icon - Pressed
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1099
+        width: 246
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50476193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d829f2d00c40449b4f0d7c7d82848e
+      internalID: -469691292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Icon - Pressed - Dark
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1204
+        width: 246
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50476193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f701add5af92b14ba079169b0e4a9ee
+      internalID: 1806681000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Icon - Stroke
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 889
+        width: 246
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffc99539f478154197c533fa2514274
+      internalID: -471179294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Icon - Stroke - Dark
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 994
+        width: 246
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d494346aad7384092de5dd25964c6b
+      internalID: 1020925293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Pressed
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 335
+        width: 122
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd51ceed69c51040a3e910f4dc7fdb5
+      internalID: 522143981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Pressed - Dark
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 439
+        width: 122
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec132b4279a9acf44a4701fceb84d534
+      internalID: 72048523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Rotate - Pressed
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 107
+        width: 104
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50961536, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de911e0a5ead7344b82a72f117324b0
+      internalID: 1741535087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Rotate - Pressed - Dark
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 765
+        width: 104
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50961536, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4281cf9663289624899b36765e88e9a1
+      internalID: -545477473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Rotate - Stroke
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 107
+        width: 104
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50961536, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70823d20669dcfa48a3a120b379677dc
+      internalID: 1209242638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Rotate - Stroke - Dark
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 107
+        width: 104
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50961536, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 214a73ee3b9198b429d69eeb9606ba2c
+      internalID: 398551874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Stroke
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 3
+        width: 122
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ef46e3567e81b4ead7543cb354e03b
+      internalID: -460843059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button - Small - Stroke - Dark
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 231
+        width: 122
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0416faf64cda54d4988dd9ebef750694
+      internalID: 362373223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Honeycomb - Dark
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 654
+        width: 122
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5081967, y: 0.5135135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83feecb6e77df004b9a1c4809aa40704
+      internalID: 235646552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Honeycomb - Default
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 543
+        width: 122
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5081967, y: 0.5135135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dca15abff5d63614bbf65e599c5cefcc
+      internalID: 341690504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon - Label - Dark
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 787
+        width: 244
+        height: 102
+      alignment: 9
+      pivot: {x: 0.49590164, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30583ee33a4931545b3551f2a1de95ad
+      internalID: 1217434903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon - Label - Default
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1725
+        width: 251
+        height: 103
+      alignment: 9
+      pivot: {x: 0.48207173, y: 0.49514562}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0b1b8674a45a7408432e1f8887c0fc
+      internalID: -389358859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon - World - NonSelected
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 1762
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f5a2fa080064744793599ddce0800e3
+      internalID: 2050342511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon - World - Selected
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 340
+        width: 103
+        height: 112
+      alignment: 9
+      pivot: {x: 0.5048544, y: 0.4642857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad404b1cdb6045449247ab5ddeed60b
+      internalID: 625237916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modal - Body - Dark
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 514
+        width: 210
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 872cefbdeae5a5c48b9b45bd22ee8175
+      internalID: 1291460332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modal - Body - Default
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 241
+        width: 210
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed89a55a5e8965945bd777c95eac1c7b
+      internalID: -1363067089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Panel - Frame
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 811
+        width: 673
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22e48d85bd0e2ae4b9e0dc817d87f90a
+      internalID: -1476844631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Polygon 120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 939
+        width: 678
+        height: 1109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ed462f4b81acc4ba559f10db700c76
+      internalID: -810140779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rectangle 61
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 747
+        width: 673
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01f33d09cedfa6846ab7ba0280c50814
+      internalID: -179913814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider - Score - Hexagone - Border
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 576
+        width: 394
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50507617, y: 0.5080645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f09e7c4e20b0b4da8f24a392cd8852
+      internalID: 49869797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider - Score - Hexagone - Handler
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 452
+        width: 394
+        height: 124
+      alignment: 9
+      pivot: {x: 0.50507617, y: 0.5080645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d4e27e0bd7d994c98e9675ccbf58d3
+      internalID: -1564936046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider - Simple - Handler
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 700
+        width: 404
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51ab67a0186b734bb9bc22795421968
+      internalID: 228980754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider - Simple - Handler-1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 404
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 960072658cec07944ad1a163df56a97f
+      internalID: -2041633596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Superior - Frame
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 777
+        width: 673
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4852941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67b7458c03bc4d2499b7a77540a25c34
+      internalID: -1887743321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4c73f1eaf8823f7458db134d890730b6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Button - Icon - Stroke: -471179294
+      Button - Small - Stroke: -460843059
+      Button - Small - Pressed - Dark: 72048523
+      Icon - Label - Dark: 1217434903
+      Border - Horizontal - Honeycomb - Default: 1697579
+      Button - Small - Rotate - Stroke: 1209242638
+      Button - Small - Rotate - Stroke - Dark: 398551874
+      Panel - Frame: -1476844631
+      Border - Vertical - Honeycomb -Black: -125328725
+      Slider - Simple - Handler: 228980754
+      Button - Icon - Pressed: -469691292
+      Button - Icon - Pressed - Dark: 1806681000
+      Button - Icon - Stroke - Dark: 1020925293
+      Polygon 120: -810140779
+      Superior - Frame: -1887743321
+      Icon - Label - Default: -389358859
+      Button - Small - Rotate - Pressed: 1741535087
+      Button - Default - Stroke - Dark: -44915615
+      Button - Default - Pressed - Dark: -1476925639
+      Slider - Score - Hexagone - Border: 49869797
+      Slider - Score - Hexagone - Handler: -1564936046
+      Button - Small - Rotate - Pressed - Dark: -545477473
+      Modal - Body - Default: -1363067089
+      Rectangle 61: -179913814
+      Button - Small - Stroke - Dark: 362373223
+      Border - Vertical - Honeycomb - Default: 1763004721
+      Slider - Simple - Handler-1: -2041633596
+      Honeycomb - Dark: 235646552
+      Button - Small - Pressed: 522143981
+      Icon - World - Selected: 625237916
+      Button - Default - Pressed: -644670988
+      Modal - Body - Dark: 1291460332
+      Honeycomb - Default: 341690504
+      Border - Horizontal - Honeycomb -Black: -513636590
+      Icon - World - NonSelected: 2050342511
+      Button - Default - Stroke: 1741172916
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

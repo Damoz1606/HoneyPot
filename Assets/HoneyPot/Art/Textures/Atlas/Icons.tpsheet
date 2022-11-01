@@ -1,0 +1,57 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:50aa54d5a5db138493ee3d28c5548b42:852fbac4529f4c81f322f38e3669efc8:8700ff3222e3186ea5478c85b55629c1$
+#
+:format=40300
+:texture=Icons.png
+:size=2048x2048
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+Icon - Arrow - Left - Dark;0;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Arrow - Left - Default;256;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Arrow - Right - Dark;512;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Arrow - Right - Default;768;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Collect;1024;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Craft;1280;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Heart - Dark;1536;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Heart - Default;1792;1792;256;256; 0.5;0.5; 0;0;0;0
+Icon - Hexagone - Dark;0;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Hexagone - Default;256;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Instant Fall - Default-1;512;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Instant Fall - Default;768;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Minus - Dark;1024;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Minus - Default;1280;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Pause - Dark;1536;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Pause- Default;1792;1536;256;256; 0.5;0.5; 0;0;0;0
+Icon - Play - Dark;0;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Play - Default;256;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Plus - Dark;512;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Plus - Default;768;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Rotate - Dark;1024;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Rotate - Default;1280;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Settings - Dark;1536;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Settings - Default;1792;1280;256;256; 0.5;0.5; 0;0;0;0
+Icon - Star - Dark - Border;0;1024;256;256; 0.5;0.5; 0;0;0;0
+Icon - Star - Dark - Empty;256;1024;256;256; 0.5;0.5; 0;0;0;0
+Icon - Star - Default - Empty;512;1024;256;256; 0.5;0.5; 0;0;0;0
+Icon - Star - Default - Filled-1;768;1024;256;256; 0.5;0.5; 0;0;0;0
+Icon - Star - Default - Filled;1024;1024;256;256; 0.5;0.5; 0;0;0;0
+Icon - Stats - Dark;1280;1024;256;256; 0.5;0.5; 0;0;0;0
+Icon - Stats - Default;1536;1024;256;256; 0.5;0.5; 0;0;0;0
+Particle - Dark;1792;1024;256;256; 0.5;0.5; 0;0;0;0
+Particle - Default;0;768;256;256; 0.5;0.5; 0;0;0;0
+Particle - Light;256;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Bomb;512;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Flower - Blue;768;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Flower - Peach;1024;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Flower - Pink;1280;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Flower - Purple;1536;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Flower - Red;1792;768;256;256; 0.5;0.5; 0;0;0;0
+Tile - Honeypot;0;512;256;256; 0.5;0.5; 0;0;0;0
+Tile - Star;256;512;256;256; 0.5;0.5; 0;0;0;0

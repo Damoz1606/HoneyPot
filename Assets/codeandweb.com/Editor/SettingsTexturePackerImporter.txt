@@ -1,0 +1,17 @@
+version: 2
+tpsheetFileNames:
+- Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+- Assets/HoneyPot/Art/Textures/Atlas/Icons.tpsheet
+- Assets/HoneyPot/Art/Textures/Atlas/TextureAtlas.tpsheet
+- Assets/HoneyPot/Art/Textures/Atlas/UIAtlas.tpsheet
+textureFileNames:
+- Assets/codeandweb.com/Example/SpriteSheet/sprites.png
+- Assets/HoneyPot/Art/Textures/Atlas/Icons.png
+- Assets/HoneyPot/Art/Textures/Atlas/TextureAtlas.png
+- Assets/HoneyPot/Art/Textures/Atlas/UIAtlas.png
+normalmapFileNames:
+- Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
+- 
+- 
+enableDebugOutput: 0

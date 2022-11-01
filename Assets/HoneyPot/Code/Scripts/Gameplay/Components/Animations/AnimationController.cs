@@ -6,15 +6,22 @@ using UnityEngine;
 public class AnimationController : _AnimationBase
 {
     [SerializeField] private _AnimationBase[] _animations;
+    [SerializeField] private bool _endAnimation = false;
 
     public override void StartAnimation()
     {
-        StartCoroutine(this.StartAnimationCorountine());
+        if (this._endAnimation)
+            StartCoroutine(this.EndAnimationCorountine());
+        else
+            StartCoroutine(this.StartAnimationCorountine());
     }
 
     public override void EndAnimation()
     {
-        StartCoroutine(this.EndAnimationCorountine());
+        if (this._endAnimation)
+            StartCoroutine(this.StartAnimationCorountine());
+        else
+            StartCoroutine(this.EndAnimationCorountine());
     }
 
     private IEnumerator StartAnimationCorountine()

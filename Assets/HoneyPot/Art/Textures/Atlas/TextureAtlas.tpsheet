@@ -1,0 +1,19 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:71de8bb7acca3f9da288738e33c57093:a9f827670430e4d54864077e5392717c:619c6a04a5f250d96f2d02cf1738ef77$
+#
+:format=40300
+:texture=TextureAtlas.png
+:size=512x1024
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+Bee;0;768;455;256; 0.5;0.5; 0;0;0;0
+Block - Face - Back;0;512;256;256; 0.5;0.5; 0;0;0;0
+Block - Face - Front;256;512;256;256; 0.5;0.5; 0;0;0;0
+Block - Face - Middle;0;256;256;256; 0.5;0.5; 0;0;0;0
