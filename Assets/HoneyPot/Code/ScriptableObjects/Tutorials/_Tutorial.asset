@@ -14,33 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _requireAmount: 0
   _isTutorial: 1
-  _startMessage: Hi! Welcome to honeypot!!!!
-  _endMessage: With this you can continue over the game, good luck
   _tutorials:
-  - message: Tap '>' to move right
+  - message: Hi! Welcome to HONEYPOT!!!!
+    tutorial: {fileID: 0}
+    onlyText: 1
+  - message: Tap  <sprite index='0' />  to move right
     tutorial: {fileID: 11400000, guid: c25f9aa3fa0665f43a9a4d7d89468240, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: Tap '<' to move left
+    onlyText: 0
+  - message: Tap  <sprite index='2' />  to move left
     tutorial: {fileID: 11400000, guid: f11ffd50414e36d42b197531097468e3, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: Tap the rotate to rotate the tetrominoe
+    onlyText: 0
+  - message: Tap  <sprite index='20' />  to rotate the tetrominoe
     tutorial: {fileID: 11400000, guid: e0fb5b2139e3772419156488433e25de, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: Tap down arrow to do an instant fall
+    onlyText: 0
+  - message: Tap  <sprite index='10' />  to do an instant fall
     tutorial: {fileID: 11400000, guid: 6defa519b38b3ff44a3662395300b2bf, type: 2}
-    canvasPosition: {x: 0, y: 0}
+    onlyText: 0
   - message: The flowers can be swipe, just hold and move to the desire direction
     tutorial: {fileID: 11400000, guid: 63b0b58b1ce5f3345af565234b82a4b6, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: If you join 4 flowers in a row or column, a bomb is craft
+    onlyText: 0
+  - message: On top right corner,  <sprite index='5' />  tells you to craft an item
+    tutorial: {fileID: 0}
+    onlyText: 1
+  - message: If you join 4 flowers in a row or column, a  <sprite index='34' /> 
+      is craft
     tutorial: {fileID: 11400000, guid: ddd18bf225aee2b409d8300a3b1aef4f, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: A bomb can be activate by swipping it
-    tutorial: {fileID: 11400000, guid: ddd18bf225aee2b409d8300a3b1aef4f, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: If you join 5 flowers in a row or column, a bomb is craft
+    onlyText: 0
+  - message: On top right corner,  <sprite index='4' />  tells you to collect an
+      item
+    tutorial: {fileID: 0}
+    onlyText: 1
+  - message: A  <sprite index='34' />  can be activate by swipping it
+    tutorial: {fileID: 11400000, guid: fe659b6d25e094349bb9adfc92b7bdd9, type: 2}
+    onlyText: 0
+  - message: If you join 5 flowers in a row or column, a  <sprite index='40' /> 
+      is craft
     tutorial: {fileID: 11400000, guid: 219d16b4b2db5f64f9a5334c78bee33e, type: 2}
-    canvasPosition: {x: 0, y: 0}
-  - message: A honeypot can be activate by swipping it
+    onlyText: 0
+  - message: A  <sprite index='40' />  can be activate by swipping it
     tutorial: {fileID: 11400000, guid: e3000f9cc0f5fda4c9fc58de812381db, type: 2}
-    canvasPosition: {x: 0, y: 0}
+    onlyText: 0
+  - message: Now you can continue over the game, good luck
+    tutorial: {fileID: 0}
+    onlyText: 1

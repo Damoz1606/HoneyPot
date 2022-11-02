@@ -6,16 +6,10 @@ using UnityEngine;
 
 public class TutorialGoal : _AGoal
 {
-
-    // [SerializeField] private List<string> messages = new List<string>();
-    [SerializeField] private string _startMessage;
-    [SerializeField] private string _endMessage;
     [SerializeField] private List<TutorialStruct> _tutorials = new List<TutorialStruct>();
-
-    public string StartMessage => this._startMessage;
-    public string EndMessage => this._endMessage;
     public int TutorialCount => _tutorials.Count;
     public int CurrentTutorialIndex => this.CurrentAmount;
+    public bool OnlyText => this._tutorials[this.CurrentAmount].onlyText;
     public TutorialStruct CurrentTutorial => this._tutorials[this.CurrentAmount];
 
     public override void Initialize()
@@ -23,7 +17,7 @@ public class TutorialGoal : _AGoal
         base.Initialize();
         // _tutorials.ForEach(tutorial => tutorial.tutorial.Initialize());
         EventManager.StartListening(Channels.TUTORIAL_CHANNEL, TutorialEvent.TUTORIAL, this.UpdateGoal);
-        _tutorials[this.CurrentAmount].tutorial.Initialize();
+        if (!_tutorials[this.CurrentAmount].onlyText) _tutorials[this.CurrentAmount].tutorial.Initialize();
         EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.START_TUTORIAL_GUI, this);
     }
 
@@ -32,7 +26,7 @@ public class TutorialGoal : _AGoal
         this.CurrentAmount += 1;
         if (this.CurrentAmount < this._tutorials.Count)
         {
-            _tutorials[this.CurrentAmount].tutorial.Initialize();
+            if (!_tutorials[this.CurrentAmount].onlyText) _tutorials[this.CurrentAmount].tutorial.Initialize();
             EventManager.TriggerEvent(Channels.UI_CHANNEL, UIEvent.UPDATE_TUTORIAL_GUI, this);
         }
         this.Evaluate();
@@ -40,7 +34,13 @@ public class TutorialGoal : _AGoal
 
     protected override void Evaluate()
     {
-        if (_tutorials.All(tutorial => tutorial.tutorial.Completed)) this.Complete();
+        if (_tutorials.All(tutorial =>
+        {
+            if (tutorial.onlyText)
+                return true;
+            else
+                return tutorial.tutorial.Completed;
+        })) this.Complete();
     }
 
     protected override void Complete()

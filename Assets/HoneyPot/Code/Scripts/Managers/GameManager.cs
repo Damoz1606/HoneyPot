@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour, IManager
                 return typeof(PlayState);
             case GameStates.WINNER:
                 return typeof(WinnerState);
+            case GameStates.TUTORIAL:
+                return typeof(TutorialState);
             default:
                 return null;
         }

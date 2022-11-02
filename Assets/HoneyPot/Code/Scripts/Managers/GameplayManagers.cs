@@ -18,6 +18,7 @@ public class GameplayManagers : MonoBehaviour, IManager
 {
     private static AudioManager _audioManager;
     private static CameraManager _cameraManager;
+    private static ChallengeManager _challengeManager;
     private static ComboManager _comboManager;
     private static GameManager _gameManager;
     private static GridManager _gridManager;
@@ -50,8 +51,7 @@ public class GameplayManagers : MonoBehaviour, IManager
         _scoreManager = GetComponent<ScoreManager>();
         _uiManager = GetComponent<UIManager>();
         _gameManager = GetComponent<GameManager>();
-
-
+        _challengeManager = GetComponent<ChallengeManager>();
     }
 
     void Start()
@@ -63,7 +63,6 @@ public class GameplayManagers : MonoBehaviour, IManager
     {
         _audioManager.SetUp();
         _cameraManager.SetUp();
-        GetComponent<ChallengeManager>().SetUp();
         _gridManager.SetUp();
         _inputManager.SetUp();
         _particlesManager.SetUp();
@@ -71,5 +70,6 @@ public class GameplayManagers : MonoBehaviour, IManager
         _scoreManager.SetUp();
         _uiManager.SetUp();
         _gameManager.SetUp();
+        _challengeManager.SetUp();
     }
 }

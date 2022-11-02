@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Storage
 {
-    private string folderName = "Resources";
+    // private string folderName = "Resources";
 
     private static Storage _instance;
     // public static Storage Instance => _instance;
@@ -52,7 +52,6 @@ public class Storage
     public async Task StoreAsync<T>(T forStore, string filename)
     {
         string path = Path.Combine(AssetFolder(), filename);
-        Debug.Log(path);
         List<T> data = new List<T>();
         this.CheckFolder();
         data.Add(forStore);

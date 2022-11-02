@@ -5,8 +5,9 @@ public class PauseState : _StatesBase
     public override void OnActivate()
     {
         GameplayManagers.UIManager.PausePopup.OnActivatePopup();
+        GameplayManagers.GameManager.IsGameActive = false;
+        GameplayManagers.InputManager.IsInputActive = false;
         Time.timeScale = 0f;
-        Debug.Log("<color=green>Pause State</color> OnActive");
     }
 
     public override void OnDeactivate()
@@ -16,11 +17,9 @@ public class PauseState : _StatesBase
         GameplayManagers.GameManager.IsGameActive = true;
         GameplayManagers.InputManager.IsInputActive = true;
         Time.timeScale = 1;
-        Debug.Log("<color=red>Pause State</color> OnDeactivate");
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("<color=yellow>Pause State</color> OnUpdate");
     }
 }

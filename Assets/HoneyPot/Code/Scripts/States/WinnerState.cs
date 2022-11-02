@@ -39,18 +39,15 @@ public class WinnerState : _StatesBase
         }
         stats.completedLevels = levels.ToArray();
         await this.StoreAsync(stats);
-        Debug.Log("<color=green>Winner State</color> OnActive");
     }
 
     public override void OnDeactivate()
     {
         // GameplayManagers.UIManager.GameOverPopup.OnDeactivatePopup();
-        Debug.Log("<color=red>Winner State</color> OnDeactivate");
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("<color=yellow>Winner State</color> OnUpdate");
     }
 
     public async Task StoreAsync(GameStats stats)

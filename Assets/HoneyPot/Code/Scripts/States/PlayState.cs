@@ -10,16 +10,13 @@ public class PlayState : _StatesBase
             GameplayManagers.UIManager.ActivateUI(UITypes.INGAME);
             GameplayManagers.AudioManager.PlayMusic();
             StartCoroutine(this.StartGameCoroutine());
-            // GameplayManagers.SpawnManager.TetrominoePoolSpawner.Spawn();
         }
-        Debug.Log("<color=green>Play State</color> OnActive");
     }
 
     public override void OnDeactivate()
     {
         GameplayManagers.GameManager.IsGameActive = false;
         GameplayManagers.InputManager.IsInputActive = false;
-        Debug.Log("<color=red>Play State</color> OnDeactivate");
     }
 
     public override void OnUpdate()
@@ -28,8 +25,6 @@ public class PlayState : _StatesBase
         {
             GameplayManagers.GameManager.CurrentTetrominoe.FallComponent.FreeFall();
         }
-        // GameplayManagers.GoalManager.CheckCompletedGoals();
-        Debug.Log("<color=yellow>Play State</color> OnUpdate");
     }
 
     private IEnumerator StartGameCoroutine()
@@ -40,6 +35,7 @@ public class PlayState : _StatesBase
             GameplayManagers.SpawnManager.TetrominoeNormalSpawner.OnSpawn();
             GameplayManagers.GameManager.HasStarted = true;
         }
+        if (!GameplayManagers.InputManager.IsInputActive) GameplayManagers.InputManager.IsInputActive = true;
         GameplayManagers.GameManager.IsGameActive = true;
     }
 }

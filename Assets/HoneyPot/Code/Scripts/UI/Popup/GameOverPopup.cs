@@ -6,6 +6,7 @@ using TMPro;
 public class GameOverPopup : _PopupBase
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private AnimationController _doors;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class GameOverPopup : _PopupBase
     private IEnumerator OnActivatePopupCoroutine()
     {
         yield return new WaitForSecondsRealtime(1f);
+        _doors.EndAnimation();
         this._animationController.StartAnimation();
         GameplayManagers.AudioManager.PlayUI(GameplayManagers.AudioManager.UIGameOver);
         yield break;
