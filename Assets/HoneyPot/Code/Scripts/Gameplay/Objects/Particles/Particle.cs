@@ -39,5 +39,6 @@ public class Particle : MonoBehaviour, IParticle, IPoolObject
     public void SetPosition(Vector3 position)
     {
         this.transform.position = position;
+        this.transform.eulerAngles = new Vector3(-90, 0, 0);
     }
 }
